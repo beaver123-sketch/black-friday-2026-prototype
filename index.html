@@ -242,7 +242,7 @@ function applyLocale(){
       if(!englishNodes.has(n))englishNodes.set(n,n.nodeValue);
       const orig=englishNodes.get(n),trimmed=orig.trim();
       if(!trimmed||!Object.prototype.hasOwnProperty.call(dictionary,trimmed))continue;
-      const left=orig.match(/^\\s*/)[0],right=orig.match(/\\s*$/)[0];
+      const left=orig.match(/^\s*/)[0],right=orig.match(/\s*$/)[0];
       n.nodeValue=left+translateText(trimmed)+right;
     }
     root.querySelectorAll('[aria-label]').forEach(el=>{
@@ -253,6 +253,9 @@ function applyLocale(){
   document.querySelectorAll('.review-langs button').forEach(el=>{
     const on=el.dataset.lang===lang;el.classList.toggle('selected',on);el.setAttribute('aria-pressed',String(on))
   });
+  const toolBody=document.getElementById('review-tools-body');
+  const collapsed=toolBody.classList.contains('collapsed');
+  document.getElementById('review-toggle').textContent=collapsed?(lang==='zh'?'展开工具 ▼':'Expand tools ▼'):(lang==='zh'?'收起工具 ▲':'Collapse tools ▲');
 }
 function setLanguage(next){
   if(!['en','zh'].includes(next))return;
