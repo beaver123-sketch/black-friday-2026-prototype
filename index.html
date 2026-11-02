@@ -313,6 +313,27 @@ body.rules-dialog-open{overflow:hidden}
 .bf-ranking-gap.bf-gap-status #rank-gap-amount{display:none}
 @media(max-width:390px){.bf-ranking-gap{padding:13px 12px 17px}.bf-ranking-gap-content>span{font-size:11px}.bf-ranking-gap-content strong{font-size:13px}}
 
+
+/* V3 - always-on My Ranking details */
+#ranking{padding-bottom:112px}
+.bf-ranking-gap{padding:10px 15px 14px}
+.bf-mine-main{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:9px;margin-bottom:8px;border-bottom:1px solid #aa865c35}
+.bf-mine-identity,.bf-mine-spend{display:flex;flex-direction:column;gap:4px;min-width:0}
+.bf-mine-statusline{display:flex;align-items:center;gap:7px;min-width:0}
+.bf-mine-title,.bf-mine-spend>small{font-size:10px;color:#c4b7a3;font-weight:550}
+.bf-mine-status{font-size:9px;line-height:1;padding:4px 6px;border-radius:5px;border:1px solid #b399624a;color:#bfc1c9;white-space:nowrap;font-weight:800}
+.bf-mine-status.is-ranked{color:#ffe0a7;border-color:#c89e594f;background:#ad7f3920}
+.bf-mine-position{color:#f6d7a3;font-size:18px;font-weight:860;line-height:1.15}
+.bf-mine-spend{align-items:flex-end;text-align:right}
+.bf-mine-spend strong{display:flex;align-items:center;gap:4px;color:#f5dcad;font-size:14px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.bf-mine-spend svg{width:15px;height:15px;color:#eeb961}
+.bf-ranking-gap-content{min-height:17px}
+.bf-ranking-gap-content>span{font-size:10.5px;color:#c9b99d}
+.bf-ranking-gap-content strong{font-size:12px}
+.bf-ranking-gap-content svg{height:13px;width:13px}
+.bf-ranking-gap.bf-gap-status .bf-ranking-gap-content{justify-content:flex-start}
+.bf-ranking-gap.bf-gap-status .bf-ranking-gap-content>span{text-align:left;font-size:10.5px;font-weight:600}
+@media(max-width:390px){.bf-ranking-gap{padding:9px 12px 13px}.bf-mine-main{gap:6px}.bf-mine-position{font-size:16px}.bf-mine-spend strong{font-size:12.5px}.bf-mine-statusline{gap:4px}}
 </style>
 </head>
 <body>
@@ -460,6 +481,19 @@ body.rules-dialog-open{overflow:hidden}
       <div class="other-rewards-grid" id="other-rewards-grid"></div>
     </section>
     <div class="bf-ranking-gap hide" id="ranking-gap" aria-live="polite">
+      <div class="bf-mine-main">
+        <div class="bf-mine-identity">
+          <div class="bf-mine-statusline">
+            <span id="rank-mine-title" class="bf-mine-title" data-dynamic-locale>My ranking</span>
+            <span id="rank-mine-status" class="bf-mine-status" data-dynamic-locale>Not ranked</span>
+          </div>
+          <strong id="rank-mine-position" class="bf-mine-position" data-dynamic-locale>—</strong>
+        </div>
+        <div class="bf-mine-spend">
+          <small id="rank-mine-score-label" data-dynamic-locale>My total top-ups</small>
+          <strong id="rank-mine-score"><svg><use href="#i-coins"/></svg><span id="rank-mine-score-value">—</span></strong>
+        </div>
+      </div>
       <div class="bf-ranking-gap-content">
         <span id="rank-gap-text" data-dynamic-locale>Gold needed to enter Top 10</span>
         <strong id="rank-gap-amount"><svg><use href="#i-coins"/></svg><span id="rank-gap-value">—</span></strong>
@@ -691,7 +725,7 @@ function currentUserScore(rows,rank){
 function updateRankingGap(){
   const banner=document.getElementById('ranking-gap');
   if(!banner)return;
-  // Keep the summary visible for ranked, unranked, pending, and final states.
+  // The personal summary remains visible whether the user is ranked or not.
   banner.classList.remove('hide');
   const title=document.getElementById('rank-gap-text');
   const amount=document.getElementById('rank-gap-value');
@@ -699,31 +733,37 @@ function updateRankingGap(){
   const rank=getCurrentUserRank();
   const mine=currentUserScore(rows,rank);
   const chinese=lang==='zh';
-  const number=(value)=>Math.max(0,value).toLocaleString('en-US');
-  const rankLabel=(value)=>chinese?'第'+value+'名':'#'+value;
+  const number=value=>Math.max(0,value).toLocaleString('en-US');
+  const rankLabel=value=>chinese?'第'+value+'名':'#'+value;
+  const status=document.getElementById('rank-mine-status');
+  document.getElementById('rank-mine-title').textContent=chinese?'我的排名':'My ranking';
+  document.getElementById('rank-mine-score-label').textContent=chinese?'我的累计充值':'My total top-ups';
+  document.getElementById('rank-mine-score-value').textContent=number(mine);
+  document.getElementById('rank-mine-position').textContent=rank===null?'—':rankLabel(rank);
+  status.textContent=rank===null?(chinese?'未上榜':'Not ranked'):(chinese?'已上榜':'Ranked');
+  status.classList.toggle('is-ranked',rank!==null);
   banner.classList.toggle('bf-gap-first',demoStage==='live'&&rank===1);
   banner.classList.toggle('bf-gap-final',demoStage!=='live');
 
   let label='',value=null;
   if(demoStage==='final'){
-    if(rank===null)label=chinese?'本期未上榜':'Not ranked this event';
-    else {
+    if(rank===null)label=chinese?'最终未上榜 · 无排名奖励':'Final result: unranked · No ranking reward';
+    else{
       const claimed=claimedRanks.has(getClaimKey());
-      label=chinese?('最终排名'+rankLabel(rank)+' · '+(claimed?'奖励已领取':'奖励待领取')):
-         ('Final rank '+rankLabel(rank)+' · '+(claimed?'Reward claimed':'Reward ready to claim'));
+      label=chinese?('最终排名已确认 · '+(claimed?'奖励已领取':'请在榜单中领取奖励')):
+        ('Final rank confirmed · '+(claimed?'Reward claimed':'Claim your reward in the ranking'));
     }
-  } else if(demoStage==='pending'){
+  }else if(demoStage==='pending'){
     label=rank===null?(chinese?'排名结算中 · 暂未上榜':'Finalizing · Not currently ranked'):
-      (chinese?'排名结算中 · 当前'+rankLabel(rank):'Finalizing · Current rank '+rankLabel(rank));
-  } else if(rank===null){
-    label=chinese?'距离上榜还差':'Gold needed for Top 10';
+      (chinese?'排名结算中 · 当前排名仅供参考':'Finalizing · Current rank is provisional');
+  }else if(rank===null){
+    label=chinese?'距离前10名还差':'Gold needed to reach Top 10';
     value=parseGold(rows[9].score)-mine+1;
-  } else if(rank===1){
-    label=chinese?'当前第1名 · 领先第2名':'Rank #1 · Lead over #2';
+  }else if(rank===1){
+    label=chinese?'领先第2名':'Lead over #2';
     value=mine-parseGold(rows[1].score);
-  } else {
-    label=chinese?'当前'+rankLabel(rank)+' · 距离第'+(rank-1)+'名还差':
-      'Rank '+rankLabel(rank)+' · Gold needed for #'+(rank-1);
+  }else{
+    label=chinese?'距离第'+(rank-1)+'名还差':'Gold needed for #'+(rank-1);
     value=parseGold(rows[rank-2].score)-mine+1;
   }
   title.textContent=label;
