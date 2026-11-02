@@ -618,8 +618,8 @@ function updateRankingGap(){
   banner.classList.toggle('hide',!isUnranked);
   if(!isUnranked)return;
   // Demonstration only: the unranked user's score is sample data.
-  const personalScore=selectedRegion==='all'?5100000:Math.floor(tenthScore*0.80);
   const tenthScore=parseGold(getRankingRowsForRegion()[9].score);
+  const personalScore=selectedRegion==='all'?5100000:Math.floor(tenthScore*0.80);
   const required=Math.max(0,tenthScore-personalScore+1);
   document.getElementById('rank-gap-value').textContent=required.toLocaleString('en-US');
 }
