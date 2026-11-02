@@ -250,6 +250,31 @@ radial-gradient(circle at 84% 9%,#f4c06f12,transparent 42%)}
 .bf-tab-rules{display:flex;gap:6px;align-items:center;border:1px solid #98724e66;border-radius:22px;background:#30271daa;color:#f3d5a1;padding:5px 11px;font-size:11px;font-weight:780;min-height:31px}
 .bf-tab-rules svg{width:15px;height:15px}
 
+
+/* Recharge leaderboard: compact controls bar aligned to existing weekly rankings */
+#ranking{position:relative}
+.bf-rank-tools{display:flex;align-items:center;gap:7px;margin:0 0 12px;padding:2px 0 0;min-height:39px;position:relative;z-index:25}
+.bf-rank-tools button{font-family:inherit}
+.bf-mini-clock{display:flex;gap:5px;align-items:center;flex:1 1 auto;min-width:0;color:#ebd7b2;white-space:nowrap}
+.bf-mini-clock svg{width:16px;height:16px;flex:0 0 16px;color:#eac487}
+.bf-mini-clock strong{font-size:12px;letter-spacing:.02em;font-weight:850;font-variant-numeric:tabular-nums}
+.bf-visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.bf-region-select{position:relative;flex:0 0 auto;max-width:125px}
+#bf-region-button,.bf-mini-rules{border:1px solid #8d704d80;border-radius:19px;background:#1b1b1ecc;color:#e9d2ae;min-height:33px;display:flex;align-items:center;justify-content:center;gap:5px;padding:5px 9px;white-space:nowrap;font-size:11px;font-weight:700}
+#bf-region-button{max-width:125px}
+#bf-region-current{max-width:77px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bf-region-globe{font-size:16px;line-height:1;color:#e8c88e}
+.bf-region-chevron{font-size:15px;line-height:1;color:#d2ac7f}
+.bf-mini-rules{flex:0 0 auto;padding:5px 9px}
+.bf-mini-rules svg{height:15px;width:15px;color:#e8c487}
+.bf-region-menu{position:absolute;top:calc(100% + 6px);right:0;width:167px;padding:6px;background:#202228;border:1px solid #886c49;border-radius:11px;box-shadow:0 12px 28px #000b;z-index:40}
+.bf-region-menu[hidden]{display:none}
+.bf-region-menu button{display:block;color:#ecddc7;width:100%;border:0;border-radius:7px;background:transparent;text-align:left;font-size:12px;padding:10px 9px}
+.bf-region-menu button[aria-checked="true"]{color:#261b0e;background:linear-gradient(110deg,#f4d59d,#d6a260);font-weight:850}
+.bf-region-menu button:hover:not([aria-checked="true"]){background:#55402d}
+#ranking~.bf-tab-actions{display:none}
+@media(max-width:390px){.bf-rank-tools{gap:4px}.bf-mini-clock{gap:3px}.bf-mini-clock strong{font-size:10.7px}.bf-mini-clock svg{width:14px;height:14px;flex-basis:14px}.bf-region-select{max-width:112px}#bf-region-button{max-width:112px;gap:3px;padding:5px 6px}#bf-region-current{max-width:68px}.bf-mini-rules{padding:5px 7px;gap:3px;font-size:10px}}
+
 </style>
 </head>
 <body>
@@ -344,10 +369,26 @@ radial-gradient(circle at 84% 9%,#f4c06f12,transparent 42%)}
     <div class="pagefoot">BLACK FRIDAY · 2026</div>
   </div>
   <div id="ranking" class="main hide">
-    <section class="section ranking-intro"><div class="section-heading"><span class="heading-icon"><svg><use href="#i-trophy"/></svg></span>7-Day Top-up Ranking</div><div class="intro-row"><div class="intro-desc">Compete for exclusive honors.<br>Ranked by cumulative gold top-ups.</div></div><div class="mini-banner"><svg><use href="#i-calendar"/></svg>25 NOV – 01 DEC 2026 · 7 DAYS</div>
-      <div class="bf-countdown" aria-live="off"><span class="bf-countdown-icon">◷</span><div class="bf-countdown-text"><small id="countdown-label">Ends in</small><strong id="ranking-countdown">--D --:--:--</strong></div><span class="bf-countdown-period">7-Day Event</span></div>
-
-    </section>
+    <div class="bf-rank-tools" aria-label="Ranking controls">
+      <div class="bf-mini-clock" aria-label="Event countdown">
+        <svg><use href="#i-calendar"/></svg>
+        <span id="countdown-label" class="bf-visually-hidden">Ends in</span>
+        <strong id="ranking-countdown">--D --:--:--</strong>
+      </div>
+      <div class="bf-region-select">
+        <button id="bf-region-button" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="bf-region-menu" aria-label="Select Region" onclick="toggleRankingRegions()">
+          <span class="bf-region-globe">◎</span><span id="bf-region-current">All Regions</span><span class="bf-region-chevron">⌄</span>
+        </button>
+        <div id="bf-region-menu" class="bf-region-menu" role="menu" hidden>
+          <button type="button" role="menuitemradio" aria-checked="true" data-region="all" onclick="setRankingRegion('all')">All Regions</button>
+          <button type="button" role="menuitemradio" aria-checked="false" data-region="me" onclick="setRankingRegion('me')">Middle East</button>
+          <button type="button" role="menuitemradio" aria-checked="false" data-region="sa" onclick="setRankingRegion('sa')">South Asia</button>
+          <button type="button" role="menuitemradio" aria-checked="false" data-region="sea" onclick="setRankingRegion('sea')">Southeast Asia</button>
+          <button type="button" role="menuitemradio" aria-checked="false" data-region="af" onclick="setRankingRegion('af')">Africa</button>
+        </div>
+      </div>
+      <button class="bf-mini-rules" type="button" onclick="openRules()" aria-label="Activity Rules"><svg><use href="#i-info"/></svg><span>Rules</span></button>
+    </div>
     <section class="section bf-unified-ranking" aria-label="Top-up Leaderboard">
       <div class="bf-ranking-header">
         <div class="section-heading"><span class="heading-icon"><svg><use href="#i-coins"/></svg></span>Top-up Leaderboard</div>
@@ -405,7 +446,7 @@ radial-gradient(circle at 84% 9%,#f4c06f12,transparent 42%)}
 // Language switching and review controls apply to prototype UI only.
 // Product's existing SVIP screenshot remains an unedited reference image.
 let lang='en';
-const dictionary={"Prototype Review Tools":"原型评审工具","REVIEW ONLY · NOT IN APP":"仅供评审 · 非 App 页面","Collapse tools ▲":"收起工具 ▲","Expand tools ▼":"展开工具 ▼","Language / 语言":"语言 / Language","Activity status · Demo only":"活动状态 · 仅供测试","In progress":"进行中","Finalizing":"结算中","Final results":"最终排名","Preview as":"模拟用户","User 10005 · #5":"用户10005 · 第5名","User 10001 · #1":"用户10001 · 第1名","Unranked user":"未上榜用户","Demo data & claim states":"模拟数据与领奖状态","Sample user details and sold Rare IDs are for product review only; real user-facing pages do not include these controls.":"示例用户、靓号售出状态和领奖状态仅用于产品评审，真实活动页面不展示此工具栏。","Countdown preview uses a simulated in-event time outside activity dates.":"非活动日期内，原型倒计时使用模拟的活动时间。","Event in progress · Rankings may change. Rewards cannot be claimed yet.":"活动进行中 · 排名仍会变化，奖励暂不可领取。","Event ended · Final rankings are being confirmed. Claiming is not yet available.":"活动已结束 · 最终排名确认中，暂不可领取奖励。","Final rankings confirmed · Winners may claim once, directly from their own rank entry.":"最终排名已确认 · 获奖用户可在自己的排名位置领取奖励，每份奖励仅能领取一次。","BLACK FRIDAY EVENT":"黑五活动","LIMITED-TIME EVENT":"限时活动","BLACK FRIDAY":"黑色星期五","SALE 2026":"特惠 2026","SVIP privileges · Rare ID offers · Top-up rewards":"SVIP权益 · 靓号促销 · 充值榜奖励","25 NOV – 01 DEC 2026":"2026年11月25日 – 12月1日","25 NOV – 01 DEC 2026 · 7 DAYS":"2026年11月25日 – 12月1日 · 7天","Promotion":"促销","Top-up Ranking":"充值榜","SVIP Special":"SVIP限时福利","BONUS":"额外福利","Get":"获赠","2 Months":"2个月","of Custom Gift Privileges!":"定制礼物特权！","Subscribe or renew SVIP during the event to receive this exclusive benefit.":"活动期间购买或续费SVIP，即可享受此专属权益。","EXTRA BENEFIT VALUE":"额外权益价值","3,000 Honor Coupons":"3,000荣誉券","≈ US$300":"约300美元","Go to SVIP":"前往超级VIP","Automatically granted for eligible purchases and renewals.":"符合条件的购买及续费将自动获得权益。","Rare ID Sale":"靓号限时促销","LIMITED-TIME OFFER":"限时优惠","Buy":"购买","180 Days":"180天","180 Days FREE":"免费加赠180天","180 extra days automatically added.":"额外180天有效期自动赠送。","Applies to eligible Rare ID purchases and renewals made during the event.":"适用于活动期间符合条件的靓号购买和续费。","7,200,000 Coins":"7,200,000金币","3,600,000 Coins":"3,600,000金币","7,200 Honor Coupons":"7,200荣誉券","3,600 Honor Coupons":"3,600荣誉券","Shop Rare ID":"前往靓号商城","Promotion Rules":"促销活动规则","From 25 Nov to 1 Dec 2026, users who subscribe to or renew SVIP receive 2 months of Custom Gift Privileges, valued at 3,000 Honor Coupons.":"2026年11月25日至12月1日期间，购买或续费SVIP可获赠2个月定制礼物特权，价值3,000荣誉券。","During the event, purchase or renew a Rare ID for 180 days and get an additional 180 days of validity automatically.":"活动期间购买或续费180天靓号，可自动获得额外180天有效期。","Only eligible purchases and renewals completed during the event qualify for the offers.":"仅活动期间完成且符合条件的购买、续费可享受优惠。","BLACK FRIDAY · 2026":"黑五活动 · 2026","7-Day Top-up Ranking":"7日金币充值榜","Compete for exclusive honors.":"冲击排行榜，赢取专属奖励。","Ranked by cumulative gold top-ups.":"按活动期间累计充值金币排名。","Ranking Rewards":"排名奖励","TOP 10 EXCLUSIVE":"前10名专属","Win exclusive privileges and rare items. Rewards depend on your":"冲榜赢取专属权益和稀有道具，奖励以","final rank":"最终排名","CHAMPION · #1":"冠军 · 第1名","GRAND PRIZE":"冠军大奖","30 days":"30天","7 days":"7天","15 days":"15天","SSR Rare ID":"SSR靓号","Fire Phoenix":"火凤凰","RUNNER-UP":"亚军","THIRD PLACE":"季军","Diamond VIP":"钻石VIP","MORE RANKING PRIZES":"其他排名奖励","Flame Dragon":"烈焰火龙","Profile Card · 30D":"资料卡 · 30天","AMG Vehicle":"AMG座驾","Vehicle · 30D":"座驾 · 30天","Black Panther":"黑豹头像框","Avatar Frame · 15D":"头像框 · 15天","Flame Wolf":"火焰狼头像框","Top 3":"前三名","Each rank shows its exclusive reward. Your eligible entry has the claim button after final results.":"各排名展示对应奖励。最终排名确认后，获奖用户可在本人排名处领取。","Top-up Leaderboard":"金币充值排行榜","Accumulated gold recharged · Personal accounts":"个人账号活动期间累计充值金币","YOU":"本人","Gold":"金币","SVIP · SSR · Phoenix":"SVIP · SSR靓号 · 火凤凰","SVIP 30D + SSR Rare ID 30D + Fire Phoenix 7D":"SVIP 30天 + SSR靓号30天 + 火凤凰7天","SVIP · 30D":"SVIP · 30天","Diamond VIP · 30D":"钻石VIP · 30天","Flame Dragon · 30D":"烈焰火龙 · 30天","AMG Vehicle · 30D":"AMG座驾 · 30天","Black Panther Frame · 15D":"黑豹头像框 · 15天","Flame Wolf Frame · 15D":"火焰狼头像框 · 15天","Claim after event":"活动结束后领取","Claim Reward":"领取奖励","Claimed":"已领取","Ranking Rules":"充值榜规则","7-Day Event":"7天活动","Gold needed to enter Top 10":"距离上榜还差","Ends in":"距离活动结束","Starts in":"距离活动开始","Event ended":"活动已结束","Gold needed":"还差金币","The ranking is based on each personal account’s total gold top-ups during 25 Nov – 1 Dec 2026.":"按个人账号在2026年11月25日至12月1日期间累计充值金币数量排名。","Eligible channels: direct top-up, merchant top-up, agent top-up, and points redemption.":"统计渠道包括直充、商户充值、代理充值和积分兑换。","Malicious recharge refunds will result in a corresponding deduction from the ranking score.":"恶意充值退款将扣除对应榜单分值。","Rewards are honorary virtual items. Winners must manually claim their rewards after the event ends.":"榜单奖励为虚拟道具，获奖用户需在活动结束后手动领取。","Share activity":"分享活动","Activity Rules":"活动规则","Rules":"规则","Close":"关闭","Share Black Friday Event":"分享黑五活动","Share in app":"站内分享","Share externally":"站外分享","Cancel":"取消","Back":"返回","This is a standalone interactive prototype.":"当前为独立交互原型演示。","In the real app, this button opens the Mall > Rare ID purchase page.":"正式 App 中，此按钮将跳转至商城靓号购买页面。","Open the Mall > Rare ID page to view purchase details.":"前往商城靓号页面查看购买详情。","SVIP (30 days), SSR Rare ID (30 days), Fire Phoenix (7 days)":"SVIP（30天）、SSR靓号（30天）、火凤凰（7天）","SVIP (30 days)":"SVIP（30天）","Diamond VIP (30 days)":"钻石VIP（30天）","Dynamic Profile Card · Flame Dragon (30 days)":"动态资料卡·烈焰火龙（30天）","AMG Vehicle (30 days)":"AMG座驾（30天）","Black Panther Avatar Frame (15 days)":"黑豹头像框（15天）","Flame Wolf Avatar Frame (15 days)":"火焰狼头像框（15天）","Reward Claimed":"奖励已领取","Claim successful (prototype).":"领取成功（原型演示）。","The reward is now marked as Claimed on your ranking entry.":"你在排行榜中的领取状态已更新为「已领取」。"};
+const dictionary={"Prototype Review Tools":"原型评审工具","REVIEW ONLY · NOT IN APP":"仅供评审 · 非 App 页面","Collapse tools ▲":"收起工具 ▲","Expand tools ▼":"展开工具 ▼","Language / 语言":"语言 / Language","Activity status · Demo only":"活动状态 · 仅供测试","In progress":"进行中","Finalizing":"结算中","Final results":"最终排名","Preview as":"模拟用户","User 10005 · #5":"用户10005 · 第5名","User 10001 · #1":"用户10001 · 第1名","Unranked user":"未上榜用户","Demo data & claim states":"模拟数据与领奖状态","Sample user details and sold Rare IDs are for product review only; real user-facing pages do not include these controls.":"示例用户、靓号售出状态和领奖状态仅用于产品评审，真实活动页面不展示此工具栏。","Countdown preview uses a simulated in-event time outside activity dates.":"非活动日期内，原型倒计时使用模拟的活动时间。","Event in progress · Rankings may change. Rewards cannot be claimed yet.":"活动进行中 · 排名仍会变化，奖励暂不可领取。","Event ended · Final rankings are being confirmed. Claiming is not yet available.":"活动已结束 · 最终排名确认中，暂不可领取奖励。","Final rankings confirmed · Winners may claim once, directly from their own rank entry.":"最终排名已确认 · 获奖用户可在自己的排名位置领取奖励，每份奖励仅能领取一次。","BLACK FRIDAY EVENT":"黑五活动","LIMITED-TIME EVENT":"限时活动","BLACK FRIDAY":"黑色星期五","SALE 2026":"特惠 2026","SVIP privileges · Rare ID offers · Top-up rewards":"SVIP权益 · 靓号促销 · 充值榜奖励","25 NOV – 01 DEC 2026":"2026年11月25日 – 12月1日","25 NOV – 01 DEC 2026 · 7 DAYS":"2026年11月25日 – 12月1日 · 7天","Promotion":"促销","Top-up Ranking":"充值榜","SVIP Special":"SVIP限时福利","BONUS":"额外福利","Get":"获赠","2 Months":"2个月","of Custom Gift Privileges!":"定制礼物特权！","Subscribe or renew SVIP during the event to receive this exclusive benefit.":"活动期间购买或续费SVIP，即可享受此专属权益。","EXTRA BENEFIT VALUE":"额外权益价值","3,000 Honor Coupons":"3,000荣誉券","≈ US$300":"约300美元","Go to SVIP":"前往超级VIP","Automatically granted for eligible purchases and renewals.":"符合条件的购买及续费将自动获得权益。","Rare ID Sale":"靓号限时促销","LIMITED-TIME OFFER":"限时优惠","Buy":"购买","180 Days":"180天","180 Days FREE":"免费加赠180天","180 extra days automatically added.":"额外180天有效期自动赠送。","Applies to eligible Rare ID purchases and renewals made during the event.":"适用于活动期间符合条件的靓号购买和续费。","7,200,000 Coins":"7,200,000金币","3,600,000 Coins":"3,600,000金币","7,200 Honor Coupons":"7,200荣誉券","3,600 Honor Coupons":"3,600荣誉券","Shop Rare ID":"前往靓号商城","Promotion Rules":"促销活动规则","From 25 Nov to 1 Dec 2026, users who subscribe to or renew SVIP receive 2 months of Custom Gift Privileges, valued at 3,000 Honor Coupons.":"2026年11月25日至12月1日期间，购买或续费SVIP可获赠2个月定制礼物特权，价值3,000荣誉券。","During the event, purchase or renew a Rare ID for 180 days and get an additional 180 days of validity automatically.":"活动期间购买或续费180天靓号，可自动获得额外180天有效期。","Only eligible purchases and renewals completed during the event qualify for the offers.":"仅活动期间完成且符合条件的购买、续费可享受优惠。","BLACK FRIDAY · 2026":"黑五活动 · 2026","7-Day Top-up Ranking":"7日金币充值榜","Compete for exclusive honors.":"冲击排行榜，赢取专属奖励。","Ranked by cumulative gold top-ups.":"按活动期间累计充值金币排名。","Ranking Rewards":"排名奖励","TOP 10 EXCLUSIVE":"前10名专属","Win exclusive privileges and rare items. Rewards depend on your":"冲榜赢取专属权益和稀有道具，奖励以","final rank":"最终排名","CHAMPION · #1":"冠军 · 第1名","GRAND PRIZE":"冠军大奖","30 days":"30天","7 days":"7天","15 days":"15天","SSR Rare ID":"SSR靓号","Fire Phoenix":"火凤凰","RUNNER-UP":"亚军","THIRD PLACE":"季军","Diamond VIP":"钻石VIP","MORE RANKING PRIZES":"其他排名奖励","Flame Dragon":"烈焰火龙","Profile Card · 30D":"资料卡 · 30天","AMG Vehicle":"AMG座驾","Vehicle · 30D":"座驾 · 30天","Black Panther":"黑豹头像框","Avatar Frame · 15D":"头像框 · 15天","Flame Wolf":"火焰狼头像框","Top 3":"前三名","Each rank shows its exclusive reward. Your eligible entry has the claim button after final results.":"各排名展示对应奖励。最终排名确认后，获奖用户可在本人排名处领取。","Top-up Leaderboard":"金币充值排行榜","Accumulated gold recharged · Personal accounts":"个人账号活动期间累计充值金币","YOU":"本人","Gold":"金币","SVIP · SSR · Phoenix":"SVIP · SSR靓号 · 火凤凰","SVIP 30D + SSR Rare ID 30D + Fire Phoenix 7D":"SVIP 30天 + SSR靓号30天 + 火凤凰7天","SVIP · 30D":"SVIP · 30天","Diamond VIP · 30D":"钻石VIP · 30天","Flame Dragon · 30D":"烈焰火龙 · 30天","AMG Vehicle · 30D":"AMG座驾 · 30天","Black Panther Frame · 15D":"黑豹头像框 · 15天","Flame Wolf Frame · 15D":"火焰狼头像框 · 15天","Claim after event":"活动结束后领取","Claim Reward":"领取奖励","Claimed":"已领取","Ranking Rules":"充值榜规则","7-Day Event":"7天活动","Gold needed to enter Top 10":"距离上榜还差","Ends in":"距离活动结束","Starts in":"距离活动开始","Event ended":"活动已结束","Gold needed":"还差金币","The ranking is based on each personal account’s total gold top-ups during 25 Nov – 1 Dec 2026.":"按个人账号在2026年11月25日至12月1日期间累计充值金币数量排名。","Eligible channels: direct top-up, merchant top-up, agent top-up, and points redemption.":"统计渠道包括直充、商户充值、代理充值和积分兑换。","Malicious recharge refunds will result in a corresponding deduction from the ranking score.":"恶意充值退款将扣除对应榜单分值。","Rewards are honorary virtual items. Winners must manually claim their rewards after the event ends.":"榜单奖励为虚拟道具，获奖用户需在活动结束后手动领取。","Share activity":"分享活动","Activity Rules":"活动规则","Rules":"规则","All Regions":"全部地区","Middle East":"中东地区","South Asia":"南亚地区","Southeast Asia":"东南亚地区","Africa":"非洲地区","Select Region":"选择地区","Event countdown":"活动倒计时","Close":"关闭","Share Black Friday Event":"分享黑五活动","Share in app":"站内分享","Share externally":"站外分享","Cancel":"取消","Back":"返回","This is a standalone interactive prototype.":"当前为独立交互原型演示。","In the real app, this button opens the Mall > Rare ID purchase page.":"正式 App 中，此按钮将跳转至商城靓号购买页面。","Open the Mall > Rare ID page to view purchase details.":"前往商城靓号页面查看购买详情。","SVIP (30 days), SSR Rare ID (30 days), Fire Phoenix (7 days)":"SVIP（30天）、SSR靓号（30天）、火凤凰（7天）","SVIP (30 days)":"SVIP（30天）","Diamond VIP (30 days)":"钻石VIP（30天）","Dynamic Profile Card · Flame Dragon (30 days)":"动态资料卡·烈焰火龙（30天）","AMG Vehicle (30 days)":"AMG座驾（30天）","Black Panther Avatar Frame (15 days)":"黑豹头像框（15天）","Flame Wolf Avatar Frame (15 days)":"火焰狼头像框（15天）","Reward Claimed":"奖励已领取","Claim successful (prototype).":"领取成功（原型演示）。","The reward is now marked as Claimed on your ranking entry.":"你在排行榜中的领取状态已更新为「已领取」。"};
 const englishNodes=new WeakMap();
 function translateText(english){return lang==='zh'&&Object.prototype.hasOwnProperty.call(dictionary,english)?dictionary[english]:english}
 function applyLocale(){
@@ -497,16 +538,61 @@ function claimControl(rank){
   if(claimedRanks.has(rank))return `<span class="rank-status claimed">${icon('check')} Claimed</span>`;
   return `<button type="button" class="claim-button" onclick="claimReward(${rank})">Claim Reward ${icon('chevron')}</button>`;
 }
+
+// The selectable regions and their ranking amounts are sample datasets for this prototype.
+// Backend-supported regions, reward scope and ranking calculations must be confirmed before launch.
+let selectedRegion='all';
+const rankingRegions={
+  all:{label:'All Regions',multiplier:1,base:10000},
+  me:{label:'Middle East',multiplier:.79,base:21000},
+  sa:{label:'South Asia',multiplier:.88,base:31000},
+  sea:{label:'Southeast Asia',multiplier:.69,base:41000},
+  af:{label:'Africa',multiplier:.58,base:51000}
+};
+function getRankingRowsForRegion(){
+  const base=[
+    ...topRanks.map(p=>({rank:p.rank,letter:p.letter,name:p.name,score:p.score,color:p.rank===1?'#c7a05c':p.rank===2?'#9baec4':'#c89170'})),
+    ...rankData.map(([rank,letter,name,score,color])=>({rank:Number(rank),letter,name,score,color}))
+  ];
+  if(selectedRegion==='all')return base;
+  const region=rankingRegions[selectedRegion];
+  return base.map((p,i)=>({...p,name:'User '+(region.base+i+1),score:Math.floor(parseGold(p.score)*region.multiplier*(1-i*.003)).toLocaleString('en-US')}));
+}
+function closeRankingRegions(){
+  const menu=document.getElementById('bf-region-menu'),toggle=document.getElementById('bf-region-button');
+  if(menu)menu.hidden=true;
+  if(toggle)toggle.setAttribute('aria-expanded','false');
+}
+function toggleRankingRegions(){
+  const menu=document.getElementById('bf-region-menu'),toggle=document.getElementById('bf-region-button');
+  if(!menu||!toggle)return;
+  menu.hidden=!menu.hidden;
+  toggle.setAttribute('aria-expanded',String(!menu.hidden));
+}
+function setRankingRegion(region){
+  if(!Object.prototype.hasOwnProperty.call(rankingRegions,region))return;
+  selectedRegion=region;
+  document.getElementById('bf-region-current').textContent=rankingRegions[region].label;
+  document.querySelectorAll('#bf-region-menu [data-region]').forEach(el=>{
+    el.setAttribute('aria-checked',String(el.dataset.region===region));
+  });
+  closeRankingRegions();
+  renderRanking();
+}
+document.addEventListener('pointerdown',event=>{
+  if(!event.target.closest('.bf-region-select'))closeRankingRegions();
+});
+document.addEventListener('keydown',event=>{
+  if(event.key==='Escape')closeRankingRegions();
+});
+
 function renderRanking(){
   document.querySelectorAll('.demo-stage button').forEach(el=>{el.classList.toggle('on',el.dataset.stage===demoStage);el.setAttribute('aria-pressed',String(el.dataset.stage===demoStage));});
   document.getElementById('demo-identity').value=String(demoUser);
   const n=document.getElementById('stage-note');n.textContent=stageText();n.dataset.stage=demoStage;
-  const rows=[
-    ...topRanks.map(p=>({rank:p.rank,letter:p.letter,name:p.name,score:p.score,color:p.rank===1?'#c7a05c':p.rank===2?'#9baec4':'#c89170'})),
-    ...rankData.map(([rank,letter,name,score,color])=>({rank:Number(rank),letter,name,score,color}))
-  ];
+  const rows=getRankingRowsForRegion();
   document.getElementById('rank-list').innerHTML=rows.map(p=>{
-    const mine=demoUser===p.rank, top=p.rank<=3;
+    const mine=selectedRegion==='all' && demoUser===p.rank, top=p.rank<=3;
     const grade=p.rank===1?'gold':p.rank===2?'silver':'bronze';
     const place=top?'<span class="bf-rank-medal '+grade+'"><span>'+p.rank+'</span></span>':'<span class="bf-rank-number">'+p.rank+'</span>';
     const ribbon=p.rank===1?'NO.1':p.rank===2?'NO.2':p.rank===3?'NO.3':'';
@@ -528,12 +614,12 @@ function parseGold(gold){return Number(String(gold).replace(/,/g,''))||0}
 function updateRankingGap(){
   const banner=document.getElementById('ranking-gap');
   if(!banner)return;
-  const isUnranked=demoUser>10 && demoStage==='live';
+  const isUnranked=(demoUser>10 || selectedRegion!=='all') && demoStage==='live';
   banner.classList.toggle('hide',!isUnranked);
   if(!isUnranked)return;
   // Demonstration only: the unranked user's score is sample data.
-  const personalScore=5100000;
-  const tenthScore=parseGold(rankData[rankData.length-1][3]);
+  const personalScore=selectedRegion==='all'?5100000:Math.floor(tenthScore*0.80);
+  const tenthScore=parseGold(getRankingRowsForRegion()[9].score);
   const required=Math.max(0,tenthScore-personalScore+1);
   document.getElementById('rank-gap-value').textContent=required.toLocaleString('en-US');
 }
@@ -579,6 +665,8 @@ function setTab(tab){
   document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab===tab));
   document.getElementById('promotion').classList.toggle('hide',tab!=='promotion');
   document.getElementById('ranking').classList.toggle('hide',tab!=='ranking');
+  document.querySelector('.bf-tab-actions').classList.toggle('hide',tab==='ranking');
+  closeRankingRegions();
   history.replaceState(null,'','#'+tab);
   window.scrollTo({top:0,behavior:'instant'});
 }
