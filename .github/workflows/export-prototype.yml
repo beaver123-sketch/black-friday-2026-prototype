@@ -1,0 +1,49 @@
+name: Export Chinese Black Friday prototype screenshots
+on:
+  push:
+    branches: [main]
+    paths:
+      - index.html
+      - scripts/export-prototype.mjs
+      - .github/workflows/export-prototype.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install screenshot dependencies
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Capture Chinese prototype screenshots
+        run: node scripts/export-prototype.mjs
+      - name: Package deliverables
+        run: |
+          zip -q -r black-friday-2026-prototype-cn.zip '黑五活动-中文原型图'
+          unzip -l black-friday-2026-prototype-cn.zip | tail -n 16
+      - name: Upload ZIP artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: black-friday-2026-prototype-cn
+          path: black-friday-2026-prototype-cn.zip
+          retention-days: 30
+      - name: Publish ZIP in repository
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add black-friday-2026-prototype-cn.zip
+          if ! git diff --cached --quiet; then
+            git commit -m 'Export Chinese Black Friday prototype screenshots'
+            git push
+          fi
