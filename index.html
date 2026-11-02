@@ -293,6 +293,14 @@ body.rules-dialog-open{overflow:hidden}
 @media(max-width:440px){.mask.rules-mode{padding:15px}.mask.rules-mode .sheet{padding:24px 19px 20px;max-height:calc(100dvh - 30px)}.mask.rules-mode .rules-popup-section{padding:16px 14px 10px}}
 @media(prefers-reduced-motion:reduce){.mask.rules-mode .sheet{animation:none}}
 
+
+/* Compact promotion countdown shares the 168-hour event clock with Top-up Ranking */
+.bf-tab-actions{justify-content:space-between;gap:10px;min-height:51px}
+.bf-promo-countdown{display:flex;align-items:center;gap:7px;min-width:0;flex:1 1 auto;white-space:nowrap;color:#efd3a0}
+.bf-promo-countdown svg{width:17px;height:17px;flex:0 0 17px;color:#eac487}
+.bf-promo-countdown strong{font-weight:850;font-size:13px;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+@media(max-width:390px){.bf-tab-actions{padding:0 18px 12px;gap:6px}.bf-promo-countdown{gap:5px}.bf-promo-countdown strong{font-size:12px}}
+
 </style>
 </head>
 <body>
@@ -377,7 +385,14 @@ body.rules-dialog-open{overflow:hidden}
     </svg>
   </header>
   <div class="tabs-wrap"><nav class="tabbar" aria-label="Black Friday tabs"><button class="tab active" data-tab="promotion" onclick="setTab('promotion')">Promotion</button><button class="tab" data-tab="ranking" onclick="setTab('ranking')">Top-up Ranking</button></nav></div>
-  <div class="bf-tab-actions"><button class="bf-tab-rules" type="button" onclick="openRules()" aria-label="Activity Rules"><svg><use href="#i-info"/></svg><span>Rules</span></button></div>
+  <div class="bf-tab-actions">
+    <div class="bf-promo-countdown" aria-label="Event countdown">
+      <svg><use href="#i-calendar"/></svg>
+      <span id="promotion-countdown-label" class="bf-visually-hidden">Ends in</span>
+      <strong id="promotion-countdown">--D --:--:--</strong>
+    </div>
+    <button class="bf-tab-rules" type="button" onclick="openRules()" aria-label="Activity Rules"><svg><use href="#i-info"/></svg><span>Rules</span></button>
+  </div>
   <div id="promotion" class="main">
     <section class="section svip"><div class="svip-main"><div class="pillrow"><div class="section-heading"><span class="heading-icon"><svg><use href="#i-crown"/></svg></span>SVIP Special</div><div class="small-pill"><svg style="width:12px;height:12px"><use href="#i-gift"/></svg>BONUS</div></div><div class="svip-art"><div class="svip-ring"></div><div class="svip-shield"><svg><use href="#i-crown"/></svg><strong>SVIP</strong></div></div><div class="maincopy">Get <em>2 Months</em> of Custom Gift Privileges!</div><p class="desc">Subscribe or renew SVIP during the event to receive this exclusive benefit.</p><div class="value-strip"><span class="coin"><svg><use href="#i-gift"/></svg></span><div><div class="label">EXTRA BENEFIT VALUE</div><div class="value">3,000 Honor Coupons <span class="usd">≈ US$300</span></div></div></div><button class="cta" onclick="enterSvip()">Go to SVIP <svg><use href="#i-chevron"/></svg></button><div class="svip-note"><svg><use href="#i-check"/></svg>Automatically granted for eligible purchases and renewals.</div></div></section>
     <section class="section rare"><div class="rare-header"><div class="pillrow"><div class="section-heading"><span class="heading-icon"><svg><use href="#i-diamond"/></svg></span>Rare ID Sale</div><div class="small-pill">BLACK FRIDAY</div></div><div class="rare-promo"><div class="kicker">LIMITED-TIME OFFER</div><div class="line1">Buy <strong>180 Days</strong>,<br>Get <strong>180 Days FREE</strong></div><div class="line2">180 extra days automatically added.</div></div><div class="rarerule">Applies to eligible Rare ID purchases and renewals made during the event.</div></div>
@@ -651,9 +666,10 @@ function rankingClockNow(){
   return real>=rankingEventStart&&real<rankingEventEnd ? real : rankingPreviewTime+(real-rankingPreviewStart);
 }
 function updateRankingCountdown(){
-  const label=document.getElementById('countdown-label');
-  const counter=document.getElementById('ranking-countdown');
-  if(!label||!counter)return;
+  const rankingLabel=document.getElementById('countdown-label');
+  const rankingCounter=document.getElementById('ranking-countdown');
+  const promoLabel=document.getElementById('promotion-countdown-label');
+  const promoCounter=document.getElementById('promotion-countdown');
   const current=rankingClockNow();
   let target=rankingEventEnd;
   let text='Ends in', display='';
@@ -668,8 +684,13 @@ function updateRankingCountdown(){
     const minutes=Math.floor(seconds/60),secs=seconds%60;
     display=String(days).padStart(2,'0')+'D '+[hours,minutes,secs].map(v=>String(v).padStart(2,'0')).join(':');
   }
-  label.textContent=lang==='zh'?({ 'Ends in':'距离活动结束','Starts in':'距离活动开始','Finalizing':'排名结算中','Event ended':'活动已结束'}[text]||text):text;
-  counter.textContent=display;
+  const localized={ 'Ends in':'距离活动结束','Starts in':'距离活动开始','Finalizing':'排名结算中','Event ended':'活动已结束' };
+  if(rankingLabel)rankingLabel.textContent=lang==='zh'?(localized[text]||text):text;
+  if(rankingCounter)rankingCounter.textContent=display;
+  // The promotion tab follows the same campaign window, but has no ranking-finalization state.
+  const promoText=demoStage==='pending'||demoStage==='final'?'Event ended':text;
+  if(promoLabel)promoLabel.textContent=lang==='zh'?(localized[promoText]||promoText):promoText;
+  if(promoCounter)promoCounter.textContent=(demoStage==='pending'||demoStage==='final')?'00D 00:00:00':display;
 }
 
 function setDemoStage(v){if(!['live','pending','final'].includes(v))return;demoStage=v;renderRanking()}
