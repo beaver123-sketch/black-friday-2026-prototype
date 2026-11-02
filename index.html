@@ -146,6 +146,45 @@
 .rules-popup-section .rule-num{margin-top:3px}
 @media(max-width:370px){.topbar .app-label{font-size:10px}.rules-trigger{padding:5px 7px;font-size:10px}.topbar{padding:0 12px}}
 
+
+/* Unified Black Friday campaign hero: all page-top elements share one background */
+.bf-banner{isolation:isolate;position:relative;min-height:410px;overflow:hidden;background:
+radial-gradient(ellipse 235px 220px at 84% 48%,#8d562b4e 0%,#3d281f38 48%,transparent 92%),
+radial-gradient(ellipse 310px 140px at 18% 96%,#9e653018,transparent 86%),
+linear-gradient(155deg,#0b0d12 0%,#15131a 34%,#221913 65%,#101116 100%);
+border-bottom:1px solid #aa824c45}
+.bf-banner:before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:
+linear-gradient(116deg,transparent 45%,#f9cb7b08 53%,transparent 65%),
+radial-gradient(circle at 84% 9%,#f4c06f12,transparent 42%)}
+.bf-banner:after{content:"";position:absolute;left:-30px;bottom:-84px;height:155px;width:370px;transform:rotate(-16deg);border:1px solid #d09e4940;border-radius:50%;pointer-events:none;opacity:.55;z-index:0}
+.bf-system-status{position:relative;z-index:3;min-height:34px;background:transparent;color:#fff}
+.bf-banner-nav{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:5;height:58px;padding:0 19px}
+.bf-banner-nav .iconbtn{height:42px;width:42px;background:#18191d46;border-radius:50%;color:#fff6e5}
+.bf-banner-nav .iconbtn svg{width:23px;height:23px}
+.bf-banner-nav .bf-nav-share{margin-right:-2px}
+.bf-banner-copy{position:relative;z-index:3;margin:29px 22px 0;max-width:330px;pointer-events:none}
+.bf-banner-eyebrow{display:flex;align-items:center;gap:8px;color:#f1c27a;letter-spacing:1.9px;font-size:11px;font-weight:850;text-shadow:0 1px 9px #d4a0543f}
+.bf-spark-dot{display:block;width:7px;height:7px;flex:0 0 7px;border-radius:50%;background:#efc47b;box-shadow:0 0 11px #e5ad6fa3}
+.bf-banner-title{font-size:36px;line-height:1.12;letter-spacing:-1.5px;color:#ffe6bb;font-weight:950;margin:18px 0 11px;text-shadow:0 3px 15px #ab703b30}
+.bf-banner-title span{font-size:34px;letter-spacing:-1px;background:linear-gradient(120deg,#ffd899,#d89b55);background-clip:text;-webkit-background-clip:text;color:transparent}
+.bf-banner-subtitle{font-size:11.5px;line-height:1.75;margin:0;max-width:244px;color:#ddcbb2;font-weight:540;text-shadow:0 1px 10px #0a0a0aaa}
+.bf-banner-date{display:inline-flex;align-items:center;gap:8px;margin-top:19px;font-size:11px;line-height:1.3;font-weight:750;letter-spacing:.15px;color:#ffdda5;padding:9px 11px;border:1px solid #c8985d61;border-radius:20px;background:#0d10189c;box-shadow:0 4px 15px #05060942;white-space:nowrap}
+.bf-banner-date svg{width:15px;height:15px;color:#f5d3a0}
+.bf-banner-art{position:absolute;right:-16px;top:113px;width:182px;height:216px;z-index:1;filter:drop-shadow(0 15px 22px #0a0809aa);pointer-events:none}
+.bf-banner-rules{position:absolute;z-index:5;bottom:14px;right:22px;display:flex;align-items:center;gap:6px;min-height:30px;border:1px solid #bc935a69;border-radius:20px;padding:5px 11px;background:#211c1abb;color:#ffe1aa;font-size:11px;font-weight:780;box-shadow:0 3px 13px #0303043b}
+.bf-banner-rules svg{width:15px;height:15px}
+.tabs-wrap{padding:13px 19px 17px;background:#101116;position:relative;z-index:1}
+@media(max-width:390px){
+ .bf-banner{min-height:403px}
+ .bf-banner-copy{margin-left:19px;margin-right:16px}
+ .bf-banner-title{font-size:31px}
+ .bf-banner-title span{font-size:31px}
+ .bf-banner-art{width:159px;right:-19px;top:127px}
+ .bf-banner-subtitle{max-width:225px}
+ .bf-banner-date{font-size:10.3px;padding:8px 9px}
+ .bf-banner-rules{right:17px}
+}
+
 </style>
 </head>
 <body>
@@ -194,9 +233,42 @@
   </div>
 </aside>
 <div id="app"><div class="shell">
-  <div class="statusbar"><span>9:41</span><div class="sysicons"><div class="signal"><i></i><i></i><i></i><i></i></div><span style="font-size:12px;margin:0 3px">5G</span><div class="battery"></div></div></div>
-  <div class="topbar"><button class="iconbtn" aria-label="Back" onclick="openSheet('Back','This is a standalone interactive prototype.')"><svg><use href="#i-back"/></svg></button><div class="app-label">BLACK FRIDAY EVENT</div><div class="top-actions"><button class="rules-trigger" type="button" onclick="openRules()" aria-label="Activity Rules"><svg><use href="#i-info"/></svg><span>Rules</span></button><button class="iconbtn" aria-label="Share activity" onclick="openShare()"><svg><use href="#i-share"/></svg></button></div></div>
-  <div class="hero"><div class="eyebrow"><span class="dot"></span>LIMITED-TIME EVENT</div><h1>BLACK FRIDAY<br><span>SALE 2026</span></h1><div class="subline">SVIP privileges · Rare ID offers · Top-up rewards</div><div class="datebar"><svg><use href="#i-calendar"/></svg>25 NOV – 01 DEC 2026</div><div class="hero-art"><div class="halo"></div><div class="gift-card"><svg><use href="#i-gift"/></svg></div><span class="spark s1"></span><span class="spark s2"></span><span class="spark s3"></span></div></div>
+
+  <header class="bf-banner" aria-label="Black Friday campaign hero">
+    <div class="statusbar bf-system-status"><span>9:41</span><div class="sysicons"><div class="signal"><i></i><i></i><i></i><i></i></div><span style="font-size:12px;margin:0 3px">5G</span><div class="battery"></div></div></div>
+    <nav class="bf-banner-nav" aria-label="Activity navigation">
+      <button class="iconbtn bf-nav-back" aria-label="Back" onclick="openSheet('Back','This is a standalone interactive prototype.')"><svg><use href="#i-back"/></svg></button>
+      <button class="iconbtn bf-nav-share" aria-label="Share activity" onclick="openShare()"><svg><use href="#i-share"/></svg></button>
+    </nav>
+    <div class="bf-banner-copy">
+      <div class="bf-banner-eyebrow"><span class="bf-spark-dot"></span><span>LIMITED-TIME EVENT</span></div>
+      <h1 class="bf-banner-title">BLACK FRIDAY<br><span>SALE 2026</span></h1>
+      <p class="bf-banner-subtitle">SVIP privileges · Rare ID offers · Top-up rewards</p>
+      <div class="bf-banner-date"><svg><use href="#i-calendar"/></svg><span>25 NOV – 01 DEC 2026</span></div>
+    </div>
+    <svg class="bf-banner-art" aria-hidden="true" viewBox="0 0 240 270" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="bf-glow"><stop stop-color="#D8A257" stop-opacity=".53"/><stop offset="1" stop-color="#B78443" stop-opacity="0"/></radialGradient>
+        <linearGradient id="bf-bag-fill" x1="52" y1="50" x2="186" y2="230" gradientUnits="userSpaceOnUse"><stop stop-color="#6B5135"/><stop offset=".32" stop-color="#29272A"/><stop offset=".85" stop-color="#151922"/><stop offset="1" stop-color="#34271C"/></linearGradient>
+        <linearGradient id="bf-bag-edge" x1="45" y1="50" x2="190" y2="237" gradientUnits="userSpaceOnUse"><stop stop-color="#E7BD7F"/><stop offset=".43" stop-color="#AC783B"/><stop offset=".9" stop-color="#E8BA75"/></linearGradient>
+      </defs>
+      <ellipse cx="127" cy="141" rx="126" ry="130" fill="url(#bf-glow)"/>
+      <path d="M30 45l6 9-6 9-6-9 6-9Z" fill="#E8B56D" opacity=".84"/>
+      <path d="M202 87l7 12-7 12-7-12 7-12Z" fill="#EEC684"/>
+      <path d="M26 198l4 7-4 7-4-7 4-7Z" fill="#EEC684" opacity=".7"/>
+      <path d="M188 225l6 9-6 9-6-9 6-9Z" fill="#DDA45A" opacity=".85"/>
+      <g transform="rotate(9 120 144)">
+        <path d="M87 74V61c0-23 15-37 36-37s37 14 37 37v13" stroke="#DAA55D" stroke-width="8" stroke-linecap="round"/>
+        <rect x="44" y="68" width="153" height="173" rx="23" fill="url(#bf-bag-fill)" stroke="url(#bf-bag-edge)" stroke-width="4"/>
+        <path d="M57 92l13-13h108" stroke="#FFFFFF" stroke-opacity=".13" stroke-width="3" stroke-linecap="round"/>
+        <path d="M80 139h81v61H80v-61Z" stroke="#E7B568" stroke-width="6" stroke-linejoin="round"/>
+        <path d="M75 136h90v16H75z" fill="#26242A" stroke="#E7B568" stroke-width="6" stroke-linejoin="round"/>
+        <path d="M121 136v64" stroke="#E7B568" stroke-width="6"/>
+        <path d="M119 136c-28 0-33-22-19-26 13-4 21 13 21 26ZM121 136c27 0 32-22 18-26-13-4-20 13-18 26Z" stroke="#E7B568" stroke-width="6" stroke-linejoin="round"/>
+      </g>
+    </svg>
+    <button class="bf-banner-rules" type="button" aria-label="Activity Rules" onclick="openRules()"><svg><use href="#i-info"/></svg><span>Rules</span></button>
+  </header>
   <div class="tabs-wrap"><nav class="tabbar" aria-label="Black Friday tabs"><button class="tab active" data-tab="promotion" onclick="setTab('promotion')">Promotion</button><button class="tab" data-tab="ranking" onclick="setTab('ranking')">Top-up Ranking</button></nav></div>
   <div id="promotion" class="main">
     <section class="section svip"><div class="svip-main"><div class="pillrow"><div class="section-heading"><span class="heading-icon"><svg><use href="#i-crown"/></svg></span>SVIP Special</div><div class="small-pill"><svg style="width:12px;height:12px"><use href="#i-gift"/></svg>BONUS</div></div><div class="svip-art"><div class="svip-ring"></div><div class="svip-shield"><svg><use href="#i-crown"/></svg><strong>SVIP</strong></div></div><div class="maincopy">Get <em>2 Months</em> of Custom Gift Privileges!</div><p class="desc">Subscribe or renew SVIP during the event to receive this exclusive benefit.</p><div class="value-strip"><span class="coin"><svg><use href="#i-gift"/></svg></span><div><div class="label">EXTRA BENEFIT VALUE</div><div class="value">3,000 Honor Coupons <span class="usd">≈ US$300</span></div></div></div><button class="cta" onclick="enterSvip()">Go to SVIP <svg><use href="#i-chevron"/></svg></button><div class="svip-note"><svg><use href="#i-check"/></svg>Automatically granted for eligible purchases and renewals.</div></div></section>
