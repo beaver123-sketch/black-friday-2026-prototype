@@ -98,6 +98,35 @@
 .svip-back-hotspot{position:absolute;top:5.8%;left:0;width:15%;height:7.2%;background:transparent;border:0;cursor:pointer}
 @media(max-width:440px){#app{width:100%;box-shadow:none}.sheet{width:100%}}
 
+/* REVIEWER TOOLBAR: separate from the simulated app viewport */
+.review-toolbar{width:min(960px,calc(100% - 24px));margin:0 auto 16px;background:#f5f7fa;color:#223043;border:1px solid #bdc9d7;border-radius:14px;box-shadow:0 8px 26px #0003;font-size:13px;overflow:hidden;position:relative;z-index:5}
+.review-head{padding:13px 17px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #dbe1e9}
+.review-identity{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.review-identity strong{font-size:14px;color:#25384e}
+.review-only{border:1px solid #96b1ca;border-radius:5px;background:#e4edf6;padding:4px 7px;color:#385574;letter-spacing:.6px;font-size:10px;font-weight:850}
+.review-toggle{color:#244d77;border:1px solid #b7c8da;background:#fff;border-radius:8px;padding:7px 11px;font-size:12px;font-weight:680;white-space:nowrap}
+.review-tools-body{padding:14px 16px}
+.review-tools-body.collapsed{display:none}
+.review-language{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.review-field-title{font-size:11.5px;font-weight:780;color:#3e5975;letter-spacing:.25px;margin-bottom:8px}
+.review-language .review-field-title{margin:0}
+.review-langs{display:flex;gap:5px;padding:3px;background:#dfe8f1;border-radius:9px}
+.review-langs button{padding:7px 20px;border:0;border-radius:7px;background:transparent;color:#50627a;font-weight:780;min-width:68px}
+.review-langs button.selected{background:#fff;color:#194b83;box-shadow:0 1px 4px #1b324d35}
+.review-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.review-toolbar .preview-controls{background:#fff;border:1px solid #dce3eb;border-radius:10px;padding:12px;margin:0}
+.review-toolbar .demo-stage{background:#edf2f7;border-radius:9px;gap:3px}
+.review-toolbar .demo-stage button{color:#5b6a7a;font-size:12px;padding:9px 8px}
+.review-toolbar .demo-stage button.on{background:#2267aa;color:white;box-shadow:none}
+.review-toolbar .demo-user{margin:13px 0 0;color:#465a72;font-size:12px;gap:8px}
+.review-toolbar .demo-user select{border:1px solid #bacada;background:#f8fafc;color:#26384d;font-size:12px;padding:9px 7px;max-width:70%}
+.review-tips{background:#fff;border:1px solid #dce3eb;border-radius:10px;padding:12px}
+.review-explainer{font-size:11px;line-height:1.55;color:#687b8f}
+.review-toolbar .stage-note{margin-top:10px;font-size:11px;color:#315a7b;border-left:3px solid #448bc0;background:#edf4fc;padding:10px;line-height:1.55}
+.review-toolbar .stage-note[data-stage=pending]{color:#5b6572;border-color:#8799ab;background:#f0f2f4}
+.review-toolbar .stage-note[data-stage=final]{color:#28664f;border-color:#57a080;background:#ecf6f1}
+@media(max-width:650px){.review-fields{grid-template-columns:1fr}.review-head{padding:11px}.review-tools-body{padding:12px}.review-only{font-size:9px}.review-identity{gap:6px}.review-toolbar{margin-top:0}.review-langs button{min-width:55px;padding:7px 13px}.review-head strong{font-size:12px}.review-toggle{font-size:10px}}
+
 </style>
 </head>
 <body>
@@ -118,6 +147,33 @@
 <symbol id="i-frame" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 16 11 12l3 3 3-4 3 5M8 8h.01"/></g></symbol>
 <symbol id="i-info" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7v1"/></g></symbol>
 </svg>
+<aside id="prototype-tools" class="review-toolbar" aria-label="Prototype reviewer controls">
+  <div class="review-head">
+    <div class="review-identity"><strong data-review-title>Prototype Review Tools</strong><span class="review-only">REVIEW ONLY · NOT IN APP</span></div>
+    <button class="review-toggle" id="review-toggle" type="button" aria-expanded="true" aria-controls="review-tools-body" onclick="toggleReviewTools()">Collapse tools ▲</button>
+  </div>
+  <div id="review-tools-body" class="review-tools-body">
+    <div class="review-language">
+      <div class="review-field-title">Language / 语言</div>
+      <div class="review-langs" role="group" aria-label="Prototype language">
+        <button type="button" data-lang="zh" onclick="setLanguage('zh')" aria-pressed="false">中文</button>
+        <button type="button" data-lang="en" class="selected" onclick="setLanguage('en')" aria-pressed="true">EN</button>
+      </div>
+    </div>
+    <div class="review-fields">
+      <div class="preview-controls" aria-label="Prototype interactive state controls">
+        <div class="review-field-title">Activity status · Demo only</div>
+        <div class="demo-stage"><button type="button" data-stage="live" onclick="setDemoStage('live')">In progress</button><button type="button" data-stage="pending" onclick="setDemoStage('pending')">Finalizing</button><button type="button" data-stage="final" onclick="setDemoStage('final')">Final results</button></div>
+        <div class="demo-user"><label for="demo-identity">Preview as</label><select id="demo-identity" onchange="setDemoUser(this.value)"><option value="5">User 10005 · #5</option><option value="1">User 10001 · #1</option><option value="11">Unranked user</option></select></div>
+      </div>
+      <div class="review-tips">
+        <div class="review-field-title">Demo data &amp; claim states</div>
+        <div class="review-explainer">Sample user details and sold Rare IDs are for product review only; real user-facing pages do not include these controls.</div>
+        <div id="stage-note" class="stage-note" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</aside>
 <div id="app"><div class="shell">
   <div class="statusbar"><span>9:41</span><div class="sysicons"><div class="signal"><i></i><i></i><i></i><i></i></div><span style="font-size:12px;margin:0 3px">5G</span><div class="battery"></div></div></div>
   <div class="topbar"><button class="iconbtn" aria-label="Back" onclick="openSheet('Back','This is a standalone interactive prototype.')"><svg><use href="#i-back"/></svg></button><div class="app-label">BLACK FRIDAY EVENT</div><button class="iconbtn" aria-label="Share activity" onclick="openShare()"><svg><use href="#i-share"/></svg></button></div>
@@ -132,13 +188,8 @@
     <div class="pagefoot">BLACK FRIDAY · 2026</div>
   </div>
   <div id="ranking" class="main hide">
-    <section class="section ranking-intro"><div class="section-heading"><span class="heading-icon"><svg><use href="#i-trophy"/></svg></span>7-Day Top-up Ranking</div><div class="intro-row"><div class="intro-desc">Compete for exclusive honors.<br>Ranked by cumulative gold top-ups.</div><span class="sampleflag">SAMPLE DATA</span></div><div class="mini-banner"><svg><use href="#i-calendar"/></svg>25 NOV – 01 DEC 2026 · 7 DAYS</div>
-      <div class="preview-controls" aria-label="Prototype interactive state controls">
-        <div class="preview-label"><span>PROTOTYPE PREVIEW</span><span>State controls are for review only</span></div>
-        <div class="demo-stage"><button type="button" data-stage="live" onclick="setDemoStage('live')">In progress</button><button type="button" data-stage="pending" onclick="setDemoStage('pending')">Finalizing</button><button type="button" data-stage="final" onclick="setDemoStage('final')">Final results</button></div>
-        <div class="demo-user">Preview as <select id="demo-identity" onchange="setDemoUser(this.value)"><option value="5">User 10005 · #5</option><option value="1">User 10001 · #1</option><option value="11">Unranked user</option></select></div>
-      </div>
-      <div id="stage-note" class="stage-note" aria-live="polite"></div>
+    <section class="section ranking-intro"><div class="section-heading"><span class="heading-icon"><svg><use href="#i-trophy"/></svg></span>7-Day Top-up Ranking</div><div class="intro-row"><div class="intro-desc">Compete for exclusive honors.<br>Ranked by cumulative gold top-ups.</div></div><div class="mini-banner"><svg><use href="#i-calendar"/></svg>25 NOV – 01 DEC 2026 · 7 DAYS</div>
+
     </section>
     <section class="section rewards rewards-gallery" aria-label="Ranking Rewards Preview">
       <div class="pillrow"><div class="section-heading"><span class="heading-icon"><svg><use href="#i-gift"/></svg></span>Ranking Rewards</div><span class="reward-eyebrow">TOP 10 EXCLUSIVE</span></div>
@@ -173,6 +224,51 @@
 <div id="mask" class="mask" onclick="closeSheet(event)"><div class="sheet" onclick="event.stopPropagation()"><div class="sh-title" id="sheet-title">Share activity</div><div id="sheet-body"><button onclick="shareAction('Share in app')">Share in app</button><button onclick="shareAction('Share externally')">Share externally</button></div><button class="cancel" onclick="closeSheet()">Cancel</button></div></div>
 <div id="toast" class="toast"></div>
 <script>
+
+// Language switching and review controls apply to prototype UI only.
+// Product's existing SVIP screenshot remains an unedited reference image.
+let lang='en';
+const dictionary={"Prototype Review Tools":"原型评审工具","REVIEW ONLY · NOT IN APP":"仅供评审 · 非 App 页面","Collapse tools ▲":"收起工具 ▲","Expand tools ▼":"展开工具 ▼","Language / 语言":"语言 / Language","Activity status · Demo only":"活动状态 · 仅供测试","In progress":"进行中","Finalizing":"结算中","Final results":"最终排名","Preview as":"模拟用户","User 10005 · #5":"用户10005 · 第5名","User 10001 · #1":"用户10001 · 第1名","Unranked user":"未上榜用户","Demo data & claim states":"模拟数据与领奖状态","Sample user details and sold Rare IDs are for product review only; real user-facing pages do not include these controls.":"示例用户、靓号售出状态和领奖状态仅用于产品评审，真实活动页面不展示此工具栏。","Event in progress · Rankings may change. Rewards cannot be claimed yet.":"活动进行中 · 排名仍会变化，奖励暂不可领取。","Event ended · Final rankings are being confirmed. Claiming is not yet available.":"活动已结束 · 最终排名确认中，暂不可领取奖励。","Final rankings confirmed · Winners may claim once, directly from their own rank entry.":"最终排名已确认 · 获奖用户可在自己的排名位置领取奖励，每份奖励仅能领取一次。","BLACK FRIDAY EVENT":"黑五活动","LIMITED-TIME EVENT":"限时活动","BLACK FRIDAY":"黑色星期五","SALE 2026":"特惠 2026","SVIP privileges · Rare ID offers · Top-up rewards":"SVIP权益 · 靓号促销 · 充值榜奖励","25 NOV – 01 DEC 2026":"2026年11月25日 – 12月1日","25 NOV – 01 DEC 2026 · 7 DAYS":"2026年11月25日 – 12月1日 · 7天","Promotion":"促销","Top-up Ranking":"充值榜","SVIP Special":"SVIP限时福利","BONUS":"额外福利","Get":"获赠","2 Months":"2个月","of Custom Gift Privileges!":"定制礼物特权！","Subscribe or renew SVIP during the event to receive this exclusive benefit.":"活动期间购买或续费SVIP，即可享受此专属权益。","EXTRA BENEFIT VALUE":"额外权益价值","3,000 Honor Coupons":"3,000荣誉券","≈ US$300":"约300美元","Go to SVIP":"前往超级VIP","Automatically granted for eligible purchases and renewals.":"符合条件的购买及续费将自动获得权益。","Rare ID Sale":"靓号限时促销","LIMITED-TIME OFFER":"限时优惠","Buy":"购买","180 Days":"180天","180 Days FREE":"免费加赠180天","180 extra days automatically added.":"额外180天有效期自动赠送。","Applies to eligible Rare ID purchases and renewals made during the event.":"适用于活动期间符合条件的靓号购买和续费。","7,200,000 Coins":"7,200,000金币","3,600,000 Coins":"3,600,000金币","7,200 Honor Coupons":"7,200荣誉券","3,600 Honor Coupons":"3,600荣誉券","Shop Rare ID":"前往靓号商城","Promotion Rules":"促销活动规则","From 25 Nov to 1 Dec 2026, users who subscribe to or renew SVIP receive 2 months of Custom Gift Privileges, valued at 3,000 Honor Coupons.":"2026年11月25日至12月1日期间，购买或续费SVIP可获赠2个月定制礼物特权，价值3,000荣誉券。","During the event, purchase or renew a Rare ID for 180 days and get an additional 180 days of validity automatically.":"活动期间购买或续费180天靓号，可自动获得额外180天有效期。","Only eligible purchases and renewals completed during the event qualify for the offers.":"仅活动期间完成且符合条件的购买、续费可享受优惠。","BLACK FRIDAY · 2026":"黑五活动 · 2026","7-Day Top-up Ranking":"7日金币充值榜","Compete for exclusive honors.":"冲击排行榜，赢取专属奖励。","Ranked by cumulative gold top-ups.":"按活动期间累计充值金币排名。","Ranking Rewards":"排名奖励","TOP 10 EXCLUSIVE":"前10名专属","Win exclusive privileges and rare items. Rewards depend on your":"冲榜赢取专属权益和稀有道具，奖励以","final rank":"最终排名","CHAMPION · #1":"冠军 · 第1名","GRAND PRIZE":"冠军大奖","30 days":"30天","7 days":"7天","15 days":"15天","SSR Rare ID":"SSR靓号","Fire Phoenix":"火凤凰","RUNNER-UP":"亚军","THIRD PLACE":"季军","Diamond VIP":"钻石VIP","MORE RANKING PRIZES":"其他排名奖励","Flame Dragon":"烈焰火龙","Profile Card · 30D":"资料卡 · 30天","AMG Vehicle":"AMG座驾","Vehicle · 30D":"座驾 · 30天","Black Panther":"黑豹头像框","Avatar Frame · 15D":"头像框 · 15天","Flame Wolf":"火焰狼头像框","Top 3":"前三名","Each rank shows its exclusive reward. Your eligible entry has the claim button after final results.":"各排名展示对应奖励。最终排名确认后，获奖用户可在本人排名处领取。","Top-up Leaderboard":"金币充值排行榜","Accumulated gold recharged · Personal accounts":"个人账号活动期间累计充值金币","YOU":"本人","Gold":"金币","SVIP · SSR · Phoenix":"SVIP · SSR靓号 · 火凤凰","SVIP 30D + SSR Rare ID 30D + Fire Phoenix 7D":"SVIP 30天 + SSR靓号30天 + 火凤凰7天","SVIP · 30D":"SVIP · 30天","Diamond VIP · 30D":"钻石VIP · 30天","Flame Dragon · 30D":"烈焰火龙 · 30天","AMG Vehicle · 30D":"AMG座驾 · 30天","Black Panther Frame · 15D":"黑豹头像框 · 15天","Flame Wolf Frame · 15D":"火焰狼头像框 · 15天","Claim after event":"活动结束后领取","Claim Reward":"领取奖励","Claimed":"已领取","Ranking Rules":"充值榜规则","The ranking is based on each personal account’s total gold top-ups during 25 Nov – 1 Dec 2026.":"按个人账号在2026年11月25日至12月1日期间累计充值金币数量排名。","Eligible channels: direct top-up, merchant top-up, agent top-up, and points redemption.":"统计渠道包括直充、商户充值、代理充值和积分兑换。","Malicious recharge refunds will result in a corresponding deduction from the ranking score.":"恶意充值退款将扣除对应榜单分值。","Rewards are honorary virtual items. Winners must manually claim their rewards after the event ends.":"榜单奖励为虚拟道具，获奖用户需在活动结束后手动领取。","Share activity":"分享活动","Share Black Friday Event":"分享黑五活动","Share in app":"站内分享","Share externally":"站外分享","Cancel":"取消","Back":"返回","This is a standalone interactive prototype.":"当前为独立交互原型演示。","In the real app, this button opens the Mall > Rare ID purchase page.":"正式 App 中，此按钮将跳转至商城靓号购买页面。","Open the Mall > Rare ID page to view purchase details.":"前往商城靓号页面查看购买详情。","SVIP (30 days), SSR Rare ID (30 days), Fire Phoenix (7 days)":"SVIP（30天）、SSR靓号（30天）、火凤凰（7天）","SVIP (30 days)":"SVIP（30天）","Diamond VIP (30 days)":"钻石VIP（30天）","Dynamic Profile Card · Flame Dragon (30 days)":"动态资料卡·烈焰火龙（30天）","AMG Vehicle (30 days)":"AMG座驾（30天）","Black Panther Avatar Frame (15 days)":"黑豹头像框（15天）","Flame Wolf Avatar Frame (15 days)":"火焰狼头像框（15天）","Reward Claimed":"奖励已领取","Claim successful (prototype).":"领取成功（原型演示）。","The reward is now marked as Claimed on your ranking entry.":"你在排行榜中的领取状态已更新为「已领取」。"};
+const englishNodes=new WeakMap();
+function translateText(english){return lang==='zh'&&Object.prototype.hasOwnProperty.call(dictionary,english)?dictionary[english]:english}
+function applyLocale(){
+  document.documentElement.lang=lang==='zh'?'zh-CN':'en';
+  document.title=lang==='zh'?'2026黑五活动 · 交互原型':'BLACK FRIDAY 2026 · Activity Prototype';
+  for(const root of [document.getElementById('prototype-tools'),document.getElementById('app'),document.getElementById('mask')]){
+    if(!root)continue;
+    const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+    const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+    for(const n of nodes){
+      if(!englishNodes.has(n))englishNodes.set(n,n.nodeValue);
+      const orig=englishNodes.get(n),trimmed=orig.trim();
+      if(!trimmed||!Object.prototype.hasOwnProperty.call(dictionary,trimmed))continue;
+      const left=orig.match(/^\\s*/)[0],right=orig.match(/\\s*$/)[0];
+      n.nodeValue=left+translateText(trimmed)+right;
+    }
+    root.querySelectorAll('[aria-label]').forEach(el=>{
+      if(!el.hasAttribute('data-english-aria'))el.setAttribute('data-english-aria',el.getAttribute('aria-label'));
+      el.setAttribute('aria-label',translateText(el.getAttribute('data-english-aria')));
+    });
+  }
+  document.querySelectorAll('.review-langs button').forEach(el=>{
+    const on=el.dataset.lang===lang;el.classList.toggle('selected',on);el.setAttribute('aria-pressed',String(on))
+  });
+}
+function setLanguage(next){
+  if(!['en','zh'].includes(next))return;
+  lang=next;
+  renderRanking();
+  applyLocale();
+}
+function toggleReviewTools(){
+  const body=document.getElementById('review-tools-body');
+  const closed=body.classList.toggle('collapsed');
+  const button=document.getElementById('review-toggle');
+  button.setAttribute('aria-expanded',String(!closed));
+  // Explicitly replace the toolbar text to avoid stale language when toggling.
+  button.textContent=closed?(lang==='zh'?'展开工具 ▼':'Expand tools ▼'):(lang==='zh'?'收起工具 ▲':'Collapse tools ▲');
+}
+
 const SSR=['22222','33333','44444','55555','770077','990099','800008','700007','600006','500005'];
 const SR=['44144','55155','77177','88188','99199','22122','46464','543210'];
 // Grayed ID states are visual examples in the prototype, not actual sales status.
@@ -228,6 +324,7 @@ function renderRanking(){
   const layout=[topRanks[1],topRanks[0],topRanks[2]];
   document.getElementById('rank-podiums').innerHTML=layout.map(p=>`<div class="podium ${p.rank===1?'first':p.rank===2?'second':'third'} ${demoUser===p.rank?'is-mine':''}"><span class="rank-chip">${p.rank}</span>${demoUser===p.rank?'<span class="you-label">YOU</span>':''}<div class="avatar">${p.letter}</div><div class="nickname">${p.name}</div><div class="sum">${p.score}</div><div class="coins-label">Gold</div><div class="podium-reward">${icon('gift')}<span>${p.rank===1?'SVIP · SSR · Phoenix':rewardByRank[p.rank].label}</span></div>${claimControl(p.rank)}<div class="base"></div></div>`).join('');
   document.getElementById('rank-list').innerHTML=rankData.map(([rank,letter,name,score,color])=>{const r=Number(rank);return `<div class="rankrow ${demoUser===r?'is-mine':''}"><span class="rank-index">${rank}</span><div class="avatar" style="background:linear-gradient(135deg,${color},#1e2530);border-color:${color}">${letter}</div><div class="usr"><div class="name-line"><strong>${name}</strong>${demoUser===r?'<em>YOU</em>':''}</div><small class="rank-reward-inline">${icon('gift')} ${rewardByRank[r].label}</small>${demoUser===r?`<div class="row-claim">${claimControl(r)}</div>`:''}</div><div class="score">${score}<small>Gold</small></div></div>`}).join('');
+  applyLocale();
 }
 function setDemoStage(v){if(!['live','pending','final'].includes(v))return;demoStage=v;renderRanking()}
 function setDemoUser(v){demoUser=Number(v);renderRanking()}
@@ -260,11 +357,12 @@ window.addEventListener('popstate',()=>{
   if(!document.getElementById('svipView').classList.contains('hide'))exitSvip();
 });
 renderRanking();
-function openShare(){document.getElementById('sheet-title').textContent='Share Black Friday Event';document.getElementById('sheet-body').innerHTML='<button onclick="shareAction(\'Share in app\')">Share in app</button><button onclick="shareAction(\'Share externally\')">Share externally</button>';document.getElementById('mask').classList.add('show')}
-function openSheet(title,body){document.getElementById('sheet-title').textContent=title;document.getElementById('sheet-body').innerHTML='<p>'+body+'</p>';document.getElementById('mask').classList.add('show')}
+function openShare(){document.getElementById('sheet-title').textContent='Share Black Friday Event';document.getElementById('sheet-body').innerHTML='<button onclick="shareAction(\'Share in app\')">Share in app</button><button onclick="shareAction(\'Share externally\')">Share externally</button>';document.getElementById('mask').classList.add('show');applyLocale()}
+function openSheet(title,body){document.getElementById('sheet-title').textContent=title;document.getElementById('sheet-body').innerHTML='<p>'+body+'</p>';document.getElementById('mask').classList.add('show');applyLocale()}
 function closeSheet(){document.getElementById('mask').classList.remove('show')}
-function shareAction(a){closeSheet();toast(a+' · prototype interaction')}
+function shareAction(a){closeSheet();toast(translateText(a)+(lang==='zh'?' · 原型演示':' · prototype interaction'))}
 function toast(message){const el=document.getElementById('toast');el.textContent=message;el.style.display='block';setTimeout(()=>el.style.display='none',1900)}
+applyLocale();
 if(location.hash==='#ranking')setTab('ranking');
 </script>
 </body></html>
