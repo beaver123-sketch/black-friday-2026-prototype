@@ -275,6 +275,24 @@ radial-gradient(circle at 84% 9%,#f4c06f12,transparent 42%)}
 #ranking~.bf-tab-actions{display:none}
 @media(max-width:390px){.bf-rank-tools{gap:4px}.bf-mini-clock{gap:3px}.bf-mini-clock strong{font-size:10.7px}.bf-mini-clock svg{width:14px;height:14px;flex-basis:14px}.bf-region-select{max-width:112px}#bf-region-button{max-width:112px;gap:3px;padding:5px 6px}#bf-region-current{max-width:68px}.bf-mini-rules{padding:5px 7px;gap:3px;font-size:10px}}
 
+
+/* Activity rules use a true modal dialog; non-rules sheets retain their original behavior. */
+body.rules-dialog-open{overflow:hidden}
+.mask.rules-mode{align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.74);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.mask.rules-mode .sheet{width:min(410px,100%);max-width:100%;max-height:calc(100dvh - 32px);border:1px solid #716047;background:#25242a;border-radius:23px;box-shadow:0 23px 65px #000c;display:flex;flex-direction:column;overflow:hidden;padding:27px 21px 22px;animation:rulesDialogOpen .18s ease-out}
+.mask.rules-mode .sh-title{font-size:19px;font-weight:850;line-height:1.45;color:#fff5e7;margin:0 0 19px;flex:0 0 auto}
+.mask.rules-mode #sheet-body{overflow-y:auto;min-height:0;flex:1 1 auto;overscroll-behavior:contain;padding:0 0 15px;scrollbar-width:thin;scrollbar-color:#857151 transparent}
+.mask.rules-mode .sheet-close{top:18px;right:17px;width:34px;height:34px;border-radius:50%;background:#353128;border:1px solid #826c4b;color:#f5ca92;font-size:24px;padding:0;line-height:1;display:grid;place-items:center}
+.mask.rules-mode .rules-popup-section{margin:0;border:1px solid #775a37;border-radius:15px;background:linear-gradient(150deg,#2b2924,#1d1c21);padding:18px 18px 11px}
+.mask.rules-mode .rules-popup-caption{padding-bottom:13px;font-size:14px}
+.mask.rules-mode .rulelist{padding:4px 0 0}
+.mask.rules-mode .rulelist li{padding:15px 0;line-height:1.8;font-size:12.5px;color:#e1d8cc;align-items:flex-start}
+.mask.rules-mode .rulelist li:last-child{padding-bottom:8px}
+.mask.rules-mode .sheet button.cancel{flex:0 0 auto;border:1px solid #55505c;border-radius:13px;background:transparent;color:#f6ddbd;min-height:48px;padding:12px;font-size:14px;font-weight:750;text-align:center;margin:7px 0 0}
+@keyframes rulesDialogOpen{from{opacity:.6;transform:translateY(10px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:440px){.mask.rules-mode{padding:15px}.mask.rules-mode .sheet{padding:24px 19px 20px;max-height:calc(100dvh - 30px)}.mask.rules-mode .rules-popup-section{padding:16px 14px 10px}}
+@media(prefers-reduced-motion:reduce){.mask.rules-mode .sheet{animation:none}}
+
 </style>
 </head>
 <body>
@@ -439,7 +457,7 @@ radial-gradient(circle at 84% 9%,#f4c06f12,transparent 42%)}
   <ol class="rulelist"><li><span class="rule-num">1</span><span>The ranking is based on each personal account’s total gold top-ups during 25 Nov – 1 Dec 2026.</span></li><li><span class="rule-num">2</span><span>Eligible channels: direct top-up, merchant top-up, agent top-up, and points redemption.</span></li><li><span class="rule-num">3</span><span>Malicious recharge refunds will result in a corresponding deduction from the ranking score.</span></li><li><span class="rule-num">4</span><span>Rewards are honorary virtual items. Winners must manually claim their rewards after the event ends.</span></li></ol>
 </div>
 </template>
-<div id="mask" class="mask" onclick="closeSheet(event)"><div class="sheet" onclick="event.stopPropagation()"><button class="sheet-close" type="button" aria-label="Close" onclick="closeSheet()">×</button><div class="sh-title" id="sheet-title">Share activity</div><div id="sheet-body"><button onclick="shareAction('Share in app')">Share in app</button><button onclick="shareAction('Share externally')">Share externally</button></div><button class="cancel" onclick="closeSheet()">Cancel</button></div></div>
+<div id="mask" class="mask" onclick="closeSheet(event)"><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" onclick="event.stopPropagation()"><button class="sheet-close" type="button" aria-label="Close" onclick="closeSheet()">×</button><div class="sh-title" id="sheet-title">Share activity</div><div id="sheet-body"><button onclick="shareAction('Share in app')">Share in app</button><button onclick="shareAction('Share externally')">Share externally</button></div><button class="cancel" onclick="closeSheet()">Cancel</button></div></div>
 <div id="toast" class="toast"></div>
 <script>
 
@@ -698,11 +716,18 @@ function openRules(){
   document.getElementById('sheet-title').textContent='Activity Rules';
   document.getElementById('sheet-body').innerHTML=content.innerHTML;
   overlay.classList.add('show');
+  document.body.classList.add('rules-dialog-open');
   applyLocale();
+  overlay.querySelector('.sheet-close').focus({preventScroll:true});
 }
-function openShare(){document.getElementById('mask').classList.remove('rules-mode');document.getElementById('sheet-title').textContent='Share Black Friday Event';document.getElementById('sheet-body').innerHTML='<button onclick="shareAction(\'Share in app\')">Share in app</button><button onclick="shareAction(\'Share externally\')">Share externally</button>';document.getElementById('mask').classList.add('show');applyLocale()}
-function openSheet(title,body){document.getElementById('mask').classList.remove('rules-mode');document.getElementById('sheet-title').textContent=title;document.getElementById('sheet-body').innerHTML='<p>'+body+'</p>';document.getElementById('mask').classList.add('show');applyLocale()}
-function closeSheet(){document.getElementById('mask').classList.remove('show','rules-mode')}
+function openShare(){document.body.classList.remove('rules-dialog-open');document.getElementById('mask').classList.remove('rules-mode');document.getElementById('sheet-title').textContent='Share Black Friday Event';document.getElementById('sheet-body').innerHTML='<button onclick="shareAction(\'Share in app\')">Share in app</button><button onclick="shareAction(\'Share externally\')">Share externally</button>';document.getElementById('mask').classList.add('show');applyLocale()}
+function openSheet(title,body){document.body.classList.remove('rules-dialog-open');document.getElementById('mask').classList.remove('rules-mode');document.getElementById('sheet-title').textContent=title;document.getElementById('sheet-body').innerHTML='<p>'+body+'</p>';document.getElementById('mask').classList.add('show');applyLocale()}
+function closeSheet(){
+  document.getElementById('mask').classList.remove('show','rules-mode');
+  document.body.classList.remove('rules-dialog-open');
+  if(document.activeElement?.closest('#mask'))document.activeElement.blur();
+}
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&document.getElementById('mask').classList.contains('show'))closeSheet()});
 function shareAction(a){closeSheet();toast(translateText(a)+(lang==='zh'?' · 原型演示':' · prototype interaction'))}
 function toast(message){const el=document.getElementById('toast');el.textContent=message;el.style.display='block';setTimeout(()=>el.style.display='none',1900)}
 applyLocale();
