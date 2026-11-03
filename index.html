@@ -632,6 +632,26 @@ body.rare-picker-open{overflow:hidden}
 body.native-rare-open{overflow:hidden}
 @media(max-width:390px){.native-mall-view{padding-inline:10px}.native-mall-products{gap:8px 7px}.native-mall-art{height:104px}.native-mall-bottom{margin-inline:-10px}.native-mall-nameplate{min-width:96%;font-size:8px}.native-mall-card-info{padding:6px}.native-mall-id{font-size:11px}.native-mall-price{font-size:11px}.native-rare-hero{min-height:206px}}
 
+
+/* Custom rare-number purchase: independent of the 18 promoted IDs. */
+.custom-id-entry{margin:13px 12px 11px;padding:13px 12px 11px;border:1px solid #a8845380;border-radius:13px;background:linear-gradient(112deg,#3a2b1e,#24222a 62%,#191d25);box-shadow:inset 0 1px #ffdca61d}
+.custom-id-entry-main{display:flex;align-items:center;gap:9px}.custom-id-symbol{flex:0 0 34px;width:34px;height:34px;display:grid;place-items:center;font-size:24px;color:#ffdb9b;border:1px solid #a9865780;border-radius:10px;background:#a16b3b3b}
+.custom-id-entry-copy{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}.custom-id-entry-copy small{font-size:7px;letter-spacing:.65px;font-weight:800;color:#cea66c}.custom-id-entry-copy strong{font-size:13px;color:#ffe1af;font-weight:850}.custom-id-entry-copy span{font-size:9px;color:#d0c1ad}
+.custom-id-entry-main button{display:flex;align-items:center;justify-content:center;gap:3px;flex-shrink:0;min-height:35px;padding:8px;border:0;border-radius:8px;background:linear-gradient(110deg,#f3d498,#d5a15d);color:#322718;font-size:10px;font-weight:850}.custom-id-entry-main button svg{width:11px;height:11px}
+.custom-id-price-line{margin-top:11px;border:1px solid #7b5c3777;background:#1618208c;border-radius:7px;padding:9px;display:flex;justify-content:center;gap:6px;color:#f7d8a8;font-size:10px;font-weight:780}.custom-id-price-line i{color:#9b866b;font-style:normal}.custom-id-entry-note{text-align:center;font-size:9px;color:#b4a79a;margin-top:7px}
+.custom-id-mask{position:fixed;inset:0;z-index:145;display:none;align-items:flex-end;justify-content:center;background:#040609c9;backdrop-filter:blur(5px)}.custom-id-mask.show{display:flex}
+.custom-id-sheet{position:relative;width:min(430px,100%);max-height:90dvh;overflow-y:auto;overscroll-behavior:contain;padding:10px 18px calc(18px + env(safe-area-inset-bottom));border:1px solid #927048;border-bottom:0;border-radius:22px 22px 0 0;background:linear-gradient(160deg,#30291f,#1b1e25 58%,#151920);box-shadow:0 -20px 70px #000b;color:#f5e2c3}
+.custom-id-grip{height:4px;width:40px;margin:0 auto 17px;border-radius:4px;background:#a18d7399}.custom-id-x{position:absolute;top:15px;right:15px;width:30px;height:30px;border:0;border-radius:50%;background:#ffffff18;color:#e3d6c2;font-size:22px}
+.custom-id-eyebrow{font-size:9px;font-weight:800;letter-spacing:1px;color:#d4ad72}.custom-id-sheet h2{font-size:22px;color:#ffe3b3;margin:6px 0 5px}.custom-id-subhead{margin:0 0 19px;color:#beb2a4;font-size:12px}
+.custom-id-sheet label{display:block;font-size:12px;font-weight:760;margin-bottom:8px}.custom-id-input-row{display:flex;align-items:center;height:51px;border:1px solid #9a7549;border-radius:10px;background:#0e131b}.custom-id-input-row:focus-within{border-color:#f6cf8b;box-shadow:0 0 0 2px #e2b56d28}
+.custom-id-input-row b{margin:0 12px;color:#e3bb84;font-size:12px}.custom-id-input-row input{flex:1;min-width:0;border:0;outline:0;background:transparent;font-size:19px;color:#ffe5b6;letter-spacing:1px;font-weight:800}.custom-id-input-row input::placeholder{color:#81766c;font-size:13px;letter-spacing:0;font-weight:400}
+.custom-id-check{width:100%;height:42px;margin-top:11px;border:0;border-radius:9px;background:linear-gradient(110deg,#f6dba9,#d6a35e);color:#302315;font-size:12px;font-weight:850}.custom-id-check:disabled{opacity:.6}
+#custom-id-result{min-height:47px;padding:10px 0}.custom-id-hint{padding:8px;text-align:center;color:#aa9f93;font-size:11px}.custom-id-message{display:flex;flex-direction:column;gap:5px;border-radius:9px;padding:11px;border:1px solid #b2824a77;background:#6846222b}.custom-id-message b{color:#f2cd93;font-size:12px}.custom-id-message span{color:#d5c9b8;font-size:11px;line-height:1.5}.custom-id-message.ok{border-color:#6b9a7a7c;background:#2c4c3547}.custom-id-message.ok b{color:#bce7c2}
+.custom-id-suggest-title{color:#e9cda8;font-size:11px;font-weight:800;margin:13px 0 9px}.custom-id-suggest{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.custom-id-suggest button{padding:10px 4px;min-height:39px;border-radius:8px;border:1px solid #9d7c53;background:#332b25;color:#ffe2b1;font-size:12px;font-weight:850}.custom-id-buy{width:100%;height:42px;border:0;border-radius:9px;margin-top:11px;background:linear-gradient(95deg,#f5dca8,#d5a260);color:#342516;font-size:12px;font-weight:850}.custom-id-buy.alt{background:#40362d;color:#f0d3a8;border:1px solid #ae8856}
+.custom-id-price{border-top:1px solid #886c495c;padding-top:14px;text-align:center}.custom-id-price small{color:#cda86c;font-size:9px;letter-spacing:1px;font-weight:850}.custom-id-price>div{margin-top:7px;display:flex;justify-content:center;gap:6px;font-weight:800;font-size:12px;color:#f6d4a0}.custom-id-price i{font-style:normal;color:#958472}.custom-id-disclaimer,.custom-id-demo{text-align:center;font-size:10px;color:#b9ada0;margin:11px 0 0}.custom-id-demo{font-size:9px;color:#8d867f;margin-top:8px;line-height:1.5}
+.native-custom-notice{margin:0 14px 9px;padding:9px;border-radius:8px;background:#fff7e9;color:#845b33;font-size:11px;text-align:center}.native-custom-notice[hidden]{display:none!important}
+@media(max-width:360px){.custom-id-price-line,.custom-id-entry-main button{font-size:9px}.custom-id-price>div{font-size:11px}}
+
 </style>
 </head>
 <body>
@@ -680,8 +700,8 @@ body.native-rare-open{overflow:hidden}
     <section class="review-feature-guide" aria-label="Feature overview">
       <div class="review-field-title">Feature Overview</div>
       <div class="review-feature-grid">
-        <div class="review-feature-item"><strong>Gift Case Preview</strong><span>Browse 20 gift examples; tap to play an animation.</span></div>
-        <div class="review-feature-item"><strong>Lucky Rare ID Picker</strong><span>Pick a style and draw from the 18 sale IDs; redraw or buy.</span></div>
+        <div class="review-feature-item"><strong>Custom Rare ID</strong><span>Enter a number, validate availability and get similar available alternatives.</span></div>
+        <div class="review-feature-item"><strong>SVIP Promotion</strong><span>SVIP limited-time benefits and existing SVIP page access.</span></div>
         <div class="review-feature-item"><strong>Rare ID Catalogue</strong><span>SSR / SR pricing; sold IDs are dimmed.</span></div>
         <div class="review-feature-item"><strong>Top-up Ranking</strong><span>Switch regions, view rankings and claim rewards after finalization.</span></div>
       </div>
@@ -734,18 +754,15 @@ body.native-rare-open{overflow:hidden}
     <button class="bf-tab-rules" type="button" onclick="openRules()" aria-label="Activity Rules"><svg><use href="#i-info"/></svg><span>Rules</span></button>
   </div>
   <div id="promotion" class="main">
-    <section class="section svip"><div class="svip-main"><div class="pillrow"><div class="section-heading"><span class="heading-icon"><svg><use href="#i-crown"/></svg></span>SVIP Special</div><div class="small-pill"><svg style="width:12px;height:12px"><use href="#i-gift"/></svg>BONUS</div></div><div class="svip-art"><div class="svip-ring"></div><div class="svip-shield"><svg><use href="#i-crown"/></svg><strong>SVIP</strong></div></div><div class="maincopy">Get <em>2 Months</em> of Custom Gift Privileges!</div><p class="desc">Subscribe or renew SVIP during the event to receive this exclusive benefit.</p><div class="gift-cases">
-  <div class="gift-cases-heading"><strong>Latest 20 Custom Gifts</strong></div>
-  <div class="gift-case-track" id="gift-case-track" aria-label="Custom gift examples"></div>
-  
-</div><button class="cta" onclick="enterSvip()">Go to SVIP <svg><use href="#i-chevron"/></svg></button><div class="svip-note"><svg><use href="#i-check"/></svg>Automatically granted for eligible purchases and renewals.</div></div></section>
+    <section class="section svip"><div class="svip-main"><div class="pillrow"><div class="section-heading"><span class="heading-icon"><svg><use href="#i-crown"/></svg></span>SVIP Special</div><div class="small-pill"><svg style="width:12px;height:12px"><use href="#i-gift"/></svg>BONUS</div></div><div class="svip-art"><div class="svip-ring"></div><div class="svip-shield"><svg><use href="#i-crown"/></svg><strong>SVIP</strong></div></div><div class="maincopy">Get <em>2 Months</em> of Custom Gift Privileges!</div><p class="desc">Subscribe or renew SVIP during the event to receive this exclusive benefit.</p><button class="cta" onclick="enterSvip()">Go to SVIP <svg><use href="#i-chevron"/></svg></button><div class="svip-note"><svg><use href="#i-check"/></svg>Automatically granted for eligible purchases and renewals.</div></div></section>
     <section class="section rare"><div class="rare-header"><div class="pillrow"><div class="section-heading"><span class="heading-icon"><svg><use href="#i-diamond"/></svg></span>Rare ID Sale</div><div class="small-pill">BLACK FRIDAY</div></div><div class="rare-promo"><div class="kicker">LIMITED-TIME OFFER</div><div class="line1">Buy <strong>180 Days</strong>,<br>Get <strong>180 Days FREE</strong></div><div class="line2">180 extra days automatically added.</div></div><div class="rarerule">Applies to eligible Rare ID purchases and renewals made during the event.</div></div>
-      <div class="rare-picker-entry">
-   <span class="rare-picker-entry-symbol" aria-hidden="true">✦</span>
-   <div class="rare-picker-entry-copy"><strong>Find My Lucky ID</strong><span>Explore the Black Friday Rare IDs</span></div>
-   <button type="button" onclick="openRarePicker()">Pick an ID <svg><use href="#i-chevron"/></svg></button>
- </div>
- <div class="id-block" id="id-library"></div><div class="id-footer"><button class="cta" onclick="openRareMall()">Shop Rare ID <svg><use href="#i-chevron"/></svg></button></div>
+ <div class="id-block" id="id-library"></div>
+<div class="custom-id-entry">
+  <div class="custom-id-entry-main"><div class="custom-id-symbol">✧</div><div class="custom-id-entry-copy"><small>EXCLUSIVE CUSTOM NUMBER</small><strong>Custom Rare ID</strong><span>Choose a number that's yours</span></div>
+  <button type="button" onclick="openCustomId()">Customize <svg><use href="#i-chevron"/></svg></button></div>
+  <div class="custom-id-price-line"><span>9,000 Honor Coupons</span><i>/</i><span>9,000,000 Coins</span></div>
+  <div class="custom-id-entry-note">Independent offer · No 180-day bonus</div>
+</div><div class="id-footer"><button class="cta" onclick="openRareMall()">Shop Rare ID <svg><use href="#i-chevron"/></svg></button></div>
     </section>
 
     <div class="pagefoot">BLACK FRIDAY · 2026</div>
@@ -866,20 +883,24 @@ body.native-rare-open{overflow:hidden}
           </div>
         </div>
       </div>
+      <div id="native-custom-notice" class="native-custom-notice" hidden>自定义靓号独立定价，不参与买180天送180天活动</div>
       <div class="native-rare-checkout"><span class="native-rare-cost"><b id="native-rare-currency">🪙</b><strong id="native-rare-amount">7,200,000</strong></span>
         <button type="button" class="native-rare-topup" onclick="nativeRarePurchaseAction()"><strong id="native-rare-purchase-label">去充值</strong><small id="native-rare-balance">🪙 7,192,010</small></button>
       </div>
     </div>
   </div>
 </div>
-<div id="rare-picker-overlay" class="rare-picker-overlay" aria-modal="true" role="dialog" aria-label="Lucky Rare ID Picker" onclick="closeRarePicker(event)">
-  <div class="rare-picker-panel" onclick="event.stopPropagation()">
-    <button id="rare-picker-close" class="rare-picker-close" type="button" onclick="closeRarePicker()" aria-label="Close">×</button>
-    <div id="rare-picker-content"></div>
-  </div>
-</div>
-<div id="gift-animation-layer" class="gift-animation-layer" onclick="closeGiftAnimation()" aria-label="Gift animation">
-  <div id="gift-animation-stage" class="gift-animation-stage"></div>
+<div id="custom-id-mask" class="custom-id-mask" role="presentation" onclick="closeCustomId(event)">
+  <section class="custom-id-sheet" role="dialog" aria-modal="true" aria-label="Custom Rare ID" onclick="event.stopPropagation()">
+    <div class="custom-id-grip"></div><button class="custom-id-x" onclick="closeCustomId()" type="button" aria-label="Close">×</button>
+    <div class="custom-id-eyebrow">MAKE IT YOURS</div><h2>Custom Rare ID</h2><p class="custom-id-subhead">Choose a number that's yours</p>
+    <label for="custom-id-field">Your preferred Rare ID</label><div class="custom-id-input-row"><b>ID</b><input id="custom-id-field" type="text" inputmode="numeric" autocomplete="off" maxlength="12" placeholder="e.g. 888888" oninput="customIdInputChanged()" onkeydown="if(event.key==='Enter')checkCustomId()"/></div>
+    <button id="custom-id-check" class="custom-id-check" type="button" onclick="checkCustomId()">Check Availability</button>
+    <div id="custom-id-result" aria-live="polite" data-dynamic-locale></div>
+    <div class="custom-id-price"><small>FIXED PRICE</small><div><span>9,000 Honor Coupons</span><i>/</i><span>9,000,000 Coins</span></div></div>
+    <p class="custom-id-disclaimer">Not included in Buy 180 Days, Get 180 Days FREE.</p>
+    <p class="custom-id-demo">Prototype demonstration · availability and suggestions require a live mall API.</p>
+  </section>
 </div>
 <div id="mask" class="mask" onclick="closeSheet(event)"><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" onclick="event.stopPropagation()"><button class="sheet-close" type="button" aria-label="Close" onclick="closeSheet()">×</button><div class="sh-title" id="sheet-title">Share activity</div><div id="sheet-body"><button onclick="shareAction('Share in app')">Share in app</button><button onclick="shareAction('Share externally')">Share externally</button></div><button class="cancel" onclick="closeSheet()">Cancel</button></div></div>
 <div id="toast" class="toast"></div>
@@ -897,12 +918,26 @@ dictionary["Explore the Black Friday Rare IDs"]="从黑五促销靓号中挑选"
 dictionary["Pick an ID"]="帮我挑个靓号";
 Object.assign(dictionary,{"Custom Gift Showcase":"定制礼物案例","Swipe · Tap to preview":"左右滑动 · 点击预览","Sample visuals for prototype review · Actual customization is coordinated by operations.":"原型演示素材 · 实际定制需与运营沟通","Custom gift examples":"定制礼物案例","Custom Gift Preview":"定制礼物预览","Sample Preview":"效果示意","Illustrative preview only. To use Custom Gift Privileges, coordinate with the operations team after an eligible SVIP purchase or renewal.":"当前为效果示意，非真实定制礼物资源。符合条件的SVIP购买或续费完成后，需联系运营沟通定制需求。","Tap to preview":"点击预览","Royal Bloom":"皇家花语","Golden Phoenix":"金焰凤凰","Moonlight Crown":"月光王冠","Starlight Wish":"星光心愿","Diamond Wings":"钻石之翼"});
 Object.assign(dictionary,{"Feature Overview":"功能说明","Gift Case Preview":"定制礼物展示","Browse 20 gift examples; tap to play an animation.":"横滑浏览20个礼物，点击播放动效。","Lucky Rare ID Picker":"幸运靓号","Pick a style and draw from the 18 sale IDs; redraw or buy.":"选偏好，从18个促销号中抽取，可重抽或购买。","Rare ID Catalogue":"靓号列表","SSR / SR pricing; sold IDs are dimmed.":"SSR/SR价格分档，已售靓号置灰。","Top-up Ranking":"充值榜","Switch regions, view rankings and claim rewards after finalization.":"切换地区、查看排名，结算后领取奖励。"});
+Object.assign(dictionary,{
+"Custom Rare ID":"自定义靓号",
+"Enter a number, validate availability and get similar available alternatives.":"填写号码校验可售状态，异常拦截并推荐相近的可售靓号。",
+"SVIP Promotion":"SVIP限时福利",
+"SVIP limited-time benefits and existing SVIP page access.":"展示SVIP优惠权益，可跳转现有SVIP页面。",
+"EXCLUSIVE CUSTOM NUMBER":"专属号码定制","Choose a number that's yours":"填写你喜欢的专属靓号",
+"Customize":"去定制","9,000 Honor Coupons":"9,000荣誉券","9,000,000 Coins":"9,000,000金币",
+"Independent offer · No 180-day bonus":"独立价格 · 不参与买180送180",
+"MAKE IT YOURS":"定制专属靓号","Your preferred Rare ID":"输入想要的靓号",
+"Check Availability":"检查靓号","FIXED PRICE":"固定价格",
+"Not included in Buy 180 Days, Get 180 Days FREE.":"自定义靓号不参与买180天送180天优惠。",
+"Prototype demonstration · availability and suggestions require a live mall API.":"原型演示：号码占用及推荐为模拟结果，正式需接入商城接口。",
+"e.g. 888888":"例如 888888"
+});
 const englishNodes=new WeakMap();
 function translateText(english){return lang==='zh'&&Object.prototype.hasOwnProperty.call(dictionary,english)?dictionary[english]:english}
 function applyLocale(){
   document.documentElement.lang=lang==='zh'?'zh-CN':'en';
   document.title=lang==='zh'?'2026黑五活动 · 交互原型':'BLACK FRIDAY 2026 · Activity Prototype';
-  for(const root of [document.getElementById('prototype-tools'),document.getElementById('app'),document.getElementById('mask')]){
+  for(const root of [document.getElementById('prototype-tools'),document.getElementById('app'),document.getElementById('mask'),document.getElementById('custom-id-mask')]){
     if(!root)continue;
     const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
     const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
@@ -929,8 +964,7 @@ function applyLocale(){
 function setLanguage(next){
   if(!['en','zh'].includes(next))return;
   lang=next;
-  renderGiftCases();
-  if(document.getElementById('rare-picker-overlay').classList.contains('show'))rareRenderPicker();
+  if(document.getElementById('custom-id-mask').classList.contains('show'))renderCustomIdStatus();
   renderRareIdLibrary();
   renderRanking();
   applyLocale();
@@ -1232,185 +1266,146 @@ function setTab(tab){
   window.scrollTo({top:0,behavior:'instant'});
 }
 
-/* Lucky picker uses only currently unsold items in the 18-item activity set. */
-let rarePickerStep='select';
-let rarePickerPreference=null;
-let rareLuckyDigit='8';
-let rarePicked=null;
-let rareDrawTimer=null;
-const rareDrawHistory=new Map();
-const rareLocale=(zh,en)=>lang==='zh'?zh:en;
-function rarePrice(item){
-  return item.priceCoins.toLocaleString('en-US')+' '+rareLocale('金币','Coins')+
-    ' / '+item.priceHonor.toLocaleString('en-US')+' '+rareLocale('荣誉券','Honor Coupons');
-}
-function rareAvailableForPreference(item){
-  if(item.sold)return false;
-  if(rarePickerPreference==='repeat')return /(\d)\1{2,}/.test(item.id);
-  if(rarePickerPreference==='palindrome')return item.id===item.id.split('').reverse().join('');
-  if(rarePickerPreference==='lucky')return item.id.includes(rareLuckyDigit);
-  return true;
-}
-function openRarePicker(){
-  closeSheet();
-  rarePickerStep='select';
-  rarePickerPreference=null;
-  rarePicked=null;
-  rareRenderPicker();
-  document.getElementById('rare-picker-overlay').classList.add('show');
-  document.body.classList.add('rare-picker-open');
-  refreshRareStatus().then(()=>{if(rarePickerStep==='select')rareRenderPicker()});
-}
-function closeRarePicker(event){
-  if(event&&event.target!==document.getElementById('rare-picker-overlay'))return;
-  if(rareDrawTimer){clearTimeout(rareDrawTimer);rareDrawTimer=null;}
-  document.getElementById('rare-picker-overlay').classList.remove('show');
-  document.body.classList.remove('rare-picker-open');
-  rarePicked=null;
-}
-function rareSelectPreference(value){
-  if(!['repeat','palindrome','lucky','random'].includes(value))return;
-  rarePickerPreference=value;
-  rareRenderPicker();
-}
-function rareSelectLuckyDigit(value){
-  if(!['6','8','9'].includes(String(value)))return;
-  rareLuckyDigit=String(value);
-  rareRenderPicker();
-}
-function rarePreferenceLabel(pref){
-  return ({
-    repeat:rareLocale('连号控','Repeating'),
-    palindrome:rareLocale('对称控','Symmetry'),
-    lucky:rareLocale('幸运数字','Lucky digit'),
-    random:rareLocale('随缘抽号','Surprise me')
-  })[pref]||'';
-}
-function rareRenderPicker(){
-  const root=document.getElementById('rare-picker-content');
-  if(!root)return;
-  const panel=document.querySelector('#rare-picker-overlay .rare-picker-panel');
-  panel?.classList.toggle('is-result',rarePickerStep==='result');
-  panel?.classList.toggle('is-sr',rarePickerStep==='result'&&rareGetItem(rarePicked)?.tier==='SR');
-  const title=rareLocale('帮我挑个靓号','Find My Lucky ID');
-  if(rarePickerStep==='select'){
-    const choices=[
-      ['repeat','▥',rareLocale('连号控','Repeating')],
-      ['palindrome','◇',rareLocale('对称控','Symmetry')],
-      ['lucky','✦',rareLocale('幸运数字','Lucky digit')],
-      ['random','?',rareLocale('随缘抽号','Surprise me')]
-    ];
-    root.innerHTML='<h2 class="rare-picker-title">'+title+'</h2>'+
-      '<p class="rare-picker-subtitle">'+rareLocale('选一种喜欢的风格，抽取黑五在售靓号。','Choose a style to draw an available Black Friday Rare ID.')+'</p>'+
-      '<div class="rare-picker-choices">'+choices.map(c=>
-        '<button type="button" class="rare-picker-choice'+(rarePickerPreference===c[0]?' selected':'')+
-        '" onclick="rareSelectPreference(\''+c[0]+'\')">'+
-        '<span class="rare-picker-emoji">'+c[1]+'</span><span>'+c[2]+'</span></button>').join('')+'</div>'+
-      (rarePickerPreference==='lucky'?
-        '<p class="rare-picker-digit-title">'+rareLocale('选择喜欢的数字','Choose a lucky digit')+'</p>'+
-        '<div class="rare-picker-digits">'+['6','8','9'].map(d=>
-        '<button type="button" class="rare-picker-digit'+(d===rareLuckyDigit?' selected':'')+
-        '" onclick="rareSelectLuckyDigit(\''+d+'\')">'+d+'</button>').join('')+'</div>':'')+
-      '<button type="button" class="rare-picker-primary" onclick="rareDraw()" '+(!rarePickerPreference?'disabled':'')+'>'+
-      rareLocale('抽取我的幸运靓号','Draw My Lucky ID')+'</button>';
-  }else if(rarePickerStep==='flipping'){
-    root.innerHTML='<h2 class="rare-picker-title">'+rareLocale('正在挑选','Finding your match')+'</h2>'+
-      '<div class="rare-picker-stage is-flipping"><span class="rare-picker-flip">?</span><small>'+
-      rareLocale('幸运靓号即将揭晓','Your lucky ID is coming')+'</small></div>';
-  }else if(rarePickerStep==='empty'){
-    root.innerHTML='<h2 class="rare-picker-title">'+title+'</h2>'+
-      '<div class="rare-picker-empty"><strong>'+rareLocale('暂时没有符合条件的在售靓号','No available IDs match this preference')+'</strong>'+
-      '<p>'+rareLocale('可以换一种偏好继续抽取。','Choose another style and try again.')+'</p></div>'+
-      '<button type="button" class="rare-picker-primary" onclick="rareChangePreference()">'+
-        rareLocale('更换选号偏好','Choose Another Style')+'</button>';
-  }else if(rarePickerStep==='result' && rarePicked){
-    const item=rareGetItem(rarePicked);
-    if(!item||item.sold){rarePickerStep='empty';rareRenderPicker();return}
-    const stars=[
-      ['12%','18%','0s'],['83%','16%','.1s'],['23%','47%','.2s'],
-      ['76%','52%','.14s'],['17%','77%','.35s'],['85%','81%','.3s']
-    ].map(([x,y,delay])=>'<i class="rare-result-shine" style="--x:'+x+';--y:'+y+';--delay:'+delay+'"></i>').join('');
-    root.innerHTML='<div class="rare-picker-result-kicker"><span class="rare-picker-result-spark">✦</span>'+
-      rareLocale('好运揭晓 · 黑五幸运选号','LUCKY REVEAL · BLACK FRIDAY')+'</div>'+
-      '<h2 class="rare-picker-title">'+rareLocale('找到你的幸运靓号！','Your Lucky Rare ID!')+'</h2>'+
-      '<p class="rare-picker-subtitle">'+rarePreferenceLabel(rarePickerPreference)+'</p>'+
-      '<div class="rare-picker-stage rare-picker-result-stage '+item.tier.toLowerCase()+'" aria-live="polite">'+stars+
-        '<div class="rare-picker-reveal '+item.tier.toLowerCase()+'">'+
-          '<span class="rare-picker-tier '+item.tier.toLowerCase()+'">'+item.tier+'</span>'+
-          '<strong class="rare-picker-number">'+item.id+'</strong>'+
-          '<span class="rare-picker-price">'+rarePrice(item)+'</span>'+
-          '<span class="rare-picker-bonus">'+rareLocale('买180天 · 额外赠送180天','Buy 180 Days · Get 180 Days Free')+'</span>'+
-        '</div></div>'+
-      '<div class="rare-picker-operations">'+
-        '<button type="button" class="rare-picker-secondary" onclick="rareDraw()">'+rareLocale('再抽一次','Try Again')+'</button>'+
-        '<button type="button" class="rare-picker-primary" onclick="openRareProductDetail(\''+item.id+'\')">'+rareLocale('立即购买','Buy Now')+'</button></div>'+
-      '<button type="button" class="rare-picker-return" onclick="rareChangePreference()">'+rareLocale('更换偏好','Change Style')+'</button>';
 
+/* Custom IDs are not part of the fixed 18 event IDs.
+ * Backend hook: BLACK_FRIDAY_CUSTOM_ID_CHECK(id) -> {available:boolean,
+ *   reason?:'wearing'|'sold'|'reserved'|'invalid'|'unavailable',
+ *   suggestions?:[{id:string,available:true}]}.
+ * Suggestions from live API must be explicitly confirmed available.
+ */
+const rareLocale=(zh,en)=>lang==='zh'?zh:en;
+const customIdPrice={priceCoins:9000000,priceHonor:9000};
+const mockBlocked=new Map([['888888','wearing'],['999999','sold'],['666666','reserved'],['777777','unavailable']]);
+let customIdState={phase:'idle',id:'',reason:'',suggestions:[]};
+let customIdVersion=0,customIdOrdering=false;
+function idEscape(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function closeCustomId(event){
+  const mask=document.getElementById('custom-id-mask');
+  if(event&&event.target!==mask)return;
+  if(!mask)return;
+  mask.classList.remove('show');document.body.classList.remove('custom-id-open');customIdVersion++;
+}
+function openCustomId(value=''){
+  closeSheet();closeNativeRareSheet();
+  const mask=document.getElementById('custom-id-mask');
+  mask.classList.add('show');document.body.classList.add('custom-id-open');
+  document.getElementById('custom-id-field').value=String(value||'').replace(/[^0-9]/g,'').slice(0,12);
+  customIdInputChanged();applyLocale();
+  setTimeout(()=>document.getElementById('custom-id-field').focus({preventScroll:true}),100);
+}
+function customIdInputChanged(){
+  customIdVersion++;customIdState={phase:'idle',id:'',reason:'',suggestions:[]};renderCustomIdStatus();
+}
+function customIdDemoSuggestions(id){
+  const blacklist=new Set([id,...rareApprovedIds,...mockBlocked.keys()]);
+  const suggestions=[];
+  for(let i=id.length-1;i>=0&&suggestions.length<5;i--){
+    for(const delta of [1,-1,2,-2,3,-3]){
+      const newDigit=(Number(id[i])+delta+10)%10;
+      const alt=id.slice(0,i)+newDigit+id.slice(i+1);
+      if(!blacklist.has(alt)){
+        suggestions.push({id:alt,available:true});blacklist.add(alt);
+        if(suggestions.length>=5)break;
+      }
+    }
+  }
+  return suggestions;
+}
+async function queryCustomId(id){
+  if(!/^\d{1,12}$/.test(id))return {available:false,reason:'invalid',suggestions:[]};
+  if(rareApprovedIds.has(id))return {available:false,reason:'promotion',suggestions:[]};
+  if(typeof window.BLACK_FRIDAY_CUSTOM_ID_CHECK==='function'){
+    const r=await window.BLACK_FRIDAY_CUSTOM_ID_CHECK(id);
+    if(!r||typeof r.available!=='boolean')throw Error('Invalid API response');
+    return {...r,suggestions:(Array.isArray(r.suggestions)?r.suggestions:[])
+      .filter(x=>x&&x.available===true&&/^\d{1,12}$/.test(String(x.id))&&!rareApprovedIds.has(String(x.id))&&String(x.id)!==id).slice(0,5)};
+  }
+  const reason=mockBlocked.get(id);
+  return reason?{available:false,reason,suggestions:customIdDemoSuggestions(id)}:{available:true,suggestions:[]};
+}
+function customIdMessage(reason){
+  const messages={
+    wearing:['该号码已有其他用户佩戴，暂不可购买。','Already worn by another user.'],
+    sold:['该号码已售出，暂不可购买。','This number has been sold.'],
+    reserved:['该号码已被预留或锁定，暂不可购买。','This number is reserved or locked.'],
+    invalid:['号码格式不符合要求，请重新填写。','Invalid number format.'],
+    promotion:['这是黑五18个活动靓号之一，请从活动列表购买。','This is one of the 18 promotional IDs. Please use the sale list.'],
+    error:['校验失败，请稍后重试。','Check failed. Please try again.'],
+    unavailable:['该号码暂不可购买。','This number is unavailable.']
+  };
+  const m=messages[reason]||messages.unavailable;return rareLocale(m[0],m[1]);
+}
+function renderCustomIdStatus(){
+  const root=document.getElementById('custom-id-result');if(!root)return;
+  const st=customIdState;
+  if(st.phase==='idle'){root.innerHTML='<div class="custom-id-hint">'+rareLocale('输入号码后，检查是否可以购买。','Enter a number to check availability.')+'</div>';return;}
+  if(st.phase==='checking'){root.innerHTML='<div class="custom-id-hint">'+rareLocale('正在校验号码…','Checking number…')+'</div>';return;}
+  if(st.phase==='available'){
+    root.innerHTML='<div class="custom-id-message ok"><b>✓ '+rareLocale('该靓号可以购买！','Number available!')+'</b><span>'+idEscape(st.id)+'</span></div>'+
+      '<button type="button" class="custom-id-buy" onclick="buyCustomId()">'+rareLocale('立即购买','Buy Now')+'</button>';
+    return;
+  }
+  root.innerHTML='<div class="custom-id-message blocked"><b>! '+rareLocale('暂不可购买','Unavailable')+'</b><span>'+idEscape(customIdMessage(st.reason))+'</span></div>'+
+    (st.reason==='promotion'?'<button class="custom-id-buy alt" onclick="jumpToSaleIds()">'+rareLocale('查看活动靓号','View Sale IDs')+'</button>':
+     st.suggestions?.length?'<div class="custom-id-suggest-title">'+rareLocale('为你推荐相近可售靓号','Similar available numbers')+'</div><div class="custom-id-suggest">'+
+      st.suggestions.map(x=>'<button type="button" onclick="pickCustomSuggestion(\''+idEscape(x.id)+'\')">'+idEscape(x.id)+' ›</button>').join('')+'</div>':'');
+}
+async function checkCustomId(){
+  const input=document.getElementById('custom-id-field');
+  const id=input.value.trim(),version=++customIdVersion;
+  const button=document.getElementById('custom-id-check');
+  customIdState={phase:'checking',id,reason:'',suggestions:[]};
+  button.disabled=true;renderCustomIdStatus();
+  try{
+    const result=await queryCustomId(id);
+    if(version!==customIdVersion||input.value.trim()!==id)return;
+    customIdState={phase:result.available?'available':'blocked',id,reason:result.reason||'unavailable',suggestions:result.suggestions||[]};
+  }catch(e){
+    if(version!==customIdVersion)return;
+    customIdState={phase:'blocked',id,reason:'error',suggestions:[]};
+  }finally{
+    button.disabled=false;
+    if(version===customIdVersion)renderCustomIdStatus();
   }
 }
-function rareChangePreference(){
-  if(rareDrawTimer){clearTimeout(rareDrawTimer);rareDrawTimer=null;}
-  rarePickerStep='select';rarePickerPreference=null;rarePicked=null;rareRenderPicker();
+function pickCustomSuggestion(id){
+  document.getElementById('custom-id-field').value=id;customIdInputChanged();checkCustomId();
 }
-async function rareDraw(){
-  if(!rarePickerPreference||rarePickerStep==='flipping')return;
-  rarePickerStep='flipping';
-  rareRenderPicker();
-  await refreshRareStatus();
-  const candidates=rareItems().filter(rareAvailableForPreference);
-  const key=rarePickerPreference+':'+(rarePickerPreference==='lucky'?rareLuckyDigit:'');
-  const old=rareDrawHistory.get(key)||new Set();
-  let options=candidates.filter(item=>!old.has(item.id));
-  if(options.length===0){old.clear();options=candidates}
-  if(options.length>1&&rarePicked)options=options.filter(item=>item.id!==rarePicked);
-  const match=options.length?options[Math.floor(Math.random()*options.length)]:null;
-  if(match){old.add(match.id);rareDrawHistory.set(key,old);}
-  rareDrawTimer=setTimeout(()=>{
-    rareDrawTimer=null;
-    rarePicked=match?.id||null;
-    rarePickerStep=match?'result':'empty';
-    if(document.getElementById('rare-picker-overlay').classList.contains('show'))rareRenderPicker();
-  },750);
+function jumpToSaleIds(){closeCustomId();document.getElementById('id-library').scrollIntoView({behavior:'smooth',block:'start'});}
+async function buyCustomId(){
+  if(customIdState.phase!=='available'||customIdOrdering)return;
+  const id=customIdState.id;customIdOrdering=true;
+  try{
+    const r=await queryCustomId(id);
+    if(!r.available){
+      customIdState={phase:'blocked',id,reason:r.reason||'unavailable',suggestions:r.suggestions||[]};
+      renderCustomIdStatus();return;
+    }
+    if(document.getElementById('custom-id-field').value.trim()!==id)return;
+    if(typeof window.BLACK_FRIDAY_OPEN_CUSTOM_RARE_DETAIL==='function'){
+      closeCustomId();window.BLACK_FRIDAY_OPEN_CUSTOM_RARE_DETAIL({id,...customIdPrice});return;
+    }
+    openNativeRareSheet({id,tier:'CUSTOM',isCustom:true,...customIdPrice});
+  }catch(e){
+    customIdState={phase:'blocked',id,reason:'error',suggestions:[]};renderCustomIdStatus();
+  }finally{customIdOrdering=false;}
 }
+
 async function openRareProductDetail(id){
-  let item=rareGetItem(id);
-  if(!item || item.sold){
-    toast(rareLocale('该靓号已售出，请重新挑选','This ID is sold. Please choose again.'));
-    await refreshRareStatus();
-    renderRareIdLibrary();
-    if(document.getElementById('rare-picker-overlay').classList.contains('show')){
-      rarePickerStep='empty';rareRenderPicker();
-    }
-    return;
-  }
   await refreshRareStatus();
-  item=rareGetItem(id);
-  if(!item||item.sold){
-    toast(rareLocale('该靓号已售出，请重新挑选','This ID is sold. Please choose again.'));
-    renderRareIdLibrary();
-    if(document.getElementById('rare-picker-overlay').classList.contains('show')){
-      rarePickerStep='empty';rareRenderPicker();
-    }
-    return;
-  }
+  const item=rareGetItem(id);
+  if(!item||item.sold){toast(rareLocale('该靓号已售出，请重新选择','This Rare ID is sold.'));renderRareIdLibrary();return;}
   const bridge=window.BLACK_FRIDAY_OPEN_RARE_DETAIL;
-  if(typeof bridge==='function'&&item.productId){
-    closeRarePicker();
-    bridge({id:item.id,productId:item.productId,tier:item.tier});
-    return;
+  if(typeof bridge==='function'&&item.productId){bridge({id:item.id,productId:item.productId,tier:item.tier});return;}
+  if(typeof item.detailUrl==='string' && (/^https?:\/\//.test(item.detailUrl)||item.detailUrl.startsWith('/'))){
+    window.location.assign(item.detailUrl);return;
   }
-  if(typeof item.detailUrl==='string'&&/^(https?:\/\/|\/(?!\/))/.test(item.detailUrl)){
-    closeRarePicker();
-    window.location.assign(item.detailUrl);
-    return;
-  }
-  // Standalone H5 prototype: open the existing native-like half sheet.
   openNativeRareSheet(item);
 }
 window.addEventListener('pageshow',()=>refreshRareStatus());
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshRareStatus()});
 document.addEventListener('keydown',event=>{
-  if(event.key==='Escape' && document.getElementById('rare-picker-overlay').classList.contains('show'))closeRarePicker();
+  if(event.key==='Escape' && document.getElementById('custom-id-mask').classList.contains('show'))closeCustomId();
 });
 
 
@@ -1453,7 +1448,7 @@ function setNativeMallSort(mode){
 function openRareMall(){
   const bridge=window.BLACK_FRIDAY_OPEN_RARE_MALL;
   if(typeof bridge==='function'){bridge();return;}
-  closeRarePicker();closeNativeRareSheet();
+  closeCustomId();closeNativeRareSheet();
   nativeMallScroll=window.scrollY;
   document.querySelector('#app>.shell').classList.add('hide');
   document.getElementById('svipView').classList.add('hide');
@@ -1471,7 +1466,7 @@ function exitRareMall(fromPopstate=false){
 }
 function openNativeRareSheet(item){
   if(!item || !item.id)return;
-  closeRarePicker();closeNativeRareSheet();
+  closeCustomId();closeNativeRareSheet();
   nativeRareItem=item;
   nativeRarePay='coins';
   document.getElementById('native-rare-mask').classList.add('is-open');
@@ -1480,6 +1475,8 @@ function openNativeRareSheet(item){
   document.getElementById('native-rare-name').textContent='ID:'+item.id;
   const grade=document.getElementById('native-rare-grade');
   grade.textContent=item.tier;grade.classList.toggle('sr',item.tier==='SR');
+  document.querySelector('.native-rare-duration').textContent=item.isCustom?'以商城规则为准':'180 天';
+  document.getElementById('native-custom-notice').hidden=!item.isCustom;
   renderNativeRarePayment();
 }
 function closeNativeRareSheet(e){
@@ -1507,11 +1504,22 @@ function renderNativeRarePayment(){
   document.getElementById('native-rare-balance').textContent=cost>balance?
     icon+' '+(cost-balance).toLocaleString('en-US'):'';
 }
-function nativeRarePurchaseAction(){
+async function nativeRarePurchaseAction(){
   if(!nativeRareItem)return;
-  const cost=Number(nativeRarePay==='honor'?nativeRareItem.priceHonor:nativeRareItem.priceCoins);
+  const item={...nativeRareItem};
+  if(item.isCustom){
+    try{
+      const result=await queryCustomId(item.id);
+      if(!result.available){
+        closeNativeRareSheet();openCustomId(item.id);
+        customIdState={phase:'blocked',id:item.id,reason:result.reason||'unavailable',suggestions:result.suggestions||[]};
+        renderCustomIdStatus();return;
+      }
+    }catch(e){toast('号码校验失败，请稍后重试');return;}
+  }
+  const cost=Number(nativeRarePay==='honor'?item.priceHonor:item.priceCoins);
   const balance=Number(nativeBalance[nativeRarePay]);
-  // This is a prototype only. Never simulate a completed charge or mutate inventory.
+  // Prototype: no actual payment, inventory change, or bonus grant.
   toast(cost>balance?'跳转充值页面':'进入商城支付流程');
 }
 document.addEventListener('keydown',event=>{
@@ -1537,145 +1545,8 @@ window.addEventListener('popstate',()=>{
   else if(!document.getElementById('svipView').classList.contains('hide'))exitSvip();
 });
 
-/* Prototype-only gift visuals. Replace with operator-approved completed gift assets.
-   This showcases examples only; it does not promise on-page customization. */
-
-/*
- * Real data binding:
- * window.BLACK_FRIDAY_CUSTOM_GIFTS = [
- *   { id:"gift-id", name:"礼物名称", completedAt:"2026-11-02T12:00:00+08:00",
- *     thumbnailUrl:"https://.../cover.png", animationUrl:"https://.../preview.mp4",
- *     animationType:"mp4" } // mp4/webm/gif/apng
- * ];
- * Data should contain only completed, approved custom gifts.
- * Sort newest-first and display at most 20. PAG/SVGA require compatible playback
- * in the app, or an MP4/WebM export for this browser prototype.
- */
-const giftThemeStyles=['rose','phoenix','crown','starlight','wings'];
-const giftDemoIcons=[
-  {ornament:'✿'}, {icon:'flame'}, {icon:'crown'}, {ornament:'✦'}, {icon:'diamond'},
-  {ornament:'❀'}, {ornament:'❖'}, {ornament:'♛'}, {ornament:'✧'}, {ornament:'♢'},
-  {icon:'crown'}, {icon:'flame'}, {ornament:'✹'}, {ornament:'✿'}, {icon:'diamond'},
-  {ornament:'✦'}, {ornament:'♕'}, {ornament:'✧'}, {icon:'flame'}, {ornament:'❋'}
-];
-const giftDemoCases=Array.from({length:20},(_,i)=>({
-  id:'gift-demo-'+String(i+1).padStart(2,'0'),name:'Sample Gift '+String(i+1).padStart(2,'0'),
-  style:giftThemeStyles[i%giftThemeStyles.length],...giftDemoIcons[i],isDemo:true
-}));
-function latestCustomGiftCases(){
-  const source=Array.isArray(window.BLACK_FRIDAY_CUSTOM_GIFTS)?window.BLACK_FRIDAY_CUSTOM_GIFTS:[];
-  const eligible=source.filter(g=>g && g.id && g.name && g.completedAt && g.approved!==false);
-  const toMillis=value=>{const t=Date.parse(value);return Number.isFinite(t)?t:0};
-  eligible.sort((x,y)=>toMillis(y.completedAt)-toMillis(x.completedAt));
-  return eligible.length?eligible.slice(0,20).map((g,i)=>({...g,style:giftThemeStyles[i%5],isDemo:false})):giftDemoCases;
-}
-let giftSamples=latestCustomGiftCases();
-let giftPauseUntil=0;
-function giftDisplayName(g){
-  return g.isDemo?(lang==='zh'?'定制礼物 ':'Custom Gift ')+g.id.slice(-2):g.name;
-}
-function giftEscape(value){
-  return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-}
-function giftMediaUrl(raw){
-  const value=typeof raw==='string'?raw.trim():'';
-  return /^(https?:\/\/|\/(?!\/)|\.\/)[^\s"'<>]+$/i.test(value)?value:'';
-}
-function giftArt(gift,preview=false){
-  const artwork=gift.icon?icon(gift.icon):'<span class="gift-ornament" aria-hidden="true">'+giftEscape(gift.ornament||'✦')+'</span>';
-  return '<div class="gift-case-art '+giftEscape(gift.style||'crown')+' '+(preview?'gift-preview-art':'')+(gift.isDemo&&preview?' is-demo':'')+'" aria-hidden="true">'+artwork+'</div>';
-}
-function renderGiftCases(){
-  const track=document.getElementById('gift-case-track');
-  if(!track)return;
-  giftSamples=latestCustomGiftCases();
-  track.innerHTML=giftSamples.map(g=>{
-    const name=giftEscape(giftDisplayName(g));
-    const cover=giftMediaUrl(g.thumbnailUrl);
-    const visual=cover?
-      '<img class="gift-case-thumb" loading="lazy" src="'+giftEscape(cover)+'" alt="'+name+'" onerror="giftThumbError(this)"/>':
-      giftArt(g);
-    return '<button type="button" class="gift-case" data-gift-id="'+giftEscape(g.id)+'" aria-label="'+(lang==='zh'?'预览 ':'Preview ')+name+'">'+
-      visual+'<span class="gift-case-name">'+name+'</span>'+
-      '</button>';
-  }).join('');
-  if(!track.dataset.giftBound){
-    track.addEventListener('click',event=>{
-      const card=event.target.closest('.gift-case');
-      if(card&&track.contains(card))openGiftPreview(card.dataset.giftId);
-    });
-    ['pointerdown','touchstart','wheel'].forEach(event=>track.addEventListener(event,()=>{
-      giftPauseUntil=Date.now()+9000
-    },{passive:true}));
-    track.dataset.giftBound='1';
-  }
-}
-function giftThumbError(img){
-  const card=img.closest('.gift-case');
-  const gift=giftSamples.find(g=>g.id===card?.getAttribute('data-gift-id'));
-  if(gift)img.replaceWith(document.createRange().createContextualFragment(giftArt(gift)));
-  else img.style.visibility='hidden';
-}
-function advanceGiftCases(){
-  const track=document.getElementById('gift-case-track');
-  if(!track||document.hidden||Date.now()<giftPauseUntil||document.getElementById('mask').classList.contains('show'))return;
-  if(document.getElementById('promotion').classList.contains('hide'))return;
-  const card=track.querySelector('.gift-case');if(!card)return;
-  const step=card.getBoundingClientRect().width+9;
-  const max=track.scrollWidth-track.clientWidth;
-  if(max<step/2)return;
-  track.scrollTo({left:track.scrollLeft>=max-4?0:Math.min(max,track.scrollLeft+step),behavior:'smooth'});
-}
-let giftAnimationTimer=null;
-function closeGiftAnimation(){
-  if(giftAnimationTimer){clearTimeout(giftAnimationTimer);giftAnimationTimer=null}
-  const layer=document.getElementById('gift-animation-layer');
-  if(!layer)return;
-  layer.querySelector('video')?.pause();
-  layer.classList.remove('is-playing');
-  document.body.classList.remove('gift-animation-open');
-  document.getElementById('gift-animation-stage').replaceChildren();
-}
-function giftPlaybackContent(gift){
-  const url=giftMediaUrl(gift.animationUrl);
-  const format=String(gift.animationType||'').toLowerCase();
-  const video=/(mp4|webm)/i.test(format)||/\.(mp4|webm)(\?|#|$)/i.test(url);
-  const image=/(gif|apng)/i.test(format)||/\.(gif|apng)(\?|#|$)/i.test(url);
-  if(url&&video)return '<video autoplay muted playsinline preload="auto" src="'+giftEscape(url)+'"></video>';
-  if(url&&image)return '<img src="'+giftEscape(url)+'" alt=""/>';
-  return '<div class="gift-animation-demo">'+giftArt(gift)+'</div>';
-}
-function openGiftPreview(id){
-  const gift=giftSamples.find(g=>g.id===id);
-  if(!gift)return;
-  closeSheet();closeGiftAnimation();
-  giftPauseUntil=Date.now()+8500;
-  const layer=document.getElementById('gift-animation-layer');
-  const stage=document.getElementById('gift-animation-stage');
-  stage.innerHTML=giftPlaybackContent(gift);
-  layer.classList.add('is-playing');
-  document.body.classList.add('gift-animation-open');
-  const video=stage.querySelector('video');
-  if(video){
-    video.addEventListener('ended',closeGiftAnimation,{once:true});
-    video.addEventListener('error',closeGiftAnimation,{once:true});
-    const promise=video.play();if(promise?.catch)promise.catch(closeGiftAnimation);
-    giftAnimationTimer=setTimeout(closeGiftAnimation,30000);
-  }else if(stage.querySelector('img')){
-    stage.querySelector('img').addEventListener('error',closeGiftAnimation,{once:true});
-    giftAnimationTimer=setTimeout(closeGiftAnimation,6000);
-  }else{
-    giftAnimationTimer=setTimeout(closeGiftAnimation,3600);
-  }
-}
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'&&document.getElementById('gift-animation-layer').classList.contains('is-playing'))closeGiftAnimation();
-});
-
-renderGiftCases();
 renderRanking();
 setInterval(updateRankingCountdown,1000);
-setInterval(advanceGiftCases,3500);
 
 function openRules(){
   const currentTab=document.querySelector('.tab.active')?.dataset.tab==='ranking'?'ranking':'promotion';
