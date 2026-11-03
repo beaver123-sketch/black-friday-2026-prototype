@@ -351,6 +351,29 @@ body.rules-dialog-open{overflow:hidden}
 .mask.rules-mode .bf-rule-reward-list .bf-reward-line{display:block;line-height:1.65;margin-top:6px;color:#e4caa0;font-size:12px}
 .mask.rules-mode .rules-popup-section .rulelist li{padding:13px 0;gap:10px}
 .mask.rules-mode .rules-popup-section .rulelist li:nth-child(4){padding-bottom:14px}
+
+/* Unified Rare ID grid: SSR and SR differ by individual card material, not separate sections. */
+.id-group-unified{padding:14px 10px 15px}
+.id-unified-header{display:block;margin-bottom:12px;padding:0 2px 12px}
+.id-unified-header .tier{margin-bottom:11px;font-size:16px;color:#f4d5a3}
+.id-price-guide{display:flex;flex-direction:column;gap:6px}
+.id-price-line{display:flex;align-items:center;gap:5px;flex-wrap:nowrap;font-size:10px;line-height:1.5;color:#c5b9a6}
+.id-price-tag{font-size:9px;line-height:1.5;min-width:32px;text-align:center;border-radius:4px;padding:1px 4px;font-weight:850;letter-spacing:.4px}
+.id-price-tag.gold{background:linear-gradient(120deg,#8c632c,#d2aa6b);color:#241a10}
+.id-price-tag.silver{background:linear-gradient(120deg,#8597aa,#d7e1eb);color:#1e2b38}
+.id-price-sep{opacity:.5}
+.id-group-unified .idbadge.ssr{border-color:#a47c47;background:linear-gradient(152deg,#735431 0%,#3a2c24 30%,#1e1d20 68%,#15191d 100%);box-shadow:inset 0 1px 1px #ffe4b14d,0 3px 6px #0004}
+.id-group-unified .idbadge.ssr:before{background:linear-gradient(125deg,#eac27b38,transparent)}
+.id-group-unified .idbadge.sr{border-color:#8398ae;background:linear-gradient(152deg,#536b83 0%,#2e3e4f 31%,#1d252f 68%,#151a21 100%);box-shadow:inset 0 1px 1px #dcecff43,0 3px 6px #0004}
+.id-group-unified .idbadge.sr:before{background:linear-gradient(125deg,#c8ddf02e,transparent)}
+.id-group-unified .idbadge.sr .idmedal{background:linear-gradient(120deg,#edf4f9,#899cb1);border-color:#d1e1ed;color:#233043}
+.id-group-unified .idbadge.sr .idtext{color:#f0f5fb}
+.idbadge-tier{position:absolute;top:4px;left:5px;font-size:7px;line-height:1.1;font-weight:900;letter-spacing:.35px;color:#f8d19b}
+.id-group-unified .idbadge.sr .idbadge-tier{color:#d4e5f3}
+.id-group-unified .idbadge.is-sold{filter:grayscale(1);opacity:.36;background:#282b2e;box-shadow:none;border-color:#85858b}
+.id-group-unified .idbadge.is-sold:before{display:none}
+@media(max-width:390px){.id-price-line{font-size:9px;gap:4px}.id-price-tag{font-size:8px;min-width:28px}.id-group-unified .idbadge .idtext{font-size:12px}}
+
 </style>
 </head>
 <body>
@@ -531,6 +554,7 @@ body.rules-dialog-open{overflow:hidden}
 let lang='en';
 const dictionary={"Prototype Review Tools":"原型评审工具","REVIEW ONLY · NOT IN APP":"仅供评审 · 非 App 页面","Collapse tools ▲":"收起工具 ▲","Expand tools ▼":"展开工具 ▼","Language / 语言":"语言 / Language","Activity status · Demo only":"活动状态 · 仅供测试","In progress":"进行中","Finalizing":"结算中","Final results":"最终排名","Preview as":"模拟用户","User 10005 · #5":"用户10005 · 第5名","User 10001 · #1":"用户10001 · 第1名","Unranked user":"未上榜用户","Demo data & claim states":"模拟数据与领奖状态","Sample user details and sold Rare IDs are for product review only; real user-facing pages do not include these controls.":"示例用户、靓号售出状态和领奖状态仅用于产品评审，真实活动页面不展示此工具栏。","Countdown preview uses a simulated in-event time outside activity dates.":"非活动日期内，原型倒计时使用模拟的活动时间。","Event in progress · Rankings may change. Rewards cannot be claimed yet.":"活动进行中 · 排名仍会变化，奖励暂不可领取。","Event ended · Final rankings are being confirmed. Claiming is not yet available.":"活动已结束 · 最终排名确认中，暂不可领取奖励。","Final rankings confirmed · Winners may claim once, directly from their own rank entry.":"最终排名已确认 · 获奖用户可在自己的排名位置领取奖励，每份奖励仅能领取一次。","BLACK FRIDAY EVENT":"黑五活动","LIMITED-TIME EVENT":"限时活动","BLACK FRIDAY":"黑色星期五","SALE 2026":"特惠 2026","SVIP privileges · Rare ID offers · Top-up rewards":"SVIP权益 · 靓号促销 · 充值榜奖励","25 NOV – 01 DEC 2026":"2026年11月25日 – 12月1日","25 NOV – 01 DEC 2026 · 7 DAYS":"2026年11月25日 – 12月1日 · 7天","Promotion":"促销","Top-up Ranking":"充值榜","SVIP Special":"SVIP限时福利","BONUS":"额外福利","Get":"获赠","2 Months":"2个月","of Custom Gift Privileges!":"定制礼物特权！","Subscribe or renew SVIP during the event to receive this exclusive benefit.":"活动期间购买或续费SVIP，即可享受此专属权益。","EXTRA BENEFIT VALUE":"额外权益价值","3,000 Honor Coupons":"3,000荣誉券","≈ US$300":"约300美元","Go to SVIP":"前往超级VIP","Automatically granted for eligible purchases and renewals.":"符合条件的购买及续费将自动获得权益。","Rare ID Sale":"靓号限时促销","LIMITED-TIME OFFER":"限时优惠","Buy":"购买","180 Days":"180天","180 Days FREE":"免费加赠180天","180 extra days automatically added.":"额外180天有效期自动赠送。","Applies to eligible Rare ID purchases and renewals made during the event.":"适用于活动期间符合条件的靓号购买和续费。","7,200,000 Coins":"7,200,000金币","3,600,000 Coins":"3,600,000金币","7,200 Honor Coupons":"7,200荣誉券","3,600 Honor Coupons":"3,600荣誉券","Shop Rare ID":"前往靓号商城","Promotion Rules":"促销活动规则","From 25 Nov to 1 Dec 2026, users who subscribe to or renew SVIP receive 2 months of Custom Gift Privileges, valued at 3,000 Honor Coupons.":"2026年11月25日至12月1日期间，购买或续费SVIP可获赠2个月定制礼物特权，价值3,000荣誉券。","During the event, purchase or renew a Rare ID for 180 days and get an additional 180 days of validity automatically.":"活动期间购买或续费180天靓号，可自动获得额外180天有效期。","Only eligible purchases and renewals completed during the event qualify for the offers.":"仅活动期间完成且符合条件的购买、续费可享受优惠。","BLACK FRIDAY · 2026":"黑五活动 · 2026","7-Day Top-up Ranking":"7日金币充值榜","Compete for exclusive honors.":"冲击排行榜，赢取专属奖励。","Ranked by cumulative gold top-ups.":"按活动期间累计充值金币排名。","Ranking Rewards":"排名奖励","TOP 10 EXCLUSIVE":"前10名专属","Win exclusive privileges and rare items. Rewards depend on your":"冲榜赢取专属权益和稀有道具，奖励以","final rank":"最终排名","CHAMPION · #1":"冠军 · 第1名","GRAND PRIZE":"冠军大奖","30 days":"30天","7 days":"7天","15 days":"15天","SSR Rare ID":"SSR靓号","Fire Phoenix":"火凤凰","RUNNER-UP":"亚军","THIRD PLACE":"季军","Diamond VIP":"钻石VIP","MORE RANKING PRIZES":"其他排名奖励","Flame Dragon":"烈焰火龙","Profile Card · 30D":"资料卡 · 30天","AMG Vehicle":"AMG座驾","Vehicle · 30D":"座驾 · 30天","Black Panther":"黑豹头像框","Avatar Frame · 15D":"头像框 · 15天","Flame Wolf":"火焰狼头像框","Top 3":"前三名","Each rank shows its exclusive reward. Your eligible entry has the claim button after final results.":"各排名展示对应奖励。最终排名确认后，获奖用户可在本人排名处领取。","Top-up Leaderboard":"金币充值排行榜","Accumulated gold recharged · Personal accounts":"个人账号活动期间累计充值金币","YOU":"本人","Gold":"金币","SVIP · SSR · Phoenix":"SVIP · SSR靓号 · 火凤凰","SVIP 30D + SSR Rare ID 30D + Fire Phoenix 7D":"SVIP 30天 + SSR靓号30天 + 火凤凰7天","SVIP · 30D":"SVIP · 30天","Diamond VIP · 30D":"钻石VIP · 30天","Flame Dragon · 30D":"烈焰火龙 · 30天","AMG Vehicle · 30D":"AMG座驾 · 30天","Black Panther Frame · 15D":"黑豹头像框 · 15天","Flame Wolf Frame · 15D":"火焰狼头像框 · 15天","Claim after event":"活动结束后领取","Claim Reward":"领取奖励","Claimed":"已领取","Ranking Rules":"充值榜规则","7-Day Event":"7天活动","Gold needed to enter Top 10":"距离上榜还差","Gold needed for Top 10":"距离上榜还差","Not ranked this event":"本期未上榜","Reward ready to claim":"奖励待领取","Reward claimed":"奖励已领取","Ends in":"距离活动结束","Starts in":"距离活动开始","Event ended":"活动已结束","Gold needed":"还差金币","The ranking is based on each personal account’s total gold top-ups during 25 Nov – 1 Dec 2026.":"按个人账号在2026年11月25日至12月1日期间累计充值金币数量排名。","Eligible channels: direct top-up, merchant top-up, agent top-up, and points redemption.":"统计渠道包括直充、商户充值、代理充值和积分兑换。","Malicious recharge refunds will result in a corresponding deduction from the ranking score.":"恶意充值退款将扣除对应榜单分值。","Rewards are honorary virtual items. Winners must manually claim their rewards after the event ends.":"榜单奖励为虚拟道具，获奖用户需在活动结束后手动领取。","Share activity":"分享活动","Activity Rules":"活动规则","Rules":"规则","All Regions":"全部地区","Middle East":"中东地区","South Asia":"南亚地区","Southeast Asia":"东南亚地区","Africa":"非洲地区","Select Region":"选择地区","Event countdown":"活动倒计时","Close":"关闭","Share Black Friday Event":"分享黑五活动","Share in app":"站内分享","Share externally":"站外分享","Cancel":"取消","Back":"返回","This is a standalone interactive prototype.":"当前为独立交互原型演示。","In the real app, this button opens the Mall > Rare ID purchase page.":"正式 App 中，此按钮将跳转至商城靓号购买页面。","Open the Mall > Rare ID page to view purchase details.":"前往商城靓号页面查看购买详情。","SVIP (30 days), SSR Rare ID (30 days), Fire Phoenix (7 days)":"SVIP（30天）、SSR靓号（30天）、火凤凰（7天）","SVIP (30 days)":"SVIP（30天）","Diamond VIP (30 days)":"钻石VIP（30天）","Dynamic Profile Card · Flame Dragon (30 days)":"动态资料卡·烈焰火龙（30天）","AMG Vehicle (30 days)":"AMG座驾（30天）","Black Panther Avatar Frame (15 days)":"黑豹头像框（15天）","Flame Wolf Avatar Frame (15 days)":"火焰狼头像框（15天）","Reward Claimed":"奖励已领取","Claim successful (prototype).":"领取成功（原型演示）。","The reward is now marked as Claimed on your ranking entry.":"你在排行榜中的领取状态已更新为「已领取」。"};
 Object.assign(dictionary,{"Ranking rewards are based on final placement:":"排名奖励按最终名次发放，具体如下：","1st: SVIP (30 days) + SSR Rare ID (30 days) + Fire Phoenix (7 days).":"第1名：SVIP 30天、SSR靓号30天、火凤凰7天。","2nd: SVIP (30 days).":"第2名：SVIP 30天。","3rd: Diamond VIP (30 days).":"第3名：钻石VIP 30天。","4th: Flame Dragon Profile Card (30 days).":"第4名：烈焰火龙资料卡30天。","5th: AMG Vehicle (30 days).":"第5名：AMG座驾30天。","6th–8th: Black Panther Avatar Frame (15 days).":"第6–8名：黑豹头像框15天。","9th–10th: Flame Wolf Avatar Frame (15 days).":"第9–10名：火焰狼头像框15天。"});
+dictionary["Rare ID Collection"]="靓号列表";
 const englishNodes=new WeakMap();
 function translateText(english){return lang==='zh'&&Object.prototype.hasOwnProperty.call(dictionary,english)?dictionary[english]:english}
 function applyLocale(){
@@ -581,8 +605,30 @@ const SR=['44144','55155','77177','88188','99199','22122','46464','543210'];
 // Grayed ID states are visual examples in the prototype, not actual sales status.
 const demoSold=new Set(['44444','770077','700007','77177','99199']);
 const icon=(name)=>`<svg><use href="#i-${name}"/></svg>`;
-function idGroup(tier,ids,price,hilite){return `<div class="id-group ${tier==='SR'?'sr-group':''}"><div class="idgroup-header"><div class="tier ${tier.toLowerCase()}"><span class="rankgem">${icon('diamond')}</span>${tier}</div><div class="price">${price}<br>${tier==='SSR'?'7,200':'3,600'} Honor Coupons</div></div><div class="id-grid">${ids.map(id=>`<div class="idbadge ${demoSold.has(id)?'is-sold':''}" ${demoSold.has(id)?'aria-label="Rare ID '+id+' (demo inactive state)"':'onclick="openSheet(\'Rare ID '+id+'\',\'Open the Mall > Rare ID page to view purchase details.\')"'}><span class="idmedal">V</span><span class="idtext">${id}</span><span class="sale-tag">SALE</span></div>`).join('')}</div></div>`}
-document.getElementById('id-library').innerHTML=idGroup('SSR',SSR,'7,200,000 Coins')+idGroup('SR',SR,'3,600,000 Coins');
+// SSR and SR share one Rare ID grid; each item keeps its own tier and sale state.
+function renderRareIdLibrary(){
+  const items=[...SSR.map(id=>({id,tier:'SSR'})),...SR.map(id=>({id,tier:'SR'}))];
+  const card=({id,tier})=>{
+    const sold=demoSold.has(id);
+    const action=sold?'aria-label="Rare ID '+id+' (demo inactive state)"':
+      'onclick="openSheet(\'Rare ID '+id+'\',\'Open the Mall > Rare ID page to view purchase details.\')"';
+    return `<div class="idbadge ${tier.toLowerCase()} ${sold?'is-sold':''}" ${action}>
+      <span class="idbadge-tier">${tier}</span><span class="idmedal">V</span><span class="idtext">${id}</span><span class="sale-tag">SALE</span>
+    </div>`;
+  };
+  document.getElementById('id-library').innerHTML=`
+    <div class="id-group id-group-unified">
+      <div class="idgroup-header id-unified-header">
+        <div class="tier"><span class="rankgem">${icon('diamond')}</span><span>Rare ID Collection</span></div>
+        <div class="id-price-guide">
+          <div class="id-price-line"><b class="id-price-tag gold">SSR</b><span>7,200,000 Coins</span><span class="id-price-sep">/</span><span>7,200 Honor Coupons</span></div>
+          <div class="id-price-line"><b class="id-price-tag silver">SR</b><span>3,600,000 Coins</span><span class="id-price-sep">/</span><span>3,600 Honor Coupons</span></div>
+        </div>
+      </div>
+      <div class="id-grid">${items.map(card).join('')}</div>
+    </div>`;
+}
+renderRareIdLibrary();
 const topRanks=[
   {rank:1,letter:'A',name:'User 10001',score:'12,840,000'},
   {rank:2,letter:'B',name:'User 10002',score:'10,520,000'},
