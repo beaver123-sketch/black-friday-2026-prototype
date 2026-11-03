@@ -670,6 +670,35 @@ body.native-rare-open{overflow:hidden}
 .custom-id-warning-promo{margin:15px auto 4px;border:1px solid #c49760;background:#614829;color:#ffe5bb;font-size:12px;padding:10px 16px;border-radius:8px;font-weight:820}
 .custom-id-warning-close{width:100%;margin-top:18px;min-height:40px;background:linear-gradient(105deg,#f3d8a4,#d3a25f);color:#332517;border:0;border-radius:9px;font-size:12px;font-weight:850}
 
+
+/* Black-and-gold payment options for custom Rare ID. */
+.custom-pay-heading{font-size:12px;font-weight:800;color:#eed1a7;margin:18px 0 9px}
+.custom-pay-methods{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.custom-pay-choice{display:flex;align-items:center;gap:8px;min-height:67px;min-width:0;text-align:left;padding:10px 9px;border:1px solid #816b4d;border-radius:10px;background:linear-gradient(145deg,#28282b,#1b2028);color:#f3dfbd;cursor:pointer}
+.custom-pay-choice.selected{border-color:#f1c782;background:linear-gradient(140deg,#4b3622,#282626);box-shadow:inset 0 0 0 1px #f8c78133}
+.custom-pay-choice .pay-icon{font-size:17px;flex:0 0 22px;text-align:center}
+.custom-pay-choice>span:nth-child(2){display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
+.custom-pay-choice strong{font-size:11px;font-weight:850;line-height:1.3}.custom-pay-choice small{font-size:12px;font-weight:800;color:#e0b780}
+.pay-circle{border:1.5px solid #a58a65;border-radius:50%;width:15px;height:15px;flex:0 0 15px;position:relative}
+.custom-pay-choice.selected .pay-circle{border-color:#f9ce94}.custom-pay-choice.selected .pay-circle:after{content:"";position:absolute;inset:3px;border-radius:50%;background:#f4ca8c}
+.custom-pay-selection-note{margin:9px 0 0;color:#bfa88b;font-size:10px;min-height:15px}
+.custom-id-check{margin-top:10px}.custom-id-disclaimer{margin-top:15px!important}
+.custom-pay-confirm-mask,.custom-pay-success-mask{position:fixed;inset:0;z-index:160;display:none;align-items:center;justify-content:center;background:#030508c1;backdrop-filter:blur(4px);padding:18px}
+.custom-pay-confirm-mask.show,.custom-pay-success-mask.show{display:flex}
+.custom-pay-dialog{width:min(350px,100%);padding:22px 17px 17px;border:1px solid #aa875780;border-radius:18px;background:linear-gradient(160deg,#2f2a22,#1b2028);text-align:center;box-shadow:0 25px 70px #000c;color:#f5ddba}
+.custom-pay-symbol{width:44px;height:44px;margin:0 auto 13px;border-radius:50%;display:grid;place-items:center;border:1px solid #cb9d66;background:#a57d393c;color:#ffe0a9;font-size:27px}
+.custom-pay-dialog h3{font-size:18px;font-weight:860;color:#ffe1b1;margin:0 0 8px}.custom-pay-dialog>p{font-size:11px;color:#c9bdb1;margin:0;line-height:1.6}
+.custom-pay-summary{margin:16px 0;padding:8px 12px;border:1px solid #7c654869;border-radius:10px;background:#141820bb}
+.custom-pay-summary>div{display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;padding:8px 0;font-size:12px}
+.custom-pay-summary>div+div{border-top:1px solid #715c433e}.custom-pay-summary span{color:#b9ad9f}.custom-pay-summary strong{color:#fce0af;text-align:right;font-size:12px}
+.custom-pay-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}.custom-pay-actions button{height:42px;border-radius:9px;font-weight:850;font-size:12px}
+#custom-pay-cancel{background:#39332d;border:1px solid #a28560;color:#ead5b9}#custom-pay-confirm,#custom-pay-success-done{background:linear-gradient(110deg,#f5d99f,#d7a665);color:#352819;border:0}#custom-pay-confirm:disabled{opacity:.55}
+.custom-pay-dialog .custom-pay-demo{font-size:9px;color:#9c9287;margin-top:12px}
+.custom-pay-symbol.success{border-color:#71aa7f;background:#42744b55;color:#c9f3c8}
+.custom-pay-success-detail{margin:16px 0;border:1px solid #b18b5480;border-radius:9px;background:#362e2866;color:#ffdfa8;padding:13px 6px;font-weight:800;font-size:13px}
+#custom-pay-success-done{width:100%;height:42px;border-radius:9px;font-weight:850;font-size:12px}
+@media(max-width:360px){.custom-pay-choice{gap:5px;padding:9px 6px}.custom-pay-choice strong{font-size:10px}.custom-pay-choice small{font-size:11px}}
+
 </style>
 </head>
 <body>
@@ -718,7 +747,7 @@ body.native-rare-open{overflow:hidden}
     <section class="review-feature-guide" aria-label="Feature overview">
       <div class="review-field-title">Feature Overview</div>
       <div class="review-feature-grid">
-        <div class="review-feature-item"><strong>Custom Rare ID</strong><span>Enter a number to purchase; if unavailable, show reasons and similar options.</span></div>
+        <div class="review-feature-item"><strong>Custom Rare ID</strong><span>Choose a payment method and confirm payment; unavailable IDs show alternatives.</span></div>
         <div class="review-feature-item"><strong>SVIP Promotion</strong><span>SVIP limited-time benefits and existing SVIP page access.</span></div>
         <div class="review-feature-item"><strong>Rare ID Catalogue</strong><span>SSR / SR pricing; sold IDs are dimmed.</span></div>
         <div class="review-feature-item"><strong>Top-up Ranking</strong><span>Switch regions, view rankings and claim rewards after finalization.</span></div>
@@ -913,10 +942,37 @@ body.native-rare-open{overflow:hidden}
     <div class="custom-id-grip"></div><button class="custom-id-x" onclick="closeCustomId()" type="button" aria-label="Close">×</button>
     <div class="custom-id-eyebrow">MAKE IT YOURS</div><h2>Custom Rare ID</h2><p class="custom-id-subhead">Choose a number that's yours</p>
     <label for="custom-id-field">Your preferred Rare ID</label><div class="custom-id-input-row"><b>ID</b><input id="custom-id-field" type="text" inputmode="numeric" autocomplete="off" maxlength="12" placeholder="e.g. 888888" oninput="customIdInputChanged()" onkeydown="if(event.key==='Enter')attemptCustomIdPurchase()"/></div>
+    <div class="custom-pay-heading">Payment Method</div>
+    <div class="custom-pay-methods" role="radiogroup" aria-label="Payment Method">
+      <button type="button" id="pay-choice-coins" class="custom-pay-choice" role="radio" aria-checked="false" onclick="selectCustomPay('coins')"><span class="pay-icon">🪙</span><span><strong>Coins</strong><small>9,000,000</small></span><i class="pay-circle"></i></button>
+      <button type="button" id="pay-choice-honor" class="custom-pay-choice" role="radio" aria-checked="false" onclick="selectCustomPay('honor')"><span class="pay-icon">🎟️</span><span><strong>Honor Coupons</strong><small>9,000</small></span><i class="pay-circle"></i></button>
+    </div>
+    <p class="custom-pay-selection-note" id="custom-pay-selection-note" data-dynamic-locale></p>
     <button id="custom-id-purchase" class="custom-id-check" type="button" onclick="attemptCustomIdPurchase()">Buy Now</button>
-    <div class="custom-id-price"><small>FIXED PRICE</small><div><span>9,000 Honor Coupons</span><i>/</i><span>9,000,000 Coins</span></div></div>
     <p class="custom-id-disclaimer">Not included in Buy 180 Days, Get 180 Days FREE.</p>
     <p class="custom-id-demo">Prototype demonstration · availability and suggestions require a live mall API.</p>
+  </section>
+</div>
+<div id="custom-pay-confirm-mask" class="custom-pay-confirm-mask" onclick="hideCustomPayConfirm(event)">
+  <section class="custom-pay-dialog" role="dialog" aria-modal="true" aria-labelledby="custom-pay-confirm-title" onclick="event.stopPropagation()">
+    <div class="custom-pay-symbol">✧</div><h3 id="custom-pay-confirm-title">Confirm Payment?</h3>
+    <p id="custom-pay-confirm-lead">Confirm your Rare ID and payment details.</p>
+    <div class="custom-pay-summary">
+      <div><span id="custom-pay-number-label">Rare ID</span><strong id="custom-pay-number"></strong></div>
+      <div><span id="custom-pay-method-label">Payment Method</span><strong id="custom-pay-method"></strong></div>
+      <div><span id="custom-pay-amount-label">Amount</span><strong id="custom-pay-amount"></strong></div>
+    </div>
+    <div class="custom-pay-actions"><button type="button" id="custom-pay-cancel" onclick="hideCustomPayConfirm()">I'll Look Again</button><button type="button" id="custom-pay-confirm" onclick="confirmCustomPay()">Confirm Payment</button></div>
+    <p class="custom-pay-demo" id="custom-pay-confirm-demo">Prototype only · No actual payment.</p>
+  </section>
+</div>
+<div id="custom-pay-success-mask" class="custom-pay-success-mask">
+  <section class="custom-pay-dialog custom-pay-success" role="dialog" aria-modal="true" aria-labelledby="custom-pay-success-title">
+    <div class="custom-pay-symbol success">✓</div><h3 id="custom-pay-success-title">Payment Successful</h3>
+    <p id="custom-pay-success-lead">Demo payment successful for your custom Rare ID.</p>
+    <div id="custom-pay-success-detail" class="custom-pay-success-detail"></div>
+    <button type="button" id="custom-pay-success-done" onclick="finishCustomPay()">Done</button>
+    <p class="custom-pay-demo" id="custom-pay-success-demo">Prototype only · No real funds deducted or order created.</p>
   </section>
 </div>
 <div id="custom-id-warning-mask" class="custom-id-warning-mask" onclick="closeCustomIdWarning(event)">
@@ -959,6 +1015,17 @@ Object.assign(dictionary,{
 "Prototype demonstration · availability and suggestions require a live mall API.":"原型演示：号码占用及推荐为模拟结果，正式需接入商城接口。",
 "e.g. 888888":"例如 888888"
 });
+Object.assign(dictionary,{
+"Choose a payment method and confirm payment; unavailable IDs show alternatives.":"选择金币或荣誉券，确认支付；号码不可售时推荐相近靓号。",
+"Payment Method":"支付方式","Coins":"金币","Honor Coupons":"荣誉券",
+"Choose a payment method before buying.":"请先选择支付方式。",
+"Confirm Payment?":"确认立即支付？",
+"Confirm your Rare ID and payment details.":"请确认靓号与支付信息。",
+"Rare ID":"靓号","Amount":"支付金额","I'll Look Again":"我再看看",
+"Confirm Payment":"确认支付","Payment Successful":"支付成功","Done":"完成",
+"Prototype only · No actual payment.":"原型演示，不会真实扣款。",
+"Prototype only · No real funds deducted or order created.":"原型演示，不会实际扣款或生成订单。"
+});
 const englishNodes=new WeakMap();
 function translateText(english){return lang==='zh'&&Object.prototype.hasOwnProperty.call(dictionary,english)?dictionary[english]:english}
 function applyLocale(){
@@ -992,6 +1059,9 @@ function setLanguage(next){
   if(!['en','zh'].includes(next))return;
   lang=next;
   if(document.getElementById('custom-id-warning-mask').classList.contains('show'))renderCustomIdWarning();
+  if(document.getElementById('custom-pay-confirm-mask').classList.contains('show'))renderCustomPayConfirm();
+  if(document.getElementById('custom-pay-success-mask').classList.contains('show'))renderCustomPaySuccess();
+  renderCustomPaySelection();
   renderRareIdLibrary();
   renderRanking();
   applyLocale();
@@ -1305,22 +1375,23 @@ const customIdPrice={priceCoins:9000000,priceHonor:9000};
 const mockBlocked=new Map([['888888','wearing'],['999999','sold'],['666666','reserved'],['777777','unavailable']]);
 let customIdState={phase:'idle',id:'',reason:'',suggestions:[]};
 let customIdVersion=0,customIdOrdering=false;
+let customPayMethod=null,customPayPending=null,customPayBusy=false,customPaySuccess=null;
 function idEscape(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function closeCustomId(event){
   const mask=document.getElementById('custom-id-mask');
   if(event&&event.target!==mask)return;
   if(!mask)return;
-  closeCustomIdWarning();mask.classList.remove('show');document.body.classList.remove('custom-id-open');customIdVersion++;
+  closeCustomIdWarning();hideCustomPayConfirm();mask.classList.remove('show');document.body.classList.remove('custom-id-open');customIdVersion++;
 }
 function openCustomId(value=''){
   closeSheet();closeNativeRareSheet();
   const mask=document.getElementById('custom-id-mask');
   mask.classList.add('show');document.body.classList.add('custom-id-open');
   document.getElementById('custom-id-field').value=String(value||'').replace(/[^0-9]/g,'').slice(0,12);
-  customIdInputChanged();applyLocale();
+  customPayMethod=null;customPayPending=null;customIdInputChanged();renderCustomPaySelection();applyLocale();
   setTimeout(()=>document.getElementById('custom-id-field').focus({preventScroll:true}),100);
 }
-function customIdInputChanged(){customIdVersion++;closeCustomIdWarning();}
+function customIdInputChanged(){customIdVersion++;customPayPending=null;closeCustomIdWarning();}
 function customIdDemoSuggestions(id){
   const blacklist=new Set([id,...rareApprovedIds,...mockBlocked.keys()]);
   const suggestions=[];
@@ -1360,6 +1431,100 @@ function customIdMessage(reason){
   };
   const m=messages[reason]||messages.unavailable;return rareLocale(m[0],m[1]);
 }
+
+
+function selectedCustomPayAmount(method){return method==='honor'?customIdPrice.priceHonor:customIdPrice.priceCoins}
+function selectedCustomPayName(method){return method==='honor'?rareLocale('荣誉券','Honor Coupons'):rareLocale('金币','Coins')}
+function selectCustomPay(method){
+  if(!['coins','honor'].includes(method))return;
+  customPayMethod=method;customPayPending=null;renderCustomPaySelection();
+}
+function renderCustomPaySelection(){
+  for(const method of ['coins','honor']){
+    const button=document.getElementById('pay-choice-'+method);if(!button)continue;
+    const selected=customPayMethod===method;
+    button.classList.toggle('selected',selected);
+    button.setAttribute('aria-checked',String(selected));
+  }
+  const note=document.getElementById('custom-pay-selection-note');
+  if(note)note.textContent=customPayMethod?
+    rareLocale('支付金额：','Amount: ')+selectedCustomPayAmount(customPayMethod).toLocaleString('en-US')+' '+selectedCustomPayName(customPayMethod):
+    rareLocale('请先选择支付方式。','Choose a payment method before buying.');
+}
+function showCustomPayConfirm(id,method){
+  customPayPending={id,method,amount:selectedCustomPayAmount(method)};
+  renderCustomPayConfirm();
+  document.getElementById('custom-pay-confirm-mask').classList.add('show');
+}
+function renderCustomPayConfirm(){
+  const p=customPayPending;if(!p)return;
+  const put=(id,v)=>document.getElementById(id).textContent=v;
+  put('custom-pay-confirm-title',rareLocale('确认立即支付？','Confirm Payment?'));
+  put('custom-pay-confirm-lead',rareLocale('请确认靓号与支付信息。','Confirm your Rare ID and payment details.'));
+  put('custom-pay-number-label',rareLocale('靓号','Rare ID'));
+  put('custom-pay-number','ID '+p.id);
+  put('custom-pay-method-label',rareLocale('支付方式','Payment Method'));
+  put('custom-pay-method',selectedCustomPayName(p.method));
+  put('custom-pay-amount-label',rareLocale('支付金额','Amount'));
+  put('custom-pay-amount',p.amount.toLocaleString('en-US')+' '+selectedCustomPayName(p.method));
+  put('custom-pay-cancel',rareLocale('我再看看',"I'll Look Again"));
+  put('custom-pay-confirm',rareLocale('确认支付','Confirm Payment'));
+  put('custom-pay-confirm-demo',rareLocale('原型演示，不会真实扣款。','Prototype only · No actual payment.'));
+}
+function hideCustomPayConfirm(e){
+  const mask=document.getElementById('custom-pay-confirm-mask');
+  if(e&&e.target!==mask)return;
+  if(customPayBusy)return;
+  mask?.classList.remove('show');
+  customPayPending=null;
+}
+async function confirmCustomPay(){
+  if(customPayBusy||!customPayPending)return;
+  const p={...customPayPending};
+  if(document.getElementById('custom-id-field').value.trim()!==p.id||customPayMethod!==p.method){
+    hideCustomPayConfirm();return;
+  }
+  customPayBusy=true;
+  const b=document.getElementById('custom-pay-confirm');
+  b.disabled=true;b.textContent=rareLocale('支付处理中…','Processing…');
+  try{
+    // Recheck availability before confirming the simulated payment.
+    const status=await queryCustomId(p.id);
+    if(!status.available){
+      customPayPending=null;document.getElementById('custom-pay-confirm-mask').classList.remove('show');
+      showCustomIdWarning(status.reason||'unavailable',status.suggestions||[],p.id);return;
+    }
+    // Review prototype: success is simulated; never charge any real account or alter inventory.
+    customPaySuccess=p;customPayPending=null;
+    document.getElementById('custom-pay-confirm-mask').classList.remove('show');
+    renderCustomPaySuccess();
+    document.getElementById('custom-pay-success-mask').classList.add('show');
+  }catch(e){
+    customPayPending=null;document.getElementById('custom-pay-confirm-mask').classList.remove('show');
+    showCustomIdWarning('error',[],p.id);
+  }finally{
+    customPayBusy=false;b.disabled=false;
+    b.textContent=rareLocale('确认支付','Confirm Payment');
+  }
+}
+function renderCustomPaySuccess(){
+  if(!customPaySuccess)return;
+  const p=customPaySuccess,put=(id,v)=>document.getElementById(id).textContent=v;
+  put('custom-pay-success-title',rareLocale('支付成功','Payment Successful'));
+  put('custom-pay-success-lead',rareLocale('已模拟完成这笔靓号支付。','Demo payment completed for your custom Rare ID.'));
+  put('custom-pay-success-detail','ID '+p.id+' · '+p.amount.toLocaleString('en-US')+' '+selectedCustomPayName(p.method));
+  put('custom-pay-success-done',rareLocale('完成','Done'));
+  put('custom-pay-success-demo',rareLocale('原型演示，不会实际扣款或生成订单。','Prototype only · No real funds deducted or order created.'));
+}
+function finishCustomPay(){
+  document.getElementById('custom-pay-success-mask').classList.remove('show');
+  customPaySuccess=null;closeCustomId();
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&document.getElementById('custom-pay-confirm-mask').classList.contains('show')){
+    e.stopImmediatePropagation();hideCustomPayConfirm();
+  }
+},true);
 
 let customIdWarningState=null;
 function closeCustomIdWarning(event){
@@ -1406,6 +1571,8 @@ function jumpToSaleIds(){
 }
 async function attemptCustomIdPurchase(){
   if(customIdOrdering)return;
+  if(!customPayMethod){toast(rareLocale('请先选择支付方式','Please select a payment method.'));return;}
+  const method=customPayMethod;
   const field=document.getElementById('custom-id-field');
   const id=field.value.trim(),version=++customIdVersion;
   const button=document.getElementById('custom-id-purchase');
@@ -1413,16 +1580,12 @@ async function attemptCustomIdPurchase(){
   const oldText=button.textContent;button.textContent=rareLocale('正在处理…','Processing…');
   try{
     const check=await queryCustomId(id);
-    if(version!==customIdVersion||field.value.trim()!==id)return;
+    if(version!==customIdVersion||field.value.trim()!==id||customPayMethod!==method)return;
     if(!check.available){
       showCustomIdWarning(check.reason||'unavailable',check.suggestions||[],id);return;
     }
-    // Successful verification proceeds directly into the existing purchase half-sheet.
-    // A second availability check remains at the final checkout action.
-    if(typeof window.BLACK_FRIDAY_OPEN_CUSTOM_RARE_DETAIL==='function'){
-      closeCustomId();window.BLACK_FRIDAY_OPEN_CUSTOM_RARE_DETAIL({id,...customIdPrice});return;
-    }
-    openNativeRareSheet({id,tier:'CUSTOM',isCustom:true,...customIdPrice});
+    // One click verifies availability, then opens payment confirmation.
+    showCustomPayConfirm(id,method);
   }catch(e){
     if(version===customIdVersion)showCustomIdWarning('error',[],id);
   }finally{
