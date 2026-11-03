@@ -611,9 +611,9 @@ body.rare-picker-open{overflow:hidden}
     <section class="review-feature-guide" aria-label="Feature overview">
       <div class="review-field-title">Feature Overview</div>
       <div class="review-feature-grid">
-        <div class="review-feature-item"><strong>Custom Gift Showcase</strong><span>Browse 20 gift examples; tap to play an animation.</span></div>
+        <div class="review-feature-item"><strong>Gift Case Preview</strong><span>Browse 20 gift examples; tap to play an animation.</span></div>
         <div class="review-feature-item"><strong>Lucky Rare ID Picker</strong><span>Pick a style and draw from the 18 sale IDs; redraw or buy.</span></div>
-        <div class="review-feature-item"><strong>Rare ID Sale</strong><span>SSR / SR pricing; sold IDs are dimmed.</span></div>
+        <div class="review-feature-item"><strong>Rare ID Catalogue</strong><span>SSR / SR pricing; sold IDs are dimmed.</span></div>
         <div class="review-feature-item"><strong>Top-up Ranking</strong><span>Switch regions, view rankings and claim rewards after finalization.</span></div>
       </div>
     </section>
@@ -776,7 +776,7 @@ dictionary["Find My Lucky ID"]="幸运选号";
 dictionary["Explore the Black Friday Rare IDs"]="从黑五促销靓号中挑选";
 dictionary["Pick an ID"]="帮我挑个靓号";
 Object.assign(dictionary,{"Custom Gift Showcase":"定制礼物案例","Swipe · Tap to preview":"左右滑动 · 点击预览","Sample visuals for prototype review · Actual customization is coordinated by operations.":"原型演示素材 · 实际定制需与运营沟通","Custom gift examples":"定制礼物案例","Custom Gift Preview":"定制礼物预览","Sample Preview":"效果示意","Illustrative preview only. To use Custom Gift Privileges, coordinate with the operations team after an eligible SVIP purchase or renewal.":"当前为效果示意，非真实定制礼物资源。符合条件的SVIP购买或续费完成后，需联系运营沟通定制需求。","Tap to preview":"点击预览","Royal Bloom":"皇家花语","Golden Phoenix":"金焰凤凰","Moonlight Crown":"月光王冠","Starlight Wish":"星光心愿","Diamond Wings":"钻石之翼"});
-Object.assign(dictionary,{"Feature Overview":"功能说明","Custom Gift Showcase":"定制礼物展示","Browse 20 gift examples; tap to play an animation.":"横滑浏览20个礼物，点击播放动效。","Lucky Rare ID Picker":"幸运靓号","Pick a style and draw from the 18 sale IDs; redraw or buy.":"选偏好，从18个促销号中抽取，可重抽或购买。","Rare ID Sale":"靓号促销","SSR / SR pricing; sold IDs are dimmed.":"SSR/SR价格分档，已售靓号置灰。","Top-up Ranking":"充值榜","Switch regions, view rankings and claim rewards after finalization.":"切换地区、查看排名，结算后领取奖励。"});
+Object.assign(dictionary,{"Feature Overview":"功能说明","Gift Case Preview":"定制礼物展示","Browse 20 gift examples; tap to play an animation.":"横滑浏览20个礼物，点击播放动效。","Lucky Rare ID Picker":"幸运靓号","Pick a style and draw from the 18 sale IDs; redraw or buy.":"选偏好，从18个促销号中抽取，可重抽或购买。","Rare ID Catalogue":"靓号列表","SSR / SR pricing; sold IDs are dimmed.":"SSR/SR价格分档，已售靓号置灰。","Top-up Ranking":"充值榜","Switch regions, view rankings and claim rewards after finalization.":"切换地区、查看排名，结算后领取奖励。"});
 const englishNodes=new WeakMap();
 function translateText(english){return lang==='zh'&&Object.prototype.hasOwnProperty.call(dictionary,english)?dictionary[english]:english}
 function applyLocale(){
