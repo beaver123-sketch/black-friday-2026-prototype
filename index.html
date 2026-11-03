@@ -652,6 +652,24 @@ body.native-rare-open{overflow:hidden}
 .native-custom-notice{margin:0 14px 9px;padding:9px;border-radius:8px;background:#fff7e9;color:#845b33;font-size:11px;text-align:center}.native-custom-notice[hidden]{display:none!important}
 @media(max-width:360px){.custom-id-price-line,.custom-id-entry-main button{font-size:9px}.custom-id-price>div{font-size:11px}}
 
+
+/* Simplified direct-purchase flow and contextual unavailable-number alert. */
+.custom-id-entry{margin-top:12px;margin-bottom:14px}
+.custom-id-mask{z-index:145}
+.custom-id-warning-mask{position:fixed;inset:0;z-index:170;display:none;align-items:center;justify-content:center;background:rgba(3,5,9,.69);backdrop-filter:blur(4px);padding:16px}
+.custom-id-warning-mask.show{display:flex}
+.custom-id-warning{position:relative;width:min(354px,100%);max-height:85dvh;overflow-y:auto;border:1px solid #b28b597a;border-radius:18px;padding:23px 17px 17px;text-align:center;color:#f7e5cb;background:linear-gradient(160deg,#2a2621,#1c1e25 83%);box-shadow:0 25px 75px #000b}
+.custom-id-warning-x{position:absolute;top:11px;right:12px;background:none;border:0;color:#a9a199;font-size:24px;width:30px;height:30px}
+.custom-id-warning-emblem{display:grid;place-items:center;margin:0 auto 12px;width:39px;height:39px;border:1px solid #b18b55aa;border-radius:50%;background:#af834032;color:#f2d09b;font-size:24px;font-weight:900}
+.custom-id-warning h3{font-size:17px;font-weight:850;margin:0 25px 8px;color:#f8d7a5}
+.custom-id-warning p{font-size:12px;color:#c9c1b8;line-height:1.65;margin:0 0 7px}
+.custom-id-warning-suggest-title{font-size:11px;color:#e0bf8d;font-weight:760;margin:18px 0 10px}
+.custom-id-warning-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.custom-id-warning-grid button{border:1px solid #ae8657;background:#3b3027;color:#ffe4b5;font-size:12px;font-weight:820;border-radius:8px;min-height:39px;display:flex;gap:4px;align-items:center;justify-content:center}
+.custom-id-warning-grid button span{font-size:14px;color:#ddbc88}
+.custom-id-warning-promo{margin:15px auto 4px;border:1px solid #c49760;background:#614829;color:#ffe5bb;font-size:12px;padding:10px 16px;border-radius:8px;font-weight:820}
+.custom-id-warning-close{width:100%;margin-top:18px;min-height:40px;background:linear-gradient(105deg,#f3d8a4,#d3a25f);color:#332517;border:0;border-radius:9px;font-size:12px;font-weight:850}
+
 </style>
 </head>
 <body>
@@ -700,7 +718,7 @@ body.native-rare-open{overflow:hidden}
     <section class="review-feature-guide" aria-label="Feature overview">
       <div class="review-field-title">Feature Overview</div>
       <div class="review-feature-grid">
-        <div class="review-feature-item"><strong>Custom Rare ID</strong><span>Enter a number, validate availability and get similar available alternatives.</span></div>
+        <div class="review-feature-item"><strong>Custom Rare ID</strong><span>Enter a number to purchase; if unavailable, show reasons and similar options.</span></div>
         <div class="review-feature-item"><strong>SVIP Promotion</strong><span>SVIP limited-time benefits and existing SVIP page access.</span></div>
         <div class="review-feature-item"><strong>Rare ID Catalogue</strong><span>SSR / SR pricing; sold IDs are dimmed.</span></div>
         <div class="review-feature-item"><strong>Top-up Ranking</strong><span>Switch regions, view rankings and claim rewards after finalization.</span></div>
@@ -756,13 +774,13 @@ body.native-rare-open{overflow:hidden}
   <div id="promotion" class="main">
     <section class="section svip"><div class="svip-main"><div class="pillrow"><div class="section-heading"><span class="heading-icon"><svg><use href="#i-crown"/></svg></span>SVIP Special</div><div class="small-pill"><svg style="width:12px;height:12px"><use href="#i-gift"/></svg>BONUS</div></div><div class="svip-art"><div class="svip-ring"></div><div class="svip-shield"><svg><use href="#i-crown"/></svg><strong>SVIP</strong></div></div><div class="maincopy">Get <em>2 Months</em> of Custom Gift Privileges!</div><p class="desc">Subscribe or renew SVIP during the event to receive this exclusive benefit.</p><button class="cta" onclick="enterSvip()">Go to SVIP <svg><use href="#i-chevron"/></svg></button><div class="svip-note"><svg><use href="#i-check"/></svg>Automatically granted for eligible purchases and renewals.</div></div></section>
     <section class="section rare"><div class="rare-header"><div class="pillrow"><div class="section-heading"><span class="heading-icon"><svg><use href="#i-diamond"/></svg></span>Rare ID Sale</div><div class="small-pill">BLACK FRIDAY</div></div><div class="rare-promo"><div class="kicker">LIMITED-TIME OFFER</div><div class="line1">Buy <strong>180 Days</strong>,<br>Get <strong>180 Days FREE</strong></div><div class="line2">180 extra days automatically added.</div></div><div class="rarerule">Applies to eligible Rare ID purchases and renewals made during the event.</div></div>
- <div class="id-block" id="id-library"></div>
 <div class="custom-id-entry">
   <div class="custom-id-entry-main"><div class="custom-id-symbol">✧</div><div class="custom-id-entry-copy"><small>EXCLUSIVE CUSTOM NUMBER</small><strong>Custom Rare ID</strong><span>Choose a number that's yours</span></div>
   <button type="button" onclick="openCustomId()">Customize <svg><use href="#i-chevron"/></svg></button></div>
   <div class="custom-id-price-line"><span>9,000 Honor Coupons</span><i>/</i><span>9,000,000 Coins</span></div>
   <div class="custom-id-entry-note">Independent offer · No 180-day bonus</div>
-</div><div class="id-footer"><button class="cta" onclick="openRareMall()">Shop Rare ID <svg><use href="#i-chevron"/></svg></button></div>
+</div> <div class="id-block" id="id-library"></div>
+<div class="id-footer"><button class="cta" onclick="openRareMall()">Shop Rare ID <svg><use href="#i-chevron"/></svg></button></div>
     </section>
 
     <div class="pagefoot">BLACK FRIDAY · 2026</div>
@@ -894,13 +912,22 @@ body.native-rare-open{overflow:hidden}
   <section class="custom-id-sheet" role="dialog" aria-modal="true" aria-label="Custom Rare ID" onclick="event.stopPropagation()">
     <div class="custom-id-grip"></div><button class="custom-id-x" onclick="closeCustomId()" type="button" aria-label="Close">×</button>
     <div class="custom-id-eyebrow">MAKE IT YOURS</div><h2>Custom Rare ID</h2><p class="custom-id-subhead">Choose a number that's yours</p>
-    <label for="custom-id-field">Your preferred Rare ID</label><div class="custom-id-input-row"><b>ID</b><input id="custom-id-field" type="text" inputmode="numeric" autocomplete="off" maxlength="12" placeholder="e.g. 888888" oninput="customIdInputChanged()" onkeydown="if(event.key==='Enter')checkCustomId()"/></div>
-    <button id="custom-id-check" class="custom-id-check" type="button" onclick="checkCustomId()">Check Availability</button>
-    <div id="custom-id-result" aria-live="polite" data-dynamic-locale></div>
+    <label for="custom-id-field">Your preferred Rare ID</label><div class="custom-id-input-row"><b>ID</b><input id="custom-id-field" type="text" inputmode="numeric" autocomplete="off" maxlength="12" placeholder="e.g. 888888" oninput="customIdInputChanged()" onkeydown="if(event.key==='Enter')attemptCustomIdPurchase()"/></div>
+    <button id="custom-id-purchase" class="custom-id-check" type="button" onclick="attemptCustomIdPurchase()">Buy Now</button>
     <div class="custom-id-price"><small>FIXED PRICE</small><div><span>9,000 Honor Coupons</span><i>/</i><span>9,000,000 Coins</span></div></div>
     <p class="custom-id-disclaimer">Not included in Buy 180 Days, Get 180 Days FREE.</p>
     <p class="custom-id-demo">Prototype demonstration · availability and suggestions require a live mall API.</p>
   </section>
+</div>
+<div id="custom-id-warning-mask" class="custom-id-warning-mask" onclick="closeCustomIdWarning(event)">
+ <section class="custom-id-warning" role="alertdialog" aria-modal="true" aria-labelledby="custom-id-warning-title" onclick="event.stopPropagation()">
+   <button type="button" class="custom-id-warning-x" onclick="closeCustomIdWarning()" aria-label="Close">×</button>
+   <div class="custom-id-warning-emblem">!</div>
+   <h3 id="custom-id-warning-title">Number Unavailable</h3>
+   <p id="custom-id-warning-message" data-dynamic-locale></p>
+   <div id="custom-id-warning-suggestions" data-dynamic-locale></div>
+   <button id="custom-id-warning-close" class="custom-id-warning-close" type="button" onclick="closeCustomIdWarning()">Try Another Number</button>
+ </section>
 </div>
 <div id="mask" class="mask" onclick="closeSheet(event)"><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" onclick="event.stopPropagation()"><button class="sheet-close" type="button" aria-label="Close" onclick="closeSheet()">×</button><div class="sh-title" id="sheet-title">Share activity</div><div id="sheet-body"><button onclick="shareAction('Share in app')">Share in app</button><button onclick="shareAction('Share externally')">Share externally</button></div><button class="cancel" onclick="closeSheet()">Cancel</button></div></div>
 <div id="toast" class="toast"></div>
@@ -920,14 +947,14 @@ Object.assign(dictionary,{"Custom Gift Showcase":"定制礼物案例","Swipe · 
 Object.assign(dictionary,{"Feature Overview":"功能说明","Gift Case Preview":"定制礼物展示","Browse 20 gift examples; tap to play an animation.":"横滑浏览20个礼物，点击播放动效。","Lucky Rare ID Picker":"幸运靓号","Pick a style and draw from the 18 sale IDs; redraw or buy.":"选偏好，从18个促销号中抽取，可重抽或购买。","Rare ID Catalogue":"靓号列表","SSR / SR pricing; sold IDs are dimmed.":"SSR/SR价格分档，已售靓号置灰。","Top-up Ranking":"充值榜","Switch regions, view rankings and claim rewards after finalization.":"切换地区、查看排名，结算后领取奖励。"});
 Object.assign(dictionary,{
 "Custom Rare ID":"自定义靓号",
-"Enter a number, validate availability and get similar available alternatives.":"填写号码校验可售状态，异常拦截并推荐相近的可售靓号。",
+"Enter a number to purchase; if unavailable, show reasons and similar options.":"输入号码直接购买；不可售时弹窗说明原因并推荐相近靓号。",
 "SVIP Promotion":"SVIP限时福利",
 "SVIP limited-time benefits and existing SVIP page access.":"展示SVIP优惠权益，可跳转现有SVIP页面。",
 "EXCLUSIVE CUSTOM NUMBER":"专属号码定制","Choose a number that's yours":"填写你喜欢的专属靓号",
 "Customize":"去定制","9,000 Honor Coupons":"9,000荣誉券","9,000,000 Coins":"9,000,000金币",
 "Independent offer · No 180-day bonus":"独立价格 · 不参与买180送180",
 "MAKE IT YOURS":"定制专属靓号","Your preferred Rare ID":"输入想要的靓号",
-"Check Availability":"检查靓号","FIXED PRICE":"固定价格",
+"Buy Now":"立即购买","FIXED PRICE":"固定价格",
 "Not included in Buy 180 Days, Get 180 Days FREE.":"自定义靓号不参与买180天送180天优惠。",
 "Prototype demonstration · availability and suggestions require a live mall API.":"原型演示：号码占用及推荐为模拟结果，正式需接入商城接口。",
 "e.g. 888888":"例如 888888"
@@ -964,7 +991,7 @@ function applyLocale(){
 function setLanguage(next){
   if(!['en','zh'].includes(next))return;
   lang=next;
-  if(document.getElementById('custom-id-mask').classList.contains('show'))renderCustomIdStatus();
+  if(document.getElementById('custom-id-warning-mask').classList.contains('show'))renderCustomIdWarning();
   renderRareIdLibrary();
   renderRanking();
   applyLocale();
@@ -1283,7 +1310,7 @@ function closeCustomId(event){
   const mask=document.getElementById('custom-id-mask');
   if(event&&event.target!==mask)return;
   if(!mask)return;
-  mask.classList.remove('show');document.body.classList.remove('custom-id-open');customIdVersion++;
+  closeCustomIdWarning();mask.classList.remove('show');document.body.classList.remove('custom-id-open');customIdVersion++;
 }
 function openCustomId(value=''){
   closeSheet();closeNativeRareSheet();
@@ -1293,9 +1320,7 @@ function openCustomId(value=''){
   customIdInputChanged();applyLocale();
   setTimeout(()=>document.getElementById('custom-id-field').focus({preventScroll:true}),100);
 }
-function customIdInputChanged(){
-  customIdVersion++;customIdState={phase:'idle',id:'',reason:'',suggestions:[]};renderCustomIdStatus();
-}
+function customIdInputChanged(){customIdVersion++;closeCustomIdWarning();}
 function customIdDemoSuggestions(id){
   const blacklist=new Set([id,...rareApprovedIds,...mockBlocked.keys()]);
   const suggestions=[];
@@ -1335,60 +1360,75 @@ function customIdMessage(reason){
   };
   const m=messages[reason]||messages.unavailable;return rareLocale(m[0],m[1]);
 }
-function renderCustomIdStatus(){
-  const root=document.getElementById('custom-id-result');if(!root)return;
-  const st=customIdState;
-  if(st.phase==='idle'){root.innerHTML='<div class="custom-id-hint">'+rareLocale('输入号码后，检查是否可以购买。','Enter a number to check availability.')+'</div>';return;}
-  if(st.phase==='checking'){root.innerHTML='<div class="custom-id-hint">'+rareLocale('正在校验号码…','Checking number…')+'</div>';return;}
-  if(st.phase==='available'){
-    root.innerHTML='<div class="custom-id-message ok"><b>✓ '+rareLocale('该靓号可以购买！','Number available!')+'</b><span>'+idEscape(st.id)+'</span></div>'+
-      '<button type="button" class="custom-id-buy" onclick="buyCustomId()">'+rareLocale('立即购买','Buy Now')+'</button>';
-    return;
-  }
-  root.innerHTML='<div class="custom-id-message blocked"><b>! '+rareLocale('暂不可购买','Unavailable')+'</b><span>'+idEscape(customIdMessage(st.reason))+'</span></div>'+
-    (st.reason==='promotion'?'<button class="custom-id-buy alt" onclick="jumpToSaleIds()">'+rareLocale('查看活动靓号','View Sale IDs')+'</button>':
-     st.suggestions?.length?'<div class="custom-id-suggest-title">'+rareLocale('为你推荐相近可售靓号','Similar available numbers')+'</div><div class="custom-id-suggest">'+
-      st.suggestions.map(x=>'<button type="button" onclick="pickCustomSuggestion(\''+idEscape(x.id)+'\')">'+idEscape(x.id)+' ›</button>').join('')+'</div>':'');
+
+let customIdWarningState=null;
+function closeCustomIdWarning(event){
+  const mask=document.getElementById('custom-id-warning-mask');
+  if(event&&event.target!==mask)return;
+  if(!mask)return;
+  mask.classList.remove('show');
 }
-async function checkCustomId(){
-  const input=document.getElementById('custom-id-field');
-  const id=input.value.trim(),version=++customIdVersion;
-  const button=document.getElementById('custom-id-check');
-  customIdState={phase:'checking',id,reason:'',suggestions:[]};
-  button.disabled=true;renderCustomIdStatus();
-  try{
-    const result=await queryCustomId(id);
-    if(version!==customIdVersion||input.value.trim()!==id)return;
-    customIdState={phase:result.available?'available':'blocked',id,reason:result.reason||'unavailable',suggestions:result.suggestions||[]};
-  }catch(e){
-    if(version!==customIdVersion)return;
-    customIdState={phase:'blocked',id,reason:'error',suggestions:[]};
-  }finally{
-    button.disabled=false;
-    if(version===customIdVersion)renderCustomIdStatus();
+function showCustomIdWarning(reason,suggestions=[],id=''){
+  customIdWarningState={reason,suggestions,id};
+  renderCustomIdWarning();
+  document.getElementById('custom-id-warning-mask').classList.add('show');
+}
+function renderCustomIdWarning(){
+  if(!customIdWarningState)return;
+  const {reason,suggestions,id}=customIdWarningState;
+  const valid=Array.isArray(suggestions)?suggestions.filter(x=>x&&x.available===true&&/^\d{1,12}$/.test(String(x.id))&&!rareApprovedIds.has(String(x.id))).slice(0,5):[];
+  const title=reason==='promotion'?rareLocale('这是活动靓号','Promotional Rare ID'):
+    reason==='invalid'?rareLocale('号码格式有误','Invalid Number'):
+    reason==='error'?rareLocale('暂时无法校验','Check Unavailable'):rareLocale('该靓号暂不可购买','Number Unavailable');
+  document.getElementById('custom-id-warning-title').textContent=title;
+  document.getElementById('custom-id-warning-message').textContent=customIdMessage(reason);
+  const out=document.getElementById('custom-id-warning-suggestions');
+  if(reason==='promotion'){
+    out.innerHTML='<button type="button" class="custom-id-warning-promo" onclick="jumpToSaleIds()">'+rareLocale('前往活动靓号列表','View Promotional IDs')+'</button>';
+  }else if(valid.length){
+    out.innerHTML='<div class="custom-id-warning-suggest-title">'+rareLocale('为你推荐相近的可售靓号','Similar available IDs')+'</div>'+
+      '<div class="custom-id-warning-grid">'+valid.map(x=>
+       '<button type="button" onclick="pickCustomSuggestion(\''+idEscape(x.id)+'\')">'+idEscape(x.id)+'<span>›</span></button>'
+      ).join('')+'</div>';
+  }else{
+    out.innerHTML='';
   }
+  document.getElementById('custom-id-warning-close').textContent=rareLocale('重新填写','Try Another Number');
 }
 function pickCustomSuggestion(id){
-  document.getElementById('custom-id-field').value=id;customIdInputChanged();checkCustomId();
+  document.getElementById('custom-id-field').value=id;
+  customIdInputChanged();
+  document.getElementById('custom-id-field').focus({preventScroll:true});
 }
-function jumpToSaleIds(){closeCustomId();document.getElementById('id-library').scrollIntoView({behavior:'smooth',block:'start'});}
-async function buyCustomId(){
-  if(customIdState.phase!=='available'||customIdOrdering)return;
-  const id=customIdState.id;customIdOrdering=true;
+function jumpToSaleIds(){
+  closeCustomIdWarning();closeCustomId();
+  document.getElementById('id-library').scrollIntoView({behavior:'smooth',block:'start'});
+}
+async function attemptCustomIdPurchase(){
+  if(customIdOrdering)return;
+  const field=document.getElementById('custom-id-field');
+  const id=field.value.trim(),version=++customIdVersion;
+  const button=document.getElementById('custom-id-purchase');
+  customIdOrdering=true;button.disabled=true;
+  const oldText=button.textContent;button.textContent=rareLocale('正在处理…','Processing…');
   try{
-    const r=await queryCustomId(id);
-    if(!r.available){
-      customIdState={phase:'blocked',id,reason:r.reason||'unavailable',suggestions:r.suggestions||[]};
-      renderCustomIdStatus();return;
+    const check=await queryCustomId(id);
+    if(version!==customIdVersion||field.value.trim()!==id)return;
+    if(!check.available){
+      showCustomIdWarning(check.reason||'unavailable',check.suggestions||[],id);return;
     }
-    if(document.getElementById('custom-id-field').value.trim()!==id)return;
+    // Successful verification proceeds directly into the existing purchase half-sheet.
+    // A second availability check remains at the final checkout action.
     if(typeof window.BLACK_FRIDAY_OPEN_CUSTOM_RARE_DETAIL==='function'){
       closeCustomId();window.BLACK_FRIDAY_OPEN_CUSTOM_RARE_DETAIL({id,...customIdPrice});return;
     }
     openNativeRareSheet({id,tier:'CUSTOM',isCustom:true,...customIdPrice});
   }catch(e){
-    customIdState={phase:'blocked',id,reason:'error',suggestions:[]};renderCustomIdStatus();
-  }finally{customIdOrdering=false;}
+    if(version===customIdVersion)showCustomIdWarning('error',[],id);
+  }finally{
+    customIdOrdering=false;button.disabled=false;
+    button.textContent='Buy Now';applyLocale();
+  }
 }
 
 async function openRareProductDetail(id){
@@ -1512,8 +1552,7 @@ async function nativeRarePurchaseAction(){
       const result=await queryCustomId(item.id);
       if(!result.available){
         closeNativeRareSheet();openCustomId(item.id);
-        customIdState={phase:'blocked',id:item.id,reason:result.reason||'unavailable',suggestions:result.suggestions||[]};
-        renderCustomIdStatus();return;
+        showCustomIdWarning(result.reason||'unavailable',result.suggestions||[],item.id);return;
       }
     }catch(e){toast('号码校验失败，请稍后重试');return;}
   }
