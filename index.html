@@ -1005,11 +1005,15 @@ function renderGiftCases(){
     const visual=cover?
       '<img class="gift-case-thumb" loading="lazy" src="'+giftEscape(cover)+'" alt="'+name+'" onerror="giftThumbError(this)"/>':
       giftArt(g);
-    return '<button type="button" class="gift-case" onclick="openGiftPreview(\''+giftEscape(g.id)+'\')" aria-label="'+(lang==='zh'?'预览 ':'Preview ')+name+'">'+
+    return '<button type="button" class="gift-case" data-gift-id="'+giftEscape(g.id)+'" aria-label="'+(lang==='zh'?'预览 ':'Preview ')+name+'">'+
       visual+'<span class="gift-case-name">'+name+'</span>'+
       '<span class="gift-case-tap">'+(lang==='zh'?'点击看动画':'Tap to play')+'</span></button>';
   }).join('');
   if(!track.dataset.giftBound){
+    track.addEventListener('click',event=>{
+      const card=event.target.closest('.gift-case');
+      if(card&&track.contains(card))openGiftPreview(card.dataset.giftId);
+    });
     ['pointerdown','touchstart','wheel'].forEach(event=>track.addEventListener(event,()=>{
       giftPauseUntil=Date.now()+9000
     },{passive:true}));
@@ -1079,7 +1083,11 @@ function openGiftPreview(id){
   document.body.classList.add('rules-dialog-open');
   applyLocale();
   const video=overlay.querySelector('.gift-preview-video');
-  if(video){const attempt=video.play();if(attempt?.catch)attempt.catch(()=>{});}
+  if(video){
+    video.addEventListener('error',()=>giftMediaError(video),{once:true});
+    video.querySelector('source')?.addEventListener('error',()=>giftMediaError(video),{once:true});
+    const attempt=video.play();if(attempt?.catch)attempt.catch(()=>{});
+  }
   overlay.querySelector('.sheet-close').focus({preventScroll:true});
 }
 function enterSvipFromGift(){closeSheet();enterSvip()}
