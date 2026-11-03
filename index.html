@@ -325,6 +325,26 @@ body.rules-dialog-open{overflow:hidden}
 .bf-ranking-gap.bf-gap-status .bf-ranking-gap-content>span{text-align:left;color:#f0d5a7;font-size:11.4px;font-weight:750}
 .bf-ranking-gap.bf-gap-status #rank-gap-amount{display:none}
 @media(max-width:390px){.bf-ranking-gap{padding:11px 10px 13px}.bf-ranking-gap-content{gap:4px}.bf-ranking-gap-content>span{font-size:10px}.bf-ranking-gap-content strong{font-size:10.8px;gap:2px}.bf-ranking-gap.bf-gap-status .bf-ranking-gap-content>span{font-size:10.6px}}
+
+/* Ranking rewards now live inside the scrollable ranking rules dialog. */
+.mask.rules-mode .rewards-gallery{margin:16px 0 0;padding:16px 12px 17px;border-radius:15px;border-color:#775a37;box-shadow:none}
+.mask.rules-mode .rewards-gallery .section-heading{font-size:17px}
+.mask.rules-mode .rewards-gallery .pillrow{gap:6px}
+.mask.rules-mode .rewards-gallery .reward-eyebrow{font-size:8px;letter-spacing:0}
+.mask.rules-mode .rewards-gallery .rewards-intro{margin:10px 3px 13px;font-size:11px;line-height:1.6}
+.mask.rules-mode .first-items{gap:6px}
+.mask.rules-mode .prize-piece{padding:9px 2px 9px}
+.mask.rules-mode .prize-art{max-width:91%;height:48px;width:58px}
+.mask.rules-mode .runnerup-grid{gap:8px}
+.mask.rules-mode .other-rewards-grid{gap:8px}
+.mask.rules-mode #sheet-body .section:last-child{margin-bottom:0}
+@media(max-width:390px){
+ .mask.rules-mode .rewards-gallery{padding:13px 9px 15px}
+ .mask.rules-mode .rewards-gallery .section-heading{font-size:16px}
+ .mask.rules-mode .prize-art{height:43px;width:49px}
+ .mask.rules-mode .prize-piece b{font-size:9.4px}
+ .mask.rules-mode .runnerup-card{padding:8px 8px 10px}
+}
 </style>
 </head>
 <body>
@@ -453,25 +473,7 @@ body.rules-dialog-open{overflow:hidden}
       </div>
       <div id="rank-list" class="bf-ranking-list"></div>
     </section>
-    <section class="section rewards rewards-gallery" aria-label="Ranking Rewards Preview">
-      <div class="pillrow"><div class="section-heading"><span class="heading-icon"><svg><use href="#i-gift"/></svg></span>Ranking Rewards</div><span class="reward-eyebrow">TOP 10 EXCLUSIVE</span></div>
-      <div class="rewards-intro">Win exclusive privileges and rare items. Rewards depend on your <strong>final rank</strong>.</div>
-      <div class="first-prize">
-        <div class="first-prize-label"><span class="first-emblem">★</span><span>CHAMPION · #1</span><strong>GRAND PRIZE</strong></div>
-        <div class="first-items">
-          <div class="prize-piece"><div class="prize-art vip">★</div><b>SVIP</b><span>30 days</span></div>
-          <div class="prize-piece"><div class="prize-art rare">SSR</div><b>SSR Rare ID</b><span>30 days</span></div>
-          <div class="prize-piece"><div class="prize-art bird">✦</div><b>Fire Phoenix</b><span>7 days</span></div>
-        </div>
-      </div>
-      <div class="runnerup-grid">
-        <div class="runnerup-card silver"><div class="runnerup-top"><span>#2</span><small>RUNNER-UP</small></div><div class="runnerup-icon">♛</div><b>SVIP</b><small>30 days</small></div>
-        <div class="runnerup-card bronze"><div class="runnerup-top"><span>#3</span><small>THIRD PLACE</small></div><div class="runnerup-icon">◆</div><b>Diamond VIP</b><small>30 days</small></div>
-      </div>
-      <div class="other-title"><span>MORE RANKING PRIZES</span><span>#4 – #10</span></div>
-      <div class="other-rewards-grid" id="other-rewards-grid"></div>
-    </section>
-    <div class="bf-ranking-gap hide" id="ranking-gap" aria-live="polite">
+        <div class="bf-ranking-gap hide" id="ranking-gap" aria-live="polite">
       <div class="bf-ranking-gap-content">
         <span id="rank-gap-text" data-dynamic-locale>Not ranked · Gold needed for Top 10</span>
         <strong id="rank-gap-amount"><svg><use href="#i-coins"/></svg><span id="rank-gap-value">—</span></strong>
@@ -498,6 +500,24 @@ body.rules-dialog-open{overflow:hidden}
   <div class="rules-popup-caption"><svg><use href="#i-trophy"/></svg>Ranking Rules</div>
   <ol class="rulelist"><li><span class="rule-num">1</span><span>The ranking is based on each personal account’s total gold top-ups during 25 Nov – 1 Dec 2026.</span></li><li><span class="rule-num">2</span><span>Eligible channels: direct top-up, merchant top-up, agent top-up, and points redemption.</span></li><li><span class="rule-num">3</span><span>Malicious recharge refunds will result in a corresponding deduction from the ranking score.</span></li><li><span class="rule-num">4</span><span>Rewards are honorary virtual items. Winners must manually claim their rewards after the event ends.</span></li></ol>
 </div>
+<section class="section rewards rewards-gallery" aria-label="Ranking Rewards Preview">
+      <div class="pillrow"><div class="section-heading"><span class="heading-icon"><svg><use href="#i-gift"/></svg></span>Ranking Rewards</div><span class="reward-eyebrow">TOP 10 EXCLUSIVE</span></div>
+      <div class="rewards-intro">Win exclusive privileges and rare items. Rewards depend on your <strong>final rank</strong>.</div>
+      <div class="first-prize">
+        <div class="first-prize-label"><span class="first-emblem">★</span><span>CHAMPION · #1</span><strong>GRAND PRIZE</strong></div>
+        <div class="first-items">
+          <div class="prize-piece"><div class="prize-art vip">★</div><b>SVIP</b><span>30 days</span></div>
+          <div class="prize-piece"><div class="prize-art rare">SSR</div><b>SSR Rare ID</b><span>30 days</span></div>
+          <div class="prize-piece"><div class="prize-art bird">✦</div><b>Fire Phoenix</b><span>7 days</span></div>
+        </div>
+      </div>
+      <div class="runnerup-grid">
+        <div class="runnerup-card silver"><div class="runnerup-top"><span>#2</span><small>RUNNER-UP</small></div><div class="runnerup-icon">♛</div><b>SVIP</b><small>30 days</small></div>
+        <div class="runnerup-card bronze"><div class="runnerup-top"><span>#3</span><small>THIRD PLACE</small></div><div class="runnerup-icon">◆</div><b>Diamond VIP</b><small>30 days</small></div>
+      </div>
+      <div class="other-title"><span>MORE RANKING PRIZES</span><span>#4 – #10</span></div>
+      <div class="other-rewards-grid" id="other-rewards-grid"></div>
+    </section>
 </template>
 <div id="mask" class="mask" onclick="closeSheet(event)"><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" onclick="event.stopPropagation()"><button class="sheet-close" type="button" aria-label="Close" onclick="closeSheet()">×</button><div class="sh-title" id="sheet-title">Share activity</div><div id="sheet-body"><button onclick="shareAction('Share in app')">Share in app</button><button onclick="shareAction('Share externally')">Share externally</button></div><button class="cancel" onclick="closeSheet()">Cancel</button></div></div>
 <div id="toast" class="toast"></div>
@@ -583,7 +603,7 @@ const moreRewards=[
   {rank:'6–8',icon:'frame',label:'Black Panther',duration:'Avatar Frame · 15D',style:'panther'},
   {rank:'9–10',icon:'frame',label:'Flame Wolf',duration:'Avatar Frame · 15D',style:'wolf'}
 ];
-document.getElementById('other-rewards-grid').innerHTML=moreRewards.map(r=>`<div class="other-reward"><div class="tile-rank">#${r.rank}</div><div class="tile-visual ${r.style}">${icon(r.icon)}</div><b>${r.label}</b><small>${r.duration}</small></div>`).join('');
+document.getElementById('rules-ranking-template').content.querySelector('#other-rewards-grid').innerHTML=moreRewards.map(r=>`<div class="other-reward"><div class="tile-rank">#${r.rank}</div><div class="tile-visual ${r.style}">${icon(r.icon)}</div><b>${r.label}</b><small>${r.duration}</small></div>`).join('');
 // These are PRODUCT REVIEW controls. End users cannot manually switch activity lifecycle or account.
 let demoStage='live';
 let demoUser=5;
