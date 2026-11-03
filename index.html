@@ -434,6 +434,24 @@ body.rules-dialog-open{overflow:hidden}
 @keyframes giftFloat{from{transform:translateY(5px) rotate(-8deg) scale(.9)}to{transform:translateY(-6px) rotate(8deg) scale(1.1)}}
 @keyframes giftGlow{from{filter:brightness(.8)}to{filter:brightness(1.25)}}
 @media(prefers-reduced-motion:reduce){.gift-demo-motion .gift-preview-art,.gift-demo-motion .gift-preview-art svg,.gift-demo-motion .gift-preview-art .gift-ornament{animation:none}}
+
+/* Gift animation plays immediately over the current page, without dialog content. */
+.gift-animation-layer{position:fixed;inset:0;z-index:130;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.78);overflow:hidden}
+.gift-animation-layer.is-playing{display:flex}
+.gift-animation-stage{display:grid;place-items:center;width:100%;height:100%;pointer-events:none}
+.gift-animation-stage video,.gift-animation-stage img{object-fit:contain;width:min(94vw,520px);height:75dvh;display:block;background:transparent}
+.gift-animation-demo{display:grid;place-items:center;width:80vw;max-width:430px;height:70dvh;position:relative}
+.gift-animation-demo .gift-case-art{width:min(70vw,290px);height:min(70vw,290px);border:0;border-radius:50%;overflow:visible;background:radial-gradient(circle at center,var(--gift-glow),transparent 70%);box-shadow:0 0 70px var(--gift-glow);animation:gift-demo-play 3.5s both}
+.gift-animation-demo .gift-case-art svg{width:120px;height:120px}
+.gift-animation-demo .gift-case-art .gift-ornament{font-size:130px}
+.gift-animation-demo .gift-case-art:after{font-size:44px;animation:gift-sparkle .8s infinite alternate}
+.gift-animation-demo:before,.gift-animation-demo:after{content:"✦";position:absolute;color:#ffdc91;font-size:48px;text-shadow:0 0 20px #eda955;animation:gift-sparkle 1s infinite alternate}
+.gift-animation-demo:before{left:9%;top:24%}
+.gift-animation-demo:after{right:8%;bottom:28%;animation-delay:.4s}
+body.gift-animation-open{overflow:hidden}
+@keyframes gift-demo-play{0%{opacity:0;transform:scale(.5) rotate(-14deg)}25%{opacity:1;transform:scale(1.07) rotate(3deg)}65%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.2) rotate(7deg)}}
+@keyframes gift-sparkle{from{opacity:.15;transform:scale(.5)}to{opacity:1;transform:scale(1.2)}}
+@media(prefers-reduced-motion:reduce){.gift-animation-demo,.gift-animation-demo *{animation:none!important}}
 </style>
 </head>
 <body>
@@ -528,9 +546,9 @@ body.rules-dialog-open{overflow:hidden}
   </div>
   <div id="promotion" class="main">
     <section class="section svip"><div class="svip-main"><div class="pillrow"><div class="section-heading"><span class="heading-icon"><svg><use href="#i-crown"/></svg></span>SVIP Special</div><div class="small-pill"><svg style="width:12px;height:12px"><use href="#i-gift"/></svg>BONUS</div></div><div class="svip-art"><div class="svip-ring"></div><div class="svip-shield"><svg><use href="#i-crown"/></svg><strong>SVIP</strong></div></div><div class="maincopy">Get <em>2 Months</em> of Custom Gift Privileges!</div><p class="desc">Subscribe or renew SVIP during the event to receive this exclusive benefit.</p><div class="gift-cases">
-  <div class="gift-cases-heading"><strong>Latest 20 Custom Gifts</strong><span>Swipe · Tap to preview</span></div>
+  <div class="gift-cases-heading"><strong>Latest 20 Custom Gifts</strong></div>
   <div class="gift-case-track" id="gift-case-track" aria-label="Custom gift examples"></div>
-  <p class="gift-cases-caption">Sample visuals for prototype review · Actual customization is coordinated by operations.</p>
+  
 </div><button class="cta" onclick="enterSvip()">Go to SVIP <svg><use href="#i-chevron"/></svg></button><div class="svip-note"><svg><use href="#i-check"/></svg>Automatically granted for eligible purchases and renewals.</div></div></section>
     <section class="section rare"><div class="rare-header"><div class="pillrow"><div class="section-heading"><span class="heading-icon"><svg><use href="#i-diamond"/></svg></span>Rare ID Sale</div><div class="small-pill">BLACK FRIDAY</div></div><div class="rare-promo"><div class="kicker">LIMITED-TIME OFFER</div><div class="line1">Buy <strong>180 Days</strong>,<br>Get <strong>180 Days FREE</strong></div><div class="line2">180 extra days automatically added.</div></div><div class="rarerule">Applies to eligible Rare ID purchases and renewals made during the event.</div></div>
       <div class="id-block" id="id-library"></div><div class="id-footer"><button class="cta" onclick="openSheet('Shop Rare ID','In the real app, this button opens the Mall > Rare ID purchase page.')">Shop Rare ID <svg><use href="#i-chevron"/></svg></button></div>
@@ -609,6 +627,9 @@ body.rules-dialog-open{overflow:hidden}
   </ol>
 </div>
 </template>
+<div id="gift-animation-layer" class="gift-animation-layer" onclick="closeGiftAnimation()" aria-label="Gift animation">
+  <div id="gift-animation-stage" class="gift-animation-stage"></div>
+</div>
 <div id="mask" class="mask" onclick="closeSheet(event)"><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" onclick="event.stopPropagation()"><button class="sheet-close" type="button" aria-label="Close" onclick="closeSheet()">×</button><div class="sh-title" id="sheet-title">Share activity</div><div id="sheet-body"><button onclick="shareAction('Share in app')">Share in app</button><button onclick="shareAction('Share externally')">Share externally</button></div><button class="cancel" onclick="closeSheet()">Cancel</button></div></div>
 <div id="toast" class="toast"></div>
 <script>
@@ -975,7 +996,7 @@ function latestCustomGiftCases(){
 let giftSamples=latestCustomGiftCases();
 let giftPauseUntil=0;
 function giftDisplayName(g){
-  return g.isDemo?(lang==='zh'?'演示礼物 ':'Sample Gift ')+g.id.slice(-2):g.name;
+  return g.isDemo?(lang==='zh'?'定制礼物 ':'Custom Gift ')+g.id.slice(-2):g.name;
 }
 function giftEscape(value){
   return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
@@ -992,13 +1013,6 @@ function renderGiftCases(){
   const track=document.getElementById('gift-case-track');
   if(!track)return;
   giftSamples=latestCustomGiftCases();
-  const label=document.querySelector('.gift-cases-caption');
-  if(label){
-    label.textContent=giftSamples[0]?.isDemo?
-      (lang==='zh'?'当前为20个原型演示位；接入真实定制礼物后按完成时间展示最近20个。':'20 prototype placeholders. Connect completed gifts to show the latest 20.'):
-      (lang==='zh'?'展示最近完成的定制礼物 · 点击查看实际动画':'Recently completed custom gifts · Tap to play animation');
-    label.setAttribute('data-dynamic-locale','');
-  }
   track.innerHTML=giftSamples.map(g=>{
     const name=giftEscape(giftDisplayName(g));
     const cover=giftMediaUrl(g.thumbnailUrl);
@@ -1007,7 +1021,7 @@ function renderGiftCases(){
       giftArt(g);
     return '<button type="button" class="gift-case" data-gift-id="'+giftEscape(g.id)+'" aria-label="'+(lang==='zh'?'预览 ':'Preview ')+name+'">'+
       visual+'<span class="gift-case-name">'+name+'</span>'+
-      '<span class="gift-case-tap">'+(lang==='zh'?'点击看动画':'Tap to play')+'</span></button>';
+      '</button>';
   }).join('');
   if(!track.dataset.giftBound){
     track.addEventListener('click',event=>{
@@ -1036,61 +1050,52 @@ function advanceGiftCases(){
   if(max<step/2)return;
   track.scrollTo({left:track.scrollLeft>=max-4?0:Math.min(max,track.scrollLeft+step),behavior:'smooth'});
 }
+let giftAnimationTimer=null;
+function closeGiftAnimation(){
+  if(giftAnimationTimer){clearTimeout(giftAnimationTimer);giftAnimationTimer=null}
+  const layer=document.getElementById('gift-animation-layer');
+  if(!layer)return;
+  layer.querySelector('video')?.pause();
+  layer.classList.remove('is-playing');
+  document.body.classList.remove('gift-animation-open');
+  document.getElementById('gift-animation-stage').replaceChildren();
+}
 function giftPlaybackContent(gift){
   const url=giftMediaUrl(gift.animationUrl);
-  const poster=giftMediaUrl(gift.thumbnailUrl);
   const format=String(gift.animationType||'').toLowerCase();
-  const video=format==='mp4'||format==='webm'||/\.(mp4|webm)(\?|#|$)/i.test(url);
-  const image=format==='gif'||format==='apng'||/\.(gif|apng)(\?|#|$)/i.test(url);
-  if(url&&video){
-    const mime=format==='webm'||/\.webm(\?|#|$)/i.test(url)?'video/webm':'video/mp4';
-    return '<video class="gift-preview-media gift-preview-video" autoplay muted loop playsinline controls'+
-      (poster?' poster="'+giftEscape(poster)+'"':'')+'>'+
-      '<source src="'+giftEscape(url)+'" type="'+mime+'"/></video>';
-  }
-  if(url&&image)return '<img class="gift-preview-media" src="'+giftEscape(url)+'" alt="'+giftEscape(giftDisplayName(gift))+' animation" onerror="giftMediaError(this)"/>';
-  // Fallback is visibly marked as a demo animation; never misrepresent actual assets.
-  return '<div class="gift-demo-motion">'+giftArt(gift,true)+'<span class="gift-demo-badge">'+
-    (lang==='zh'?'动效示意 · 非真实礼物动画':'Animation demo · Not actual gift footage')+'</span></div>';
-}
-function giftMediaError(element){
-  const parent=element.parentElement;
-  if(parent){
-    const message=document.createElement('div');
-    message.className='gift-media-error';
-    message.textContent=lang==='zh'?'动效资源加载失败，请检查文件地址。':'Animation failed to load. Check the media URL.';
-    element.replaceWith(message);
-  }
+  const video=/(mp4|webm)/i.test(format)||/\.(mp4|webm)(\?|#|$)/i.test(url);
+  const image=/(gif|apng)/i.test(format)||/\.(gif|apng)(\?|#|$)/i.test(url);
+  if(url&&video)return '<video autoplay muted playsinline preload="auto" src="'+giftEscape(url)+'"></video>';
+  if(url&&image)return '<img src="'+giftEscape(url)+'" alt=""/>';
+  return '<div class="gift-animation-demo">'+giftArt(gift)+'</div>';
 }
 function openGiftPreview(id){
   const gift=giftSamples.find(g=>g.id===id);
   if(!gift)return;
-  giftPauseUntil=Date.now()+12000;
-  const overlay=document.getElementById('mask');
-  overlay.classList.remove('rules-mode');
-  overlay.classList.add('gift-mode');
-  document.getElementById('sheet-title').textContent=lang==='zh'?'定制礼物动画预览':'Custom Gift Animation';
-  document.getElementById('sheet-body').innerHTML=
-    giftPlaybackContent(gift)+
-    '<div class="gift-preview-info"><strong>'+giftEscape(giftDisplayName(gift))+'</strong>'+
-    '<span>'+(gift.isDemo?(lang==='zh'?'演示素材':'Demo'):(lang==='zh'?'最近完成':'Recent Gift'))+'</span></div>'+
-    '<p class="gift-preview-note">'+(lang==='zh'?
-      '礼物案例仅用于了解定制效果，实际定制需在符合条件的SVIP购买或续费后与运营沟通。':
-      'Gift examples are for preview only. Customization is coordinated with operations after an eligible SVIP purchase or renewal.')+'</p>'+
-    '<button type="button" class="cta gift-preview-cta" onclick="enterSvipFromGift()">'+
-      (lang==='zh'?'前往超级VIP':'Go to SVIP')+' '+icon('chevron')+'</button>';
-  overlay.classList.add('show');
-  document.body.classList.add('rules-dialog-open');
-  applyLocale();
-  const video=overlay.querySelector('.gift-preview-video');
+  closeSheet();closeGiftAnimation();
+  giftPauseUntil=Date.now()+8500;
+  const layer=document.getElementById('gift-animation-layer');
+  const stage=document.getElementById('gift-animation-stage');
+  stage.innerHTML=giftPlaybackContent(gift);
+  layer.classList.add('is-playing');
+  document.body.classList.add('gift-animation-open');
+  const video=stage.querySelector('video');
   if(video){
-    video.addEventListener('error',()=>giftMediaError(video),{once:true});
-    video.querySelector('source')?.addEventListener('error',()=>giftMediaError(video),{once:true});
-    const attempt=video.play();if(attempt?.catch)attempt.catch(()=>{});
+    video.addEventListener('ended',closeGiftAnimation,{once:true});
+    video.addEventListener('error',closeGiftAnimation,{once:true});
+    const promise=video.play();if(promise?.catch)promise.catch(closeGiftAnimation);
+    giftAnimationTimer=setTimeout(closeGiftAnimation,30000);
+  }else if(stage.querySelector('img')){
+    stage.querySelector('img').addEventListener('error',closeGiftAnimation,{once:true});
+    giftAnimationTimer=setTimeout(closeGiftAnimation,6000);
+  }else{
+    giftAnimationTimer=setTimeout(closeGiftAnimation,3600);
   }
-  overlay.querySelector('.sheet-close').focus({preventScroll:true});
 }
-function enterSvipFromGift(){closeSheet();enterSvip()}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&document.getElementById('gift-animation-layer').classList.contains('is-playing'))closeGiftAnimation();
+});
+
 renderGiftCases();
 renderRanking();
 setInterval(updateRankingCountdown,1000);
