@@ -503,6 +503,57 @@ body.rare-picker-open{overflow:hidden}
 @keyframes rare-reveal{from{transform:translateY(15px) scale(.88);opacity:.2}to{transform:translateY(0) scale(1);opacity:1}}
 @media(prefers-reduced-motion:reduce){.rare-picker-flip,.rare-picker-number{animation:none!important}}
 @media(max-width:390px){.rare-picker-panel{padding:18px 13px 16px}.rare-picker-entry{gap:7px;padding:10px 8px}.rare-picker-entry-copy span{font-size:8.3px}.rare-picker-entry button{min-width:79px;font-size:10px}.rare-picker-stage{min-height:186px}}
+
+/* Cleaner SSR / SR pricing header: restrained, single-line price strips. */
+.id-group-unified .id-unified-header{padding:0 1px 12px;margin-bottom:12px;border-bottom:1px solid #ffffff12}
+.id-group-unified .id-unified-header .tier{margin:0 0 11px;padding:0 2px;font-size:16px;color:#f7e3c2;line-height:1.3}
+.id-group-unified .id-unified-header .tier .rankgem{background:#bc99531a;border-color:#b89b6850}
+.id-group-unified .id-price-guide{gap:6px}
+.id-group-unified .id-price-line{display:flex;align-items:center;justify-content:flex-start;gap:5px;min-height:31px;padding:5px 8px;border:1px solid #86725a29;border-radius:7px;background:linear-gradient(90deg,#af8d4210,transparent 75%);color:#cfc2b0;font-size:10.2px;line-height:1.4;white-space:nowrap}
+.id-group-unified .id-price-line:nth-child(2){background:linear-gradient(90deg,#8095b815,transparent 75%);border-color:#889baa23}
+.id-group-unified .id-price-tag{display:inline-grid;place-items:center;flex:0 0 35px;min-width:35px;font-size:9px;line-height:1.2;padding:4px 0;border-radius:5px;box-shadow:inset 0 1px 1px #ffffff28}
+.id-group-unified .id-price-line .id-price-sep{margin:0 1px;opacity:.36}
+.id-group-unified .id-price-line>span:not(.id-price-sep){font-variant-numeric:tabular-nums}
+
+/* Lucky-number reveal: tier-specific glow, sparkling burst, and a distinct reveal moment. */
+.rare-picker-panel.is-result{border-color:#b28b54;box-shadow:0 23px 70px #000c,0 0 30px #bc905b19}
+.rare-picker-panel.is-result.is-sr{border-color:#8197b4;box-shadow:0 23px 70px #000c,0 0 30px #9bb8df19}
+.rare-picker-result-kicker{display:flex;align-items:center;gap:7px;color:#efc887;font-size:10px;font-weight:840;letter-spacing:.7px;margin:6px 34px 9px 1px}
+.rare-picker-result-kicker .rare-picker-result-spark{color:#ffe3aa;font-size:17px;filter:drop-shadow(0 0 7px #efc475)}
+.rare-picker-result-stage{position:relative;overflow:hidden;min-height:255px;margin-top:13px;padding:19px 10px 15px;border:1px solid #bc91556e;border-radius:16px;background:radial-gradient(ellipse at 50% 37%,#d5a65e27,transparent 47%),radial-gradient(ellipse at 52% 13%,#76512d49,transparent 72%),linear-gradient(145deg,#312820,#131921 90%);isolation:isolate;box-shadow:inset 0 1px #edd09b1a}
+.rare-picker-result-stage.sr{border-color:#819cbd77;background:radial-gradient(ellipse at 50% 38%,#bad7f128,transparent 48%),radial-gradient(ellipse at 53% 13%,#41608042,transparent 72%),linear-gradient(145deg,#202d3b,#131923 90%);box-shadow:inset 0 1px #d0e7ff23}
+.rare-picker-result-stage::before{content:"";position:absolute;z-index:0;top:16px;left:50%;transform:translateX(-50%);width:197px;height:197px;border:1px solid #daa8613b;border-radius:50%;box-shadow:0 0 0 21px #d1a45c0d,0 0 0 47px #d1a45c07;animation:rare-result-halo .9s ease-out both}
+.rare-picker-result-stage.sr::before{border-color:#c2d7f44b;box-shadow:0 0 0 21px #c1d5f10d,0 0 0 47px #bad8f008}
+.rare-picker-result-stage::after{content:"";position:absolute;z-index:0;inset:0;background:linear-gradient(110deg,transparent 37%,#ffffff1d 49%,transparent 60%);transform:translateX(-110%);animation:rare-result-sheen 1.45s .18s ease-out both;pointer-events:none}
+.rare-picker-result-stage .rare-picker-reveal{position:relative;z-index:2;gap:9px;width:100%;padding:12px 0 0}
+.rare-picker-result-stage .rare-picker-tier{font-size:10px;letter-spacing:1px;padding:6px 13px;box-shadow:0 0 17px #d7a65f24}
+.rare-picker-result-stage .rare-picker-number{font-size:clamp(38px,10vw,47px);line-height:1.08;letter-spacing:1.1px;color:#ffe0a1;text-shadow:0 0 13px #f6cd747d,0 0 35px #d5a65b66;animation:rare-number-pop .8s cubic-bezier(.2,1.3,.35,1) both}
+.rare-picker-result-stage.sr .rare-picker-number{color:#e7f3ff;text-shadow:0 0 13px #b9d4f683,0 0 32px #9bb9d66c}
+.rare-picker-result-stage .rare-picker-price{font-size:11.5px;color:#ecd4b0;margin-top:0}
+.rare-picker-result-stage .rare-picker-bonus{margin-top:3px;padding:7px 12px;border:1px solid #c79b5a48;border-radius:50px;background:#cca05f17;color:#f7d9aa;font-size:10.5px;font-weight:730}
+.rare-picker-result-stage.sr .rare-picker-bonus{border-color:#9fbbdb40;background:#a4c5ec13;color:#d7e7fc}
+.rare-result-shine{position:absolute;z-index:1;left:var(--x);top:var(--y);width:6px;height:6px;background:#ffe5a6;transform:rotate(45deg);box-shadow:0 0 10px 3px #e9b65f75;opacity:0;animation:rare-star-burst 1.3s var(--delay) ease-out both;pointer-events:none}
+.rare-result-shine:after{content:"";position:absolute;top:-6px;left:2px;width:2px;height:18px;background:linear-gradient(transparent,#fff0bd,transparent)}
+.rare-picker-result-stage.sr .rare-result-shine{background:#e2efff;box-shadow:0 0 10px 3px #b3cef985}
+.rare-result-draw-note{text-align:center;margin:11px 4px 0;color:#a9a49e;font-size:9.5px;line-height:1.45}
+.rare-picker-panel.is-result .rare-picker-operations{margin-top:15px}
+.rare-picker-panel.is-result .rare-picker-primary{box-shadow:0 6px 18px #d4a56944}
+@keyframes rare-result-halo{from{opacity:0;scale:.42}to{opacity:1;scale:1}}
+@keyframes rare-number-pop{0%{opacity:0;transform:scale(.65) translateY(17px);filter:blur(8px)}65%{opacity:1;transform:scale(1.08)}100%{opacity:1;transform:scale(1);filter:blur(0)}}
+@keyframes rare-star-burst{0%{opacity:0;transform:rotate(45deg) scale(.2) translateY(16px)}40%{opacity:1;transform:rotate(45deg) scale(1.25)}100%{opacity:.76;transform:rotate(45deg) scale(.75)}}
+@keyframes rare-result-sheen{0%{transform:translateX(-110%);opacity:0}25%{opacity:1}100%{transform:translateX(120%);opacity:0}}
+@media(max-width:390px){
+  .id-group-unified .id-price-line{font-size:9.1px;padding:5px 6px;gap:3px}
+  .id-group-unified .id-price-tag{min-width:30px;flex-basis:30px;font-size:8px}
+  .rare-picker-result-stage{min-height:235px;padding-inline:6px}
+  .rare-picker-result-stage .rare-picker-number{font-size:39px}
+  .rare-picker-result-stage .rare-picker-price{font-size:10.7px}
+}
+@media(prefers-reduced-motion:reduce){
+  .rare-picker-result-stage::before,.rare-picker-result-stage::after,.rare-result-shine,.rare-picker-result-stage .rare-picker-number{animation:none!important}
+  .rare-result-shine{opacity:.65}
+}
+
 </style>
 </head>
 <body>
@@ -1099,6 +1150,9 @@ function rarePreferenceLabel(pref){
 function rareRenderPicker(){
   const root=document.getElementById('rare-picker-content');
   if(!root)return;
+  const panel=document.querySelector('#rare-picker-overlay .rare-picker-panel');
+  panel?.classList.toggle('is-result',rarePickerStep==='result');
+  panel?.classList.toggle('is-sr',rarePickerStep==='result'&&rareGetItem(rarePicked)?.tier==='SR');
   const title=rareLocale('帮我挑个靓号','Find My Lucky ID');
   if(rarePickerStep==='select'){
     const choices=[
@@ -1133,17 +1187,24 @@ function rareRenderPicker(){
   }else if(rarePickerStep==='result' && rarePicked){
     const item=rareGetItem(rarePicked);
     if(!item||item.sold){rarePickerStep='empty';rareRenderPicker();return}
-    root.innerHTML='<h2 class="rare-picker-title">'+rareLocale('找到你的幸运靓号','Your Lucky Rare ID')+'</h2>'+
+    const stars=[
+      ['12%','18%','0s'],['83%','16%','.1s'],['23%','47%','.2s'],
+      ['76%','52%','.14s'],['17%','77%','.35s'],['85%','81%','.3s']
+    ].map(([x,y,delay])=>'<i class="rare-result-shine" style="--x:'+x+';--y:'+y+';--delay:'+delay+'"></i>').join('');
+    root.innerHTML='<div class="rare-picker-result-kicker"><span class="rare-picker-result-spark">✦</span>'+
+      rareLocale('好运揭晓 · 黑五幸运选号','LUCKY REVEAL · BLACK FRIDAY')+'</div>'+
+      '<h2 class="rare-picker-title">'+rareLocale('找到你的幸运靓号！','Your Lucky Rare ID!')+'</h2>'+
       '<p class="rare-picker-subtitle">'+rarePreferenceLabel(rarePickerPreference)+'</p>'+
-      '<div class="rare-picker-stage"><div class="rare-picker-reveal '+item.tier.toLowerCase()+'">'+
-      '<span class="rare-picker-tier '+item.tier.toLowerCase()+'">'+item.tier+'</span>'+
-      '<strong class="rare-picker-number">'+item.id+'</strong>'+
-      '<span class="rare-picker-price">'+rarePrice(item)+'</span>'+
-      '<span class="rare-picker-bonus">'+rareLocale('买180天 · 额外赠送180天','Buy 180 Days · Get 180 Days Free')+'</span>'+
-      '</div></div>'+
+      '<div class="rare-picker-stage rare-picker-result-stage '+item.tier.toLowerCase()+'" aria-live="polite">'+stars+
+        '<div class="rare-picker-reveal '+item.tier.toLowerCase()+'">'+
+          '<span class="rare-picker-tier '+item.tier.toLowerCase()+'">'+item.tier+'</span>'+
+          '<strong class="rare-picker-number">'+item.id+'</strong>'+
+          '<span class="rare-picker-price">'+rarePrice(item)+'</span>'+
+          '<span class="rare-picker-bonus">'+rareLocale('买180天 · 额外赠送180天','Buy 180 Days · Get 180 Days Free')+'</span>'+
+        '</div></div>'+
       '<div class="rare-picker-operations">'+
-      '<button type="button" class="rare-picker-secondary" onclick="rareDraw()">'+rareLocale('再抽一次','Try Again')+'</button>'+
-      '<button type="button" class="rare-picker-primary" onclick="openRareProductDetail(\''+item.id+'\')">'+rareLocale('立即购买','Buy Now')+'</button></div>'+
+        '<button type="button" class="rare-picker-secondary" onclick="rareDraw()">'+rareLocale('再抽一次','Try Again')+'</button>'+
+        '<button type="button" class="rare-picker-primary" onclick="openRareProductDetail(\''+item.id+'\')">'+rareLocale('立即购买','Buy Now')+'</button></div>'+
       '<button type="button" class="rare-picker-return" onclick="rareChangePreference()">'+rareLocale('更换偏好','Change Style')+'</button>';
   }else if(rarePickerStep==='detail' && rarePicked){
     const item=rareGetItem(rarePicked);
