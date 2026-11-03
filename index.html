@@ -775,7 +775,7 @@ body.native-rare-open{overflow:hidden}
     <section class="review-feature-guide" aria-label="Feature overview">
       <div class="review-field-title">Feature Overview</div>
       <div class="review-feature-grid">
-        <div class="review-feature-item"><strong>Custom Rare ID</strong><span>Choose a payment method and confirm payment; unavailable IDs show alternatives.</span></div>
+        <div class="review-feature-item"><strong>Custom Rare ID</strong><span>Coins selected by default; switch to honor coupons, then confirm payment.</span></div>
         <div class="review-feature-item"><strong>SVIP Promotion</strong><span>SVIP limited-time benefits and existing SVIP page access.</span></div>
         <div class="review-feature-item"><strong>Rare ID Catalogue</strong><span>SSR / SR pricing; sold IDs are dimmed.</span></div>
         <div class="review-feature-item"><strong>Top-up Ranking</strong><span>Switch regions, view rankings and claim rewards after finalization.</span></div>
@@ -988,7 +988,7 @@ body.native-rare-open{overflow:hidden}
     <label for="custom-id-field">Your preferred Rare ID</label><div class="custom-id-input-row"><b>ID</b><input id="custom-id-field" type="text" inputmode="numeric" autocomplete="off" maxlength="12" placeholder="e.g. 888888" oninput="customIdInputChanged()" onkeydown="if(event.key==='Enter')attemptCustomIdPurchase()"/></div>
     <div class="custom-pay-heading">Payment Method</div>
     <div class="custom-pay-methods" role="radiogroup" aria-label="Payment Method">
-      <button type="button" id="pay-choice-coins" class="custom-pay-choice" role="radio" aria-checked="false" onclick="selectCustomPay('coins')"><span class="pay-icon">🪙</span><span><strong>Coins</strong><small>9,000,000</small></span><i class="pay-circle"></i></button>
+      <button type="button" id="pay-choice-coins" class="custom-pay-choice selected" role="radio" aria-checked="true" onclick="selectCustomPay('coins')"><span class="pay-icon">🪙</span><span><strong>Coins</strong><small>9,000,000</small></span><i class="pay-circle"></i></button>
       <button type="button" id="pay-choice-honor" class="custom-pay-choice" role="radio" aria-checked="false" onclick="selectCustomPay('honor')"><span class="pay-icon">🎟️</span><span><strong>Honor Coupons</strong><small>9,000</small></span><i class="pay-circle"></i></button>
     </div>
     <p class="custom-pay-selection-note" id="custom-pay-selection-note" data-dynamic-locale></p>
@@ -1060,7 +1060,7 @@ Object.assign(dictionary,{
 "e.g. 888888":"例如 888888"
 });
 Object.assign(dictionary,{
-"Choose a payment method and confirm payment; unavailable IDs show alternatives.":"选择金币或荣誉券，确认支付；号码不可售时推荐相近靓号。",
+"Coins selected by default; switch to honor coupons, then confirm payment.":"默认选中金币，可切换荣誉券；号码不可售时推荐相近靓号。",
 "Payment Method":"支付方式","Coins":"金币","Honor Coupons":"荣誉券",
 "Choose a payment method before buying.":"请先选择支付方式。",
 "Confirm Payment?":"确认立即支付？",
@@ -1432,7 +1432,7 @@ const customIdPrice={priceCoins:9000000,priceHonor:9000};
 const mockBlocked=new Map([['888888','wearing'],['999999','sold'],['666666','reserved'],['777777','unavailable']]);
 let customIdState={phase:'idle',id:'',reason:'',suggestions:[]};
 let customIdVersion=0,customIdOrdering=false;
-let customPayMethod=null,customPayPending=null,customPayBusy=false,customPaySuccess=null;
+let customPayMethod='coins',customPayPending=null,customPayBusy=false,customPaySuccess=null;
 
 /* PROTOTYPE-ONLY: Successful simulated purchases are stored locally in this browser
    so the new "My Custom Rare IDs" display survives refresh. Not a backend order.
@@ -1504,7 +1504,7 @@ function openCustomId(value=''){
   const mask=document.getElementById('custom-id-mask');
   mask.classList.add('show');document.body.classList.add('custom-id-open');
   document.getElementById('custom-id-field').value=String(value||'').replace(/[^0-9]/g,'').slice(0,12);
-  customPayMethod=null;customPayPending=null;customIdInputChanged();renderCustomPaySelection();applyLocale();
+  customPayMethod='coins';customPayPending=null;customIdInputChanged();renderCustomPaySelection();applyLocale();
   setTimeout(()=>document.getElementById('custom-id-field').focus({preventScroll:true}),100);
 }
 function customIdInputChanged(){customIdVersion++;customPayPending=null;closeCustomIdWarning();}
